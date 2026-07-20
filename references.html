@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References & Verification Notes | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0f5132',secondary:'#2f6f4f',accent:'#e6f0ea'},fontFamily:{sans:['Inter','system-ui','-apple-system','sans-serif']}}}}</script>
+    <style>
+        .lang-zh{display:none} body.show-zh .lang-en{display:none} body.show-zh .lang-zh{display:inline}
+        body.show-zh p.lang-zh,body.show-zh div.lang-zh{display:block}
+        .reference-card:target{outline:3px solid rgba(15,81,50,.18);background:#f6faf7}
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2"><i data-lucide="archive" class="text-primary w-6 h-6"></i><span class="font-bold text-lg text-primary">SQDMC Guide</span></a>
+        <div class="hidden md:flex items-center gap-7 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary"><span class="lang-en">Foundations</span><span class="lang-zh">基础认知</span></a>
+            <a href="module3.html" class="hover:text-primary"><span class="lang-en">Legal & Ethics</span><span class="lang-zh">法规伦理</span></a>
+            <a href="module2.html" class="hover:text-primary"><span class="lang-en">Lifecycle</span><span class="lang-zh">全周期</span></a>
+            <a href="module4.html" class="hover:text-primary"><span class="lang-en">Curation</span><span class="lang-zh">策展归档</span></a>
+            <a href="tools.html" class="hover:text-primary"><span class="lang-en">Toolkit</span><span class="lang-zh">工具中心</span></a>
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary"><span class="lang-en">中文</span><span class="lang-zh">English</span></button>
+        </div>
+        <button class="md:hidden text-gray-600"><i data-lucide="menu" class="w-6 h-6"></i></button>
+    </div>
+</nav>
+
+<header class="bg-gradient-to-b from-accent/50 to-white py-14">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <p class="text-xs font-semibold uppercase tracking-wide text-primary mb-3"><span class="lang-en">Source verification</span><span class="lang-zh">来源核验</span></p>
+        <h1 class="text-3xl font-bold text-gray-900"><span class="lang-en">References & Verification Notes</span><span class="lang-zh">参考来源与核验说明</span></h1>
+        <p class="mt-4 text-gray-600 max-w-3xl"><span class="lang-en">Primary legislation, regulator guidance and standards used to correct this guide. Verified 19 July 2026. Links open the issuing organisation's page.</span><span class="lang-zh">用于修订本指南的法律原文、监管机构指引与标准。核验日期：2026年7月19日。链接均指向发布机构页面。</span></p>
+    </div>
+</header>
+
+<main class="container mx-auto px-6 max-w-5xl pb-20">
+    <div class="rounded-lg border border-amber-200 bg-amber-50 p-4 mb-8 text-sm text-amber-900">
+        <p class="lang-en"><strong>Scope:</strong> This site is educational guidance, not legal advice or an automated ethics determination. Laws and institutional policies may change; verify the current text and obtain qualified advice for a real project.</p>
+        <p class="lang-zh"><strong>适用范围：</strong>本站仅作教育参考，不构成法律意见，也不能自动决定伦理审查结果。法律与机构政策可能更新；实际项目应核对最新文本并取得合格专业意见。</p>
+    </div>
+
+    <div class="space-y-5">
+        <section id="pdpo" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">Hong Kong PDPO and Six Data Protection Principles</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Authoritative regulator summary of the six DPPs; the Ordinance prevails if there is any discrepancy.</span><span class="lang-zh">香港监管机构对六项资料保障原则的权威摘要；如有差异，以条例原文为准。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://www.pcpd.org.hk/english/data_privacy_law/6_data_protection_principles/principles.html">Office of the Privacy Commissioner for Personal Data — Six Data Protection Principles</a>
+        </section>
+
+        <section id="pdpo-crossborder" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">PDPO Cross-Border Transfer Guidance</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">PCPD guidance states that section 33 is not yet in operation and presents comparable protection, due diligence and model clauses as recommended preparation and good practice.</span><span class="lang-zh">私隐专员指引说明第33条尚未实施，并把相若保护、尽职调查及示范条款作为实施准备与良好实践。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://www.pcpd.org.hk/english/resources_centre/publications/files/GN_crossborder_e.pdf">PCPD — Guidance on Personal Data Protection in Cross-border Data Transfer</a>
+        </section>
+
+        <section id="gdpr" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">EU General Data Protection Regulation</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Official consolidated text used for territorial scope, lawful bases, special categories, research safeguards, rights, transfers and administrative fines.</span><span class="lang-zh">用于核验属地范围、合法依据、特殊类别、研究保障、数据主体权利、跨境传输与行政罚款的官方文本。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=en">EUR-Lex — Regulation (EU) 2016/679</a>
+        </section>
+
+        <section id="common-rule" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">US Common Rule / OHRP Guidance</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Official sources used to correct the statements on exemption, expedited review, consent waivers and waiver of signed documentation. These US rules are an example framework, not a global IRB standard.</span><span class="lang-zh">用于修正豁免、快速审查、知情同意豁免及签字记录豁免。美国规则只是示例框架，并非全球统一IRB标准。</span></p>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html">HHS — 45 CFR 46</a>
+                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/guidance/guidance-on-expedited-review-procedures/index.html">OHRP — Expedited Review Procedures</a>
+                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/guidance/faq/informed-consent/index.html">OHRP — Informed Consent FAQs</a>
+            </div>
+        </section>
+
+        <section id="risk-assessment" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Risk-triage limitation</span><span class="lang-zh">风险初筛的局限</span></h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">The guide's low/medium/high quiz is an educational synthesis. It is not a validated legal or psychometric instrument. Escalation rules reflect risk minimisation and qualitative disclosure guidance.</span><span class="lang-zh">本站低/中/高风险问卷是教育性归纳，并非经验证的法律或心理测量工具。升级规则参考风险最小化与定性数据泄露风险指引。</span></p>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html">HHS — 45 CFR 46</a>
+                <a class="text-primary underline" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/">UK Data Service — Anonymising qualitative data</a>
+            </div>
+        </section>
+
+        <section id="ukds-anonymisation" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">Qualitative-data anonymisation</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Practical authority for planning anonymisation early, handling contextual identifiers, balancing disclosure risk with data utility and assessing external tools.</span><span class="lang-zh">支持前置匿名化规划、处理语境标识符、平衡泄露风险与数据效用，以及评估外部工具的实务来源。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/">UK Data Service — Anonymising qualitative data</a>
+        </section>
+
+        <section id="nist-sanitization" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">Media sanitisation</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Current guidance for a risk-based sanitisation programme, validation, cryptographic erase and media-appropriate methods, including modern and cloud environments.</span><span class="lang-zh">关于风险导向介质清理计划、结果验证、加密擦除及按介质选择方法的现行指南，并涵盖现代与云环境。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://csrc.nist.gov/pubs/sp/800/88/r2/final">NIST SP 800-88 Rev. 2 — Guidelines for Media Sanitization</a>
+        </section>
+
+        <section id="ddi" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">Data Documentation Initiative</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Maintained specifications for documenting research data across lifecycle stages; select the appropriate DDI product rather than treating DDI as one universal template.</span><span class="lang-zh">用于跨生命周期记录研究数据的持续维护规范；应选择适用的DDI产品，而不是把DDI当作单一通用模板。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://ddialliance.org/product_overview">DDI Alliance — Choosing a DDI Product</a>
+        </section>
+
+        <section id="fair" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">FAIR Principles</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">FAIR accessibility may include authentication and authorisation; FAIR does not mean that sensitive data must be openly downloadable.</span><span class="lang-zh">FAIR的可访问性可以包含认证与授权；FAIR并不意味着敏感数据必须开放下载。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://www.go-fair.org/fair-principles/">GO FAIR — FAIR Principles</a>
+        </section>
+
+        <section id="datacite" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">DataCite Metadata Schema</h2>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Current schema documentation for consistent resource identification, discovery and citation metadata.</span><span class="lang-zh">用于一致的资源识别、发现与引用元数据的现行模式文档。</span></p>
+            <a class="text-primary underline text-sm mt-3 inline-block" href="https://schema.datacite.org/">DataCite — Metadata Schema</a>
+        </section>
+    </div>
+
+    <section class="mt-10 border-t border-gray-200 pt-6 text-xs text-gray-500">
+        <p class="lang-en"><strong>AI-assisted revision disclosure:</strong> AI tools were used to inspect the local HTML, identify internal inconsistencies, locate authoritative sources and draft revisions. Claims were checked against the linked issuing bodies. Users remain responsible for obtaining current professional and institutional advice.</p>
+        <p class="lang-zh"><strong>AI辅助修订披露：</strong>本次使用AI工具检查本地HTML、识别内部矛盾、查找权威来源并起草修订。相关主张已对照上述发布机构核验；使用者仍需自行取得最新的专业与机构意见。</p>
+    </section>
+</main>
+
+<script>
+const button=document.getElementById('langToggle');const body=document.body;const saved=localStorage.getItem('sqdmc_lang')||'en';if(saved==='zh'){body.classList.add('show-zh');document.documentElement.lang='zh-CN'}button.addEventListener('click',()=>{body.classList.toggle('show-zh');const lang=body.classList.contains('show-zh')?'zh':'en';localStorage.setItem('sqdmc_lang',lang);document.documentElement.lang=lang==='zh'?'zh-CN':'en'});if(window.lucide)lucide.createIcons();
+</script>
+<script src="site.js"></script>
+</body>
+</html>

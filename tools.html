@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolkit & Templates | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f5132',
+                        secondary: '#2f6f4f',
+                        accent: '#e6f0ea',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/30;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .template-code {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+        }
+    </style>
+    <style>
+        /* 双语切换基础样式（全站统一） */
+        .lang-zh { display: none; }
+        body.show-zh .lang-en { display: none; }
+        body.show-zh .lang-zh { display: inline; }
+        body.show-zh blockquote.lang-zh,
+        body.show-zh p.lang-zh,
+        body.show-zh div.lang-zh { display: block; }
+
+        /* 折叠面板样式 */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        /* 自定义复选框 */
+        .checklist-item input[type="checkbox"] {
+            accent-color: #0f5132;
+        }
+
+        /* 模板代码块 */
+        .template-block {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- 顶部全局导航栏 -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+            <span class="font-bold text-lg text-primary">SQDMC Guide</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Foundations</span>
+                <span class="lang-zh">基础认知</span>
+            </a>
+            <a href="module2.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Lifecycle Management</span>
+                <span class="lang-zh">全流程管理</span>
+            </a>
+            <a href="module3.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Legal & Ethics</span>
+                <span class="lang-zh">法规伦理</span>
+            </a>
+            <a href="module4.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Curation & Archiving</span>
+                <span class="lang-zh">策展进阶</span>
+            </a>
+            <a href="tools.html" class="text-primary font-medium">
+                <span class="lang-en">Toolkit</span>
+                <span class="lang-zh">工具中心</span>
+            </a>
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- 页面标题区 -->
+<section class="bg-gradient-to-b from-accent/30 to-white py-10 border-b border-gray-100">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-sm text-gray-500 mb-2">
+            <a href="index.html" class="hover:text-primary">
+                <span class="lang-en">Home</span>
+                <span class="lang-zh">首页</span>
+            </a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-700">
+                <span class="lang-en">Toolkit & Templates</span>
+                <span class="lang-zh">工具与模板</span>
+            </span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <span class="lang-en">Toolkit: Ready-to-Use Templates & Checklists</span>
+            <span class="lang-zh">工具中心：可直接复用的模板与清单</span>
+        </h1>
+        <p class="text-gray-600 max-w-3xl">
+            <span class="lang-en">
+                Download and adapt standardized worksheets, templates and checklists for sensitive qualitative data management,
+                de-identification and archival curation.
+            </span>
+            <span class="lang-zh">
+                下载并套用标准化的敏感定性数据管理、去标识化与归档策展工作表、模板和核查清单。
+            </span>
+        </p>
+    </div>
+</section>
+
+<!-- 主内容区 -->
+<section class="py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-4 gap-10">
+            <!-- 左侧固定目录 -->
+            <aside class="md:col-span-1 hidden md:block">
+                <div class="sticky top-[100px]">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">
+                        <span class="lang-en">Tools</span>
+                        <span class="lang-zh">工具列表</span>
+                    </h4>
+                    <nav class="space-y-2 text-sm border-l-2 border-gray-100 pl-4">
+                        <a href="#tool-1" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">1. De-identification Worksheet</span>
+                            <span class="lang-zh">1. 去标识化工单</span>
+                        </a>
+                        <a href="#tool-2" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2. README Metadata Template</span>
+                            <span class="lang-zh">2. README 元数据模板</span>
+                        </a>
+                        <a href="#tool-3" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">3. Repository Submission Checklist</span>
+                            <span class="lang-zh">3. 归档提交核查清单</span>
+                        </a>
+                        <a href="#tool-4" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4. DUA Core Clause Template</span>
+                            <span class="lang-zh">4. DUA 协议条款模板</span>
+                        </a>
+                        <a href="#tool-5" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">5. FAQ Quick Reference</span>
+                            <span class="lang-zh">5. 常见问题速查</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 右侧正文区 -->
+            <main class="md:col-span-3 space-y-20">
+
+                <!-- 工具1：去标识化工单 -->
+                <section id="tool-1" class="scroll-mt-24">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="eraser" class="text-primary w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">1. De-identification Worksheet</span>
+                                <span class="lang-zh">1. 去标识化工单</span>
+                            </h2>
+                            <p class="text-sm text-gray-500">
+                                <span class="lang-en">Systematic tracking of redaction decisions for audit and quality control</span>
+                                <span class="lang-zh">系统记录脱敏决策，用于审计与质量控制</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 text-sm">
+                        <span class="lang-en">
+                            Use this worksheet to document every de-identification decision during processing.
+                            It serves as an audit trail and ensures consistency across multiple reviewers.
+                        </span>
+                        <span class="lang-zh">
+                            使用本工作表记录处理过程中每一项去标识化决策，作为审计追踪，
+                            并确保多名审核人员之间的标准一致。
+                        </span>
+                    </p>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Worksheet Structure</span>
+                        <span class="lang-zh">工单结构</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800 w-1/5">
+                                        <span class="lang-en">Field</span>
+                                        <span class="lang-zh">字段</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Description</span>
+                                        <span class="lang-zh">说明</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">File ID</span>
+                                        <span class="lang-zh">文件编号</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Unique identifier for the source file</span>
+                                        <span class="lang-zh">源文件的唯一编号</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Identifier Type</span>
+                                        <span class="lang-zh">标识符类型</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Direct / contextual / unique trait</span>
+                                        <span class="lang-zh">直接 / 语境 / 独特特征</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Original Content</span>
+                                        <span class="lang-zh">原始内容</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Brief description of the identifying detail</span>
+                                        <span class="lang-zh">可识别细节的简要描述</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Action Taken</span>
+                                        <span class="lang-zh">处理方式</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Remove / generalize / pseudonymize / retain</span>
+                                        <span class="lang-zh">删除 / 泛化 / 伪名替换 / 保留</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Rationale</span>
+                                        <span class="lang-zh">决策理由</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Why this action was chosen; fidelity vs. risk assessment</span>
+                                        <span class="lang-zh">选择该处理方式的原因；保真度与风险评估</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">
+                                        <span class="lang-en">Reviewer & Date</span>
+                                        <span class="lang-zh">审核人与日期</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Dual-review sign-off</span>
+                                        <span class="lang-zh">双人复核签字</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📄 View Blank Template</span>
+                                <span class="lang-zh">📄 查看空白模板</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4">
+                            <div class="template-block template-code">
+<span class="lang-en">=== De-identification Worksheet ===
+Project Title: [Project Name]
+Dataset: [Dataset ID / Name]
+De-identification Tier: [Basic / Intermediate / Strict]
+Reviewer 1: [Name] | Reviewer 2: [Name]
+Date: [YYYY-MM-DD]
+
+---
+Record 1
+- File ID: [e.g. INT-003]
+- Identifier Type: [Direct / Contextual / Unique Trait]
+- Original Content: [brief description]
+- Action Taken: [Remove / Generalize / Pseudonymize / Retain]
+- Rationale: [1-2 sentences explaining decision]
+- Status: [Reviewed / Pending]
+
+Record 2
+- File ID:
+- Identifier Type:
+- Original Content:
+- Action Taken:
+- Rationale:
+- Status:
+
+[add additional records as needed]
+
+---
+Final Sign-off
+Reviewer 1 Signature & Date: _______________
+Reviewer 2 Signature & Date: _______________
+Notes: [any exceptional cases or residual risk statements]</span>
+<span class="lang-zh">=== 去标识化工单 ===
+项目名称：[项目名称]
+数据集：[数据集编号 / 名称]
+去标识化级别：[基础级 / 进阶级 / 严格级]
+审核人1：[姓名] | 审核人2：[姓名]
+日期：[YYYY-MM-DD]
+
+---
+记录 1
+- 文件编号：[例如 INT-003]
+- 标识符类型：[直接 / 语境 / 独特特征]
+- 原始内容：[简要描述]
+- 处理方式：[删除 / 泛化 / 伪名替换 / 保留]
+- 决策理由：[1-2 句话说明决策依据]
+- 状态：[已审核 / 待处理]
+
+记录 2
+- 文件编号：
+- 标识符类型：
+- 原始内容：
+- 处理方式：
+- 决策理由：
+- 状态：
+
+[按需添加更多记录]
+
+---
+最终确认
+审核人1 签字与日期：_______________
+审核人2 签字与日期：_______________
+备注：[特殊情况说明或残余风险声明]</span>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 工具2：README元数据模板 -->
+                <section id="tool-2" class="scroll-mt-24">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="file-text" class="text-primary w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">2. README Metadata Template</span>
+                                <span class="lang-zh">2. README 元数据模板</span>
+                            </h2>
+                            <p class="text-sm text-gray-500">
+                                <span class="lang-en">Standard four-category metadata for curated datasets</span>
+                                <span class="lang-zh">策展数据集标准四类元数据模板</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 text-sm">
+                        <span class="lang-en">
+                            Save as <code>README.txt</code> or <code>README.md</code> in the root folder of your dataset.
+                            Use plain language so future researchers can understand and reuse the data without additional context.
+                        </span>
+                        <span class="lang-zh">
+                            保存为 <code>README.txt</code> 或 <code>README.md</code>，放在数据集根目录。
+                            使用平实语言，确保未来研究者无需额外上下文也能理解并复用数据。
+                        </span>
+                    </p>
+
+                    <div class="template-block template-code mb-6">
+<span class="lang-en">==================================================
+  DATASET README
+==================================================
+
+1. DESCRIPTIVE INFORMATION
+--------------------------------------------------
+Title:
+  [Full dataset title]
+
+Authors & Affiliations:
+  [Name 1], [Institution 1]
+  [Name 2], [Institution 2]
+
+Date of Collection:
+  [YYYY-MM / YYYY-YYYY]
+
+Geographic Scope:
+  [Region / Country / Community]
+
+Abstract:
+  [2-4 sentences describing the dataset, research question,
+   data type and main content]
+
+Keywords (5-8):
+  [keyword 1, keyword 2, keyword 3, ...]
+
+Data Type:
+  [e.g. semi-structured interviews, focus group transcripts,
+   field notes, observational data]
+
+Language:
+  [e.g. English, Cantonese, Mandarin]
+
+
+2. METHODOLOGICAL INFORMATION
+--------------------------------------------------
+Research Design:
+  [e.g. qualitative interview study, ethnography,
+   constructivist grounded theory]
+
+Sampling Strategy:
+  [sampling method, number of participants,
+   inclusion / exclusion criteria]
+
+Data Collection Method:
+  [how data was collected, duration, setting,
+   interview guide reference if applicable]
+
+Transcription / Processing:
+  [transcription protocol, verbatim / intelligent
+   verbatim, any cleaning or processing steps]
+
+Coding Scheme (if applicable):
+  [coding framework reference, coder information,
+   inter-coder reliability]
+
+
+3. ETHICAL & ACCESS INFORMATION
+--------------------------------------------------
+IRB / Ethics Approval:
+  [Committee name, approval number, date]
+
+Informed Consent Type:
+  [e.g. written informed consent, oral consent with witness]
+
+Consent Scope for Sharing:
+  [what participants agreed to regarding data sharing
+   and secondary use]
+
+De-identification Tier:
+  [Basic / Intermediate / Strict]
+
+Access Mode:
+  [Open Access / Registered Access / Controlled Access]
+
+Permitted Uses:
+  [e.g. non-commercial academic research, secondary analysis,
+   replication studies]
+
+Prohibited Uses:
+  [e.g. re-identification, commercial use, redistribution]
+
+Citation Requirement:
+  [preferred citation format for this dataset]
+
+
+4. FILE STRUCTURE & TECHNICAL INFORMATION
+--------------------------------------------------
+File Structure:
+  /
+  ├── README.txt          (this file)
+  ├── data/
+  │   ├── interviews/     (transcript files)
+  │   └── fieldnotes/     (field note files)
+  └── codebooks/
+      └── coding_scheme.pdf
+
+File Formats:
+  [e.g. .docx, .pdf, plain text .txt]
+
+Total Number of Files:
+  [number]
+
+Version History:
+  v1.0  [YYYY-MM-DD]  Initial archived release
+
+Software Required:
+  [any software needed to open files]
+
+Checksums (if available):
+  [MD5 / SHA values for verification]
+
+
+5. SHARING & TERMS OF USE
+--------------------------------------------------
+License:
+  [e.g. CC BY 4.0, CC BY-NC 4.0, custom DUA]
+
+Attribution:
+  [how to cite this dataset in publications]
+
+Contact:
+  [corresponding author / data steward contact info]
+
+Disclaimer:
+  [residual risk statement, limitations of the dataset]
+==================================================</span>
+<span class="lang-zh">==================================================
+  数据集说明文档 README
+==================================================
+
+1. 描述性信息
+--------------------------------------------------
+标题：
+  [数据集完整标题]
+
+作者与所属机构：
+  [姓名 1]，[机构 1]
+  [姓名 2]，[机构 2]
+
+采集时间：
+  [YYYY-MM / YYYY-YYYY]
+
+地理范围：
+  [地区 / 国家 / 社群]
+
+摘要：
+  [2-4 句话描述数据集、研究问题、数据类型与主要内容]
+
+关键词（5-8个）：
+  [关键词 1，关键词 2，关键词 3，……]
+
+数据类型：
+  [例如半结构化访谈、焦点小组转录稿、田野笔记、观察数据]
+
+语言：
+  [例如英文、粤语、普通话]
+
+
+2. 方法学信息
+--------------------------------------------------
+研究设计：
+  [例如定性访谈研究、民族志、建构主义扎根理论]
+
+抽样策略：
+  [抽样方法、参与者数量、纳入/排除标准]
+
+数据采集方法：
+  [数据如何采集、时长、场景，如有访谈提纲可注明]
+
+转录与处理：
+  [转录规范、逐字转录/精简转录、
+   任何数据清洗或处理步骤]
+
+编码方案（如适用）：
+  [编码框架说明、编码人员信息、编码者间信度]
+
+
+3. 伦理与访问信息
+--------------------------------------------------
+伦理审查批准：
+  [委员会名称、审批编号、日期]
+
+知情同意类型：
+  [例如书面知情同意、有见证人的口头同意]
+
+数据共享同意范围：
+  [参与者对数据共享与二次使用的授权范围]
+
+去标识化级别：
+  [基础级 / 进阶级 / 严格级]
+
+访问模式：
+  [开放访问 / 注册访问 / 受控访问]
+
+允许用途：
+  [例如非商业学术研究、二次分析、复制研究]
+
+禁止用途：
+  [例如重新识别个人身份、商业使用、再分发]
+
+引用要求：
+  [本数据集的推荐引用格式]
+
+
+4. 文件结构与技术信息
+--------------------------------------------------
+文件目录结构：
+  /
+  ├── README.txt          （本文件）
+  ├── data/
+  │   ├── interviews/     （访谈转录稿）
+  │   └── fieldnotes/     （田野笔记）
+  └── codebooks/
+      └── coding_scheme.pdf （编码方案）
+
+文件格式：
+  [例如 .docx、.pdf、纯文本 .txt]
+
+文件总数：
+  [数量]
+
+版本历史：
+  v1.0  [YYYY-MM-DD]  首次归档发布
+
+所需软件：
+  [打开文件所需的任何软件]
+
+校验值（如可用）：
+  [MD5 / SHA 校验值用于完整性验证]
+
+
+5. 共享与使用条款
+--------------------------------------------------
+使用许可：
+  [例如 CC BY 4.0、CC BY-NC 4.0、自定义 DUA]
+
+署名要求：
+  [出版物中如何引用本数据集]
+
+联系方式：
+  [通讯作者 / 数据管理员联系方式]
+
+免责声明：
+  [残余风险声明、数据集局限性说明]
+==================================================</span>
+                    </div>
+                </section>
+
+                <!-- 工具3：归档提交核查清单 -->
+                <section id="tool-3" class="scroll-mt-24">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check-square" class="text-primary w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">3. Repository Submission Checklist</span>
+                                <span class="lang-zh">3. 归档提交核查清单</span>
+                            </h2>
+                            <p class="text-sm text-gray-500">
+                                <span class="lang-en">Pre-submission quality & compliance verification</span>
+                                <span class="lang-zh">提交前质量与合规核验清单</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mb-4 text-sm">
+                        <span class="lang-en">
+                            Complete this checklist before submitting data to a repository.
+                            Tick each item only after verification; retain a copy for project records.
+                        </span>
+                        <span class="lang-zh">
+                            向数据仓库提交前完成本清单。核验通过后再勾选；保留副本存入项目档案。
+                        </span>
+                    </p>
+
+                    <div class="space-y-6 mb-6">
+                        <!-- A组 -->
+                        <div class="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                            <h3 class="font-semibold text-gray-800 mb-3">
+                                <span class="lang-en">A. Ethics & Compliance</span>
+                                <span class="lang-zh">A. 伦理与合规</span>
+                            </h3>
+                            <div class="space-y-2 text-sm checklist-item">
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">IRB / ethics approval explicitly covers data archiving and sharing</span>
+                                        <span class="lang-zh">伦理审批明确覆盖数据归档与共享</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Informed consent scope matches the selected access mode</span>
+                                        <span class="lang-zh">知情同意范围与所选访问模式一致</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">No participant withdrawal requests are pending</span>
+                                        <span class="lang-zh">无待处理的参与者数据撤回请求</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Cross-border data transfer complies with applicable regulations</span>
+                                        <span class="lang-zh">数据跨境传输符合对应法规要求</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- B组 -->
+                        <div class="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                            <h3 class="font-semibold text-gray-800 mb-3">
+                                <span class="lang-en">B. De-identification Quality</span>
+                                <span class="lang-zh">B. 去标识化质量</span>
+                            </h3>
+                            <div class="space-y-2 text-sm checklist-item">
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">All direct identifiers have been removed systematically</span>
+                                        <span class="lang-zh">所有直接标识符已系统移除</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Pseudonyms are consistent across all files</span>
+                                        <span class="lang-zh">所有文件中伪名体系保持一致</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Unique contextual traits have been screened and addressed</span>
+                                        <span class="lang-zh">独特语境特征已筛查并做处理</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Dual independent review completed and documented</span>
+                                        <span class="lang-zh">双人独立复核已完成并留存记录</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">De-identification worksheet is complete and filed separately</span>
+                                        <span class="lang-zh">去标识化工单完整并单独存档</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- C组 -->
+                        <div class="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                            <h3 class="font-semibold text-gray-800 mb-3">
+                                <span class="lang-en">C. Files & Metadata</span>
+                                <span class="lang-zh">C. 文件与元数据</span>
+                            </h3>
+                            <div class="space-y-2 text-sm checklist-item">
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Files are organized in logical, consistent folder structure</span>
+                                        <span class="lang-zh">文件按逻辑一致的目录结构组织</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">File formats meet repository long-term preservation requirements</span>
+                                        <span class="lang-zh">文件格式符合仓库长期保存要求</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Standard README file is complete and in root folder</span>
+                                        <span class="lang-zh">标准 README 文件完整并位于根目录</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">All four metadata categories are fully covered</span>
+                                        <span class="lang-zh">四类元数据均已完整覆盖</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">File naming follows consistent, descriptive convention</span>
+                                        <span class="lang-zh">文件命名遵循统一的描述性规范</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- D组 -->
+                        <div class="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                            <h3 class="font-semibold text-gray-800 mb-3">
+                                <span class="lang-en">D. Repository Submission</span>
+                                <span class="lang-zh">D. 仓库提交</span>
+                            </h3>
+                            <div class="space-y-2 text-sm checklist-item">
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Repository is appropriate for data type and sensitivity</span>
+                                        <span class="lang-zh">所选仓库适配数据类型与敏感度</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Access mode and license have been selected</span>
+                                        <span class="lang-zh">已选定访问模式与使用许可</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">All required repository metadata fields are complete</span>
+                                        <span class="lang-zh">仓库要求的所有元数据字段已填写完整</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Data has been uploaded via secure, encrypted channel</span>
+                                        <span class="lang-zh">数据通过安全加密渠道上传</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start gap-2 cursor-pointer">
+                                    <input type="checkbox" class="mt-0.5">
+                                    <span>
+                                        <span class="lang-en">Persistent DOI has been obtained and recorded</span>
+                                        <span class="lang-zh">已获取永久 DOI 并做好记录</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 工具4：DUA协议条款模板 -->
+                <section id="tool-4" class="scroll-mt-24">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="file-signature" class="text-primary w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">4. Data Use Agreement (DUA) Core Template</span>
+                                <span class="lang-zh">4. 数据使用协议（DUA）核心模板</span>
+                            </h2>
+                            <p class="text-sm text-gray-500">
+                                <span class="lang-en">Standard clauses for controlled-access data sharing</span>
+                                <span class="lang-zh">受控访问数据共享的标准条款</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-yellow-800">
+                            <span class="lang-en">
+                                <strong>Note:</strong> This is a reference template for informational purposes only.
+                                For formal use, consult your institution’s legal office and research ethics team
+                                to adapt it to local regulations and specific project requirements.
+                            </span>
+                            <span class="lang-zh">
+                                <strong>注意：</strong>本模板仅作参考，不构成法律意见。
+                                正式使用前请咨询所在机构法务与伦理部门，
+                                根据当地法规与具体项目要求进行调整。
+                            </span>
+                        </p>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📄 View Full DUA Clause Template</span>
+                                <span class="lang-zh">📄 查看完整 DUA 条款模板</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4">
+                            <div class="template-block template-code">
+<span class="lang-en">=== DATA USE AGREEMENT (DUA) ===
+
+Parties:
+- Data Provider: [Institution / Research Team Name]
+- Data Recipient: [Name], [Institution], [Position]
+- Project Title: [Title of research project using the data]
+
+1. GRANT OF ACCESS
+The Data Provider grants the Data Recipient limited, non-exclusive,
+non-transferable access to the dataset described in Appendix A,
+solely for the purpose of the research project stated above.
+
+2. PERMITTED USES
+- Non-commercial academic research only
+- Secondary analysis and replication studies
+- Publication of aggregated results and quotations
+  (provided no individual is identifiable)
+
+3. PROHIBITED USES
+- Any attempt to identify or re-identify individual participants
+- Commercial use, marketing or advertising
+- Redistribution, sharing or transfer of the data to any third party
+- Use of the data for decisions affecting individual persons
+- Modification or derivative redistribution of the dataset
+
+4. SECURITY OBLIGATIONS
+The Recipient agrees to:
+- Store the data on secure, password-protected devices
+- Apply full-disk encryption on all devices containing the data
+- Not store the data on public cloud services or shared drives
+  without explicit written approval
+- Limit access to only named researchers on the approved project
+- Report any suspected data breach to the Provider immediately
+
+5. CONFIDENTIALITY
+The Recipient shall maintain strict confidentiality of all data
+and take all reasonable steps to prevent unauthorized access.
+No information that could identify participants shall be disclosed
+in any publication or presentation.
+
+6. CITATION & ATTRIBUTION
+All publications, presentations and outputs using this dataset
+must include the formal dataset citation as specified in Appendix B.
+
+7. TERM & TERMINATION
+- Agreement effective from [start date] to [end date]
+- Provider may terminate access immediately if Recipient breaches
+  any terms of this agreement
+- Upon termination or project completion, Recipient must securely
+  destroy all copies of the data and provide written confirmation
+
+8. DISCLAIMER & LIMITATION OF LIABILITY
+The dataset is provided "as is". The Provider makes no warranties
+regarding accuracy, completeness or fitness for a particular purpose.
+In no event shall the Provider be liable for any damages arising from
+use of the data.
+
+9. GOVERNING LAW
+This agreement shall be governed by the laws of [jurisdiction].
+
+Signatures:
+Data Provider: _________________________  Date: __________
+Data Recipient: _______________________  Date: __________
+
+Appendix A: Dataset Description
+[list of files, de-identification tier, access mode]
+
+Appendix B: Preferred Citation
+[standard dataset citation format]</span>
+<span class="lang-zh">=== 数据使用协议（DUA）===
+
+协议双方：
+- 数据提供方：[机构 / 研究团队名称]
+- 数据接收方：[姓名]，[所属机构]，[职位]
+- 项目名称：[使用数据的研究项目标题]
+
+1. 访问授权
+数据提供方授予数据接收方有限的、非排他的、不可转让的数据集访问权限，
+仅可用于上述研究项目之目的。数据集描述见附录 A。
+
+2. 允许用途
+- 仅限非商业学术研究
+- 二次分析与复制研究
+- 发布汇总结果与引语（前提是无法识别任何个人身份）
+
+3. 禁止用途
+- 任何识别或重新识别参与者个人身份的尝试
+- 商业使用、营销或广告
+- 向任何第三方再分发、共享或转让数据
+- 使用数据做出影响个人的决策
+- 修改数据集或衍生再分发
+
+4. 安全义务
+接收方承诺：
+- 将数据存储于安全的、有密码保护的设备
+- 所有含数据的设备开启全盘加密
+- 未经书面批准，不得存储于公共云服务或共享磁盘
+- 仅限获批项目内的指定研究人员访问
+- 一旦怀疑数据泄露，立即通知提供方
+
+5. 保密义务
+接收方应对所有数据严格保密，采取一切合理措施防止未授权访问。
+任何可能识别参与者的信息均不得在出版物或报告中披露。
+
+6. 引用与署名
+所有使用本数据集的出版物、报告与成果，均须按附录 B 规定的格式
+正式引用本数据集。
+
+7. 期限与终止
+- 协议有效期：[起始日期] 至 [结束日期]
+- 若接收方违反本协议任何条款，提供方可立即终止访问权限
+- 协议终止或项目结束时，接收方须安全销毁所有数据副本，
+  并提供书面确认
+
+8. 免责与责任限制
+数据集按「现状」提供。提供方不对数据的准确性、完整性
+或特定用途适用性做任何保证。任何情况下，提供方均不对
+因使用数据而产生的损害承担责任。
+
+9. 适用法律
+本协议受 [司法辖区] 法律管辖。
+
+签字：
+数据提供方：_________________________  日期：__________
+数据接收方：_______________________  日期：__________
+
+附录 A：数据集说明
+[文件清单、去标识化级别、访问模式]
+
+附录 B：推荐引用格式
+[标准数据集引用格式]</span>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 工具5：常见问题速查 -->
+                <section id="tool-5" class="scroll-mt-24">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="help-circle" class="text-primary w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">5. FAQ Quick Reference</span>
+                                <span class="lang-zh">5. 常见问题速查</span>
+                            </h2>
+                            <p class="text-sm text-gray-500">
+                                <span class="lang-en">Answers to the most common practical questions</span>
+                                <span class="lang-zh">最常见实操问题的简明解答</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 mb-6">
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-800">
+                                <span>
+                                    <span class="lang-en">Q1: Can I publish interview transcripts openly?</span>
+                                    <span class="lang-zh">Q1：访谈转录稿可以完全开放发布吗？</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="lang-en">
+                                    In most cases, fully open publication is not recommended for verbatim qualitative transcripts.
+                                    Even with names removed, unique combinations of details (occupation, location, life events)
+                                    can often re-identify participants. For most sensitive qualitative data,
+                                    <strong>registered or controlled access</strong> is the more ethically appropriate choice.
+                                    Strictly de-identified excerpts may be published as supplementary materials.
+                                </p>
+                                <p class="lang-zh">
+                                    大多数情况下，不建议逐字定性转录稿完全公开发布。
+                                    即使移除了姓名，独特的细节组合（职业、地点、人生事件）
+                                    往往仍能重新识别参与者。对于多数敏感定性数据，
+                                    <strong>注册访问或受控访问</strong>是伦理上更合适的选择。
+                                    经过严格脱敏的片段可作为补充材料发布。
+                                </p>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-800">
+                                <span>
+                                    <span class="lang-en">Q2: What if participants did not consent to data sharing?</span>
+                                    <span class="lang-zh">Q2：如果参与者没有同意数据共享怎么办？</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="lang-en">
+                                    Do not assume that de-identification alone authorises sharing. Check the participant information and consent process,
+                                    ethics approval, applicable legal basis and any research exceptions. If no valid authority can be established, do not share participant-level data. Options include:
+                                    (1) archive only aggregated findings, not individual-level data;
+                                    (2) contact participants to request additional consent for sharing;
+                                    (3) retain data securely within your institution only, without external archiving.
+                                </p>
+                                <p class="lang-zh">
+                                    不要假定去标识化本身就能授权共享。应核查参与者说明与同意过程、伦理审批、适用法律依据及研究例外；如果无法确立有效权限，就不要共享参与者层面的数据。可选方案包括：
+                                    （1）仅归档汇总层面的研究发现，不归档个体数据；
+                                    （2）联系参与者，追加征求共享同意；
+                                    （3）数据仅在机构内安全留存，不对外归档。
+                                </p>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-800">
+                                <span>
+                                    <span class="lang-en">Q3: How long should I retain raw research data?</span>
+                                    <span class="lang-zh">Q3：原始研究数据应该留存多久？</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="lang-en">
+                                    Retention periods vary by law, institution, funder, discipline and approved protocol.
+                                    <strong>There is no universal 3–7 year rule.</strong>
+                                    Sensitive data should not be kept longer than necessary.
+                                    Check your funder policy, institutional rules and ethics approval conditions.
+                                    Curated archived datasets may be retained long-term under controlled access.
+                                </p>
+                                <p class="lang-zh">
+                                    留存期限因法律、机构、资助方、学科与获批方案而异，
+                                    <strong>不存在通用的“发表后3–7年”规则。</strong>
+                                    敏感数据不应超过必要期限留存。
+                                    请核查资助方政策、机构规定与伦理审批条件。
+                                    策展后的归档数据集可在受控访问下长期留存。
+                                </p>
+                            </div>
+                        </details>
+
+                                                <details class="border border-gray-200 rounded-lg">
+                            <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-800">
+                                <span>
+                                    <span class="lang-en">Q4: Can AI / NLP tools fully replace manual de-identification?</span>
+                                    <span class="lang-zh">Q4：AI / NLP 自动工具能完全替代人工去标识化吗？</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="lang-en">
+                                    No. Automated tools can efficiently detect and remove standard named entities
+                                    (names, organizations, locations, dates), but they cannot reliably identify
+                                    <strong>contextual re-identification risks</strong> — unique combinations of life events,
+                                    occupation details, community-specific references that only a human reviewer
+                                    familiar with the research context can spot.
+                                    <br><br>
+                                    Automated tools are useful as a first-pass screening step, but
+                                    documented human review is essential. Whether two independent reviewers are required should follow the project's risk assessment,
+                                    ethics approval, repository rules and available resources.
+                                </p>
+                                <p class="lang-zh">
+                                    不能。自动工具可以高效检测并移除标准命名实体（姓名、机构、地点、日期），
+                                    但无法可靠识别<strong>语境重识别风险</strong>——独特的人生事件组合、职业细节、
+                                    社群专属指代，这些只有熟悉研究语境的人工审核者才能发现。
+                                    <br><br>
+                                    自动工具适合作为初筛步骤，但敏感定性数据
+                                    必须开展有记录的人工复核；是否需要两名独立审核人，应依据项目风险评估、伦理审批、仓库规则与可用资源决定。
+                                </p>
+                            </div>
+                        </details>
+
+                        <details class="border border-gray-200 rounded-lg">
+                            <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-800">
+                                <span>
+                                    <span class="lang-en">Q5: Which license should I choose for qualitative data?</span>
+                                    <span class="lang-zh">Q5：定性数据集应该选择什么使用协议？</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-600">
+                                <p class="lang-en">
+                                    For most sensitive qualitative datasets shared under controlled access,
+                                    a custom <strong>Data Use Agreement (DUA)</strong> is more appropriate than a standard open license,
+                                    as it can enforce confidentiality, purpose limitation and non-identification clauses.
+                                    <br><br>
+                                    If you share fully de-identified, aggregated data openly, common options include:
+                                </p>
+                                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm lang-en">
+                                    <li><strong>CC BY 4.0</strong>: A widely used attribution-based option</li>
+                                    <li><strong>CC BY-NC 4.0</strong>: Non-commercial use only</li>
+                                </ul>
+                                <p class="text-sm mt-3 lang-en">
+                                    A license cannot cure an ethics, consent, privacy or disclosure-risk problem. Before applying any open license or CC0,
+                                    confirm that open release is authorised and that the released material meets the applicable anonymisation and repository criteria.
+                                </p>
+
+                                <p class="lang-zh">
+                                    对于大多数受控访问下共享的敏感定性数据集，自定义的
+                                    <strong>数据使用协议（DUA）</strong>比标准开放协议更合适，
+                                    因为它可以强制执行保密、用途限定、禁止识别等条款。
+                                    <br><br>
+                                    如果公开共享完全脱敏的汇总数据，常用选项包括：
+                                </p>
+                                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm lang-zh">
+                                    <li><strong>CC BY 4.0</strong>：要求署名，复用限制最宽松</li>
+                                    <li><strong>CC BY-NC 4.0</strong>：仅限非商业使用</li>
+                                </ul>
+                                <p class="text-sm mt-3 lang-zh">
+                                    许可协议不能消除伦理、同意、隐私或泄露风险问题。在采用任何开放许可或 CC0 前，
+                                    应先确认公开发布已有授权，并且拟发布材料满足适用的匿名化标准和仓储要求。
+                                </p>
+                            </div>
+                        </details>
+                    </div>
+                    <p class="mt-5 text-xs text-gray-500">
+                        <span class="lang-en">Correction sources: </span><span class="lang-zh">纠错依据：</span>
+                        <a href="references.html#common-rule" class="text-primary underline">HHS/OHRP consent and review rules</a> ·
+                        <a href="references.html#ukds-anonymisation" class="text-primary underline">UK Data Service anonymisation guidance</a> ·
+                        <a href="references.html#nist-sanitization" class="text-primary underline">NIST media sanitization guidance</a>
+                    </p>
+                </section>
+
+                <!-- 底部下一步引导 -->
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="bg-accent/20 border border-primary/10 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">
+                                    <span class="lang-en">Complete your learning path</span>
+                                    <span class="lang-zh">完成你的学习路径</span>
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">
+                                        Return to review core concepts, or explore references and further reading materials.
+                                    </span>
+                                    <span class="lang-zh">
+                                        返回首页复习核心概念，或查看参考文献与延伸阅读资料。
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-2 flex-shrink-0">
+                                <a href="index.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Back to Home</span>
+                                    <span class="lang-zh">返回首页</span>
+                                </a>
+                                <a href="references.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                    <span class="lang-en">View References</span>
+                                    <span class="lang-zh">查看参考文献</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="text-white w-5 h-5"></i>
+                    <span class="font-bold text-white text-lg">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        Sensitive Qualitative Data Management & Curation Guide
+                        for researchers and data practitioners.
+                    </span>
+                    <span class="lang-zh">
+                        面向研究者与数据从业者的敏感定性数据管理与策展指南。
+                    </span>
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">Modules</span>
+                    <span class="lang-zh">模块导航</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="module1.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Foundations</span>
+                        <span class="lang-zh">基础认知</span>
+                    </a></li>
+                    <li><a href="module2.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Lifecycle Management</span>
+                        <span class="lang-zh">全流程管理</span>
+                    </a></li>
+                    <li><a href="module3.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Legal & Ethics</span>
+                        <span class="lang-zh">法规伦理</span>
+                    </a></li>
+                    <li><a href="module4.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Curation & Archiving</span>
+                        <span class="lang-zh">策展进阶</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">Resources</span>
+                    <span class="lang-zh">相关资源</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tools.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Toolkit & Templates</span>
+                        <span class="lang-zh">工具与模板</span>
+                    </a></li>
+                    <li><a href="references.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">References</span>
+                        <span class="lang-zh">参考文献</span>
+                    </a></li>
+                    <li><a href="glossary.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Glossary</span>
+                        <span class="lang-zh">术语表</span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+            <span class="lang-en">For educational reference only. Not legal or professional advice.</span>
+            <span class="lang-zh">仅供学习参考，不构成法律或专业建议。</span>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    // 全站统一语言切换逻辑
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    // 读取本地存储的语言偏好
+    const savedLang = localStorage.getItem('sqdmc_lang') || 'en';
+    if (savedLang === 'zh') {
+        body.classList.add('show-zh');
+        document.documentElement.lang = 'zh-CN';
+    }
+
+    langToggle.addEventListener('click', () => {
+        body.classList.toggle('show-zh');
+        const currentLang = body.classList.contains('show-zh') ? 'zh' : 'en';
+        localStorage.setItem('sqdmc_lang', currentLang);
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    });
+
+    // 初始化 Lucide 图标
+    lucide.createIcons();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curation & Archiving | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f5132',
+                        secondary: '#2f6f4f',
+                        accent: '#e6f0ea',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/30;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+    </style>
+    <style>
+        /* 双语切换基础样式 */
+        .lang-zh { display: none; }
+        body.show-zh .lang-en { display: none; }
+        body.show-zh .lang-zh { display: inline; }
+        body.show-zh blockquote.lang-zh,
+        body.show-zh p.lang-zh,
+        body.show-zh div.lang-zh { display: block; }
+
+        /* 折叠面板样式 */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        /* 自定义复选框 */
+        .checklist-item input[type="checkbox"] {
+            accent-color: #0f5132;
+        }
+
+        /* 脱敏演示样式 */
+        .deid-demo-text {
+            font-family: monospace;
+            line-height: 1.8;
+        }
+        .deid-redact {
+            background-color: #1f2937;
+            color: #1f2937;
+            user-select: none;
+            border-radius: 2px;
+        }
+        .deid-btn.active {
+            background-color: #0f5132;
+            color: white;
+            border-color: #0f5132;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- 顶部全局导航栏 -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+            <span class="font-bold text-lg text-primary">SQDMC Guide</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Foundations</span>
+                <span class="lang-zh">基础认知</span>
+            </a>
+            <a href="module2.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Lifecycle Management</span>
+                <span class="lang-zh">全流程管理</span>
+            </a>
+            <a href="module3.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Legal & Ethics</span>
+                <span class="lang-zh">法规伦理</span>
+            </a>
+            <a href="module4.html" class="text-primary font-medium">
+                <span class="lang-en">Curation & Archiving</span>
+                <span class="lang-zh">策展进阶</span>
+            </a>
+            <a href="tools.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Toolkit</span>
+                <span class="lang-zh">工具中心</span>
+            </a>
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- 页面标题区 -->
+<section class="bg-gradient-to-b from-accent/30 to-white py-10 border-b border-gray-100">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-sm text-gray-500 mb-2">
+            <a href="index.html" class="hover:text-primary">
+                <span class="lang-en">Home</span>
+                <span class="lang-zh">首页</span>
+            </a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-700">
+                <span class="lang-en">Module 4: Advanced Curation & Archiving</span>
+                <span class="lang-zh">模块四：高级策展与归档</span>
+            </span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <span class="lang-en">Module 4: Advanced Data Curation & Archiving</span>
+            <span class="lang-zh">模块四：高级数据策展与归档</span>
+        </h1>
+        <p class="text-gray-600 max-w-3xl">
+            <span class="lang-en">
+                Master professional qualitative data curation workflows — from de-identification methodology and metadata standards
+                to repository submission and controlled access governance.
+            </span>
+            <span class="lang-zh">
+                掌握专业级定性数据策展流程 —— 从去标识化方法论、元数据标准，
+                到仓库提交与受控访问治理。
+            </span>
+        </p>
+    </div>
+</section>
+
+<!-- 主内容区 -->
+<section class="py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-4 gap-10">
+            <!-- 左侧固定目录 -->
+            <aside class="md:col-span-1 hidden md:block">
+                <div class="sticky top-[100px]">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">
+                        <span class="lang-en">Sections</span>
+                        <span class="lang-zh">章节导航</span>
+                    </h4>
+                    <nav class="space-y-2 text-sm border-l-2 border-gray-100 pl-4">
+                        <a href="#section4-1" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.1 What is Data Curation?</span>
+                            <span class="lang-zh">4.1 数据策展概念</span>
+                        </a>
+                        <a href="#section4-2" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.2 De-identification Methodology</span>
+                            <span class="lang-zh">4.2 去标识化方法论</span>
+                        </a>
+                        <a href="#section4-3" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.3 Metadata Standards</span>
+                            <span class="lang-zh">4.3 元数据标准</span>
+                        </a>
+                        <a href="#section4-4" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.4 Repository Submission</span>
+                            <span class="lang-zh">4.4 数据仓库提交</span>
+                        </a>
+                        <a href="#section4-5" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.5 Controlled Access Ethics</span>
+                            <span class="lang-zh">4.5 受控访问伦理</span>
+                        </a>
+                        <a href="#section4-6" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">4.6 Quality Checklist</span>
+                            <span class="lang-zh">4.6 质量核查清单</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 右侧正文区 -->
+            <main class="md:col-span-3 space-y-20">
+
+                <!-- 4.1 数据策展概念 -->
+                <section id="section4-1" class="scroll-mt-24">
+                    <!-- 引导层 -->
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Confusion</span>
+                                    <span class="lang-zh">Hazel 的困惑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Isn’t archiving just uploading files to a repository?
+                                        Why do I need to learn “data curation” as a separate skill?
+                                    </span>
+                                    <span class="lang-zh">
+                                        归档不就是把文件传到仓库里吗？
+                                        为什么还要专门学「数据策展」？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Key difference: Basic management keeps data safe;
+                                        curation ensures data remains usable, understandable and valuable long-term.
+                                    </span>
+                                    <span class="lang-zh">
+                                        核心区别：基础管理保证数据「不出错」，
+                                        策展保证数据长期「有用、可读、有价值」。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.1 What is Data Curation?</span>
+                        <span class="lang-zh">4.1 什么是数据策展</span>
+                    </h2>
+
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            Data curation is the active, ongoing management of data throughout its entire lifecycle,
+                            to ensure its long-term availability, authenticity, understandability and reusability
+                            while maintaining ethical and privacy compliance.
+                            <sup><a href="references.html#ddi" class="text-primary underline">[source]</a></sup>
+                        </span>
+                        <span class="lang-zh">
+                            数据策展是在数据整个生命周期中进行的主动、持续管理，
+                            确保其长期可用性、真实性、可理解性与可复用性，
+                            同时保持伦理与隐私合规。
+                            <sup><a href="references.html#ddi" class="text-primary underline">[来源]</a></sup>
+                        </span>
+                    </p>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Curation vs. Basic Data Management</span>
+                        <span class="lang-zh">策展 vs. 基础数据管理</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800 w-1/4">
+                                        <span class="lang-en">Dimension</span>
+                                        <span class="lang-zh">维度</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Basic Data Management</span>
+                                        <span class="lang-zh">基础数据管理</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Data Curation</span>
+                                        <span class="lang-zh">数据策展</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Core Goal</span>
+                                        <span class="lang-zh">核心目标</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Security, compliance, no data breaches</span>
+                                        <span class="lang-zh">安全、合规、不泄露</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Long-term discoverability, understandability, reusability</span>
+                                        <span class="lang-zh">长期可发现、可理解、可复用</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Primary Users</span>
+                                        <span class="lang-zh">服务对象</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Current research team</span>
+                                        <span class="lang-zh">当前研究团队</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Future researchers, archivists, broader community</span>
+                                        <span class="lang-zh">未来研究者、档案员、更广泛社群</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Time Horizon</span>
+                                        <span class="lang-zh">时间跨度</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Project duration</span>
+                                        <span class="lang-zh">项目周期内</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Long-term, potentially permanent</span>
+                                        <span class="lang-zh">长期，甚至永久</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">
+                                        <span class="lang-en">Core Activities</span>
+                                        <span class="lang-zh">核心工作</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Collect, store, secure, destroy</span>
+                                        <span class="lang-zh">收集、存储、安全、销毁</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Organize, standardize, document, archive, maintain</span>
+                                        <span class="lang-zh">整理、标准化、建档、归档、维护</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Three Core Challenges for Sensitive Qualitative Curation</span>
+                        <span class="lang-zh">敏感定性数据策展的三大核心挑战</span>
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4 card-hover">
+                            <h4 class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Fidelity-Safety Tradeoff</span>
+                                <span class="lang-zh">保真-安全的权衡</span>
+                            </h4>
+                            <p class="text-xs text-gray-600">
+                                <span class="lang-en">More de-identification reduces risk but also erodes the research value of rich narrative data.</span>
+                                <span class="lang-zh">脱敏程度越高，风险越低，但丰富叙事数据的研究价值也随之衰减。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 card-hover">
+                            <h4 class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Contextual Re-identification</span>
+                                <span class="lang-zh">语境重识别风险</span>
+                            </h4>
+                            <p class="text-xs text-gray-600">
+                                <span class="lang-en">Unique combinations of details in narratives can re-identify individuals even without explicit names.</span>
+                                <span class="lang-zh">叙事中独特的细节组合，即使没有姓名也可能重新识别出个人。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 card-hover">
+                            <h4 class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Standardization Difficulty</span>
+                                <span class="lang-zh">标准化难度高</span>
+                            </h4>
+                            <p class="text-xs text-gray-600">
+                                <span class="lang-en">Unstructured qualitative data is harder to standardize than structured quantitative datasets.</span>
+                                <span class="lang-zh">非结构化定性数据相比结构化定量数据，更难实现标准化归档。</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Tripartite Balance Model</span>
+                        <span class="lang-zh">三角平衡模型</span>
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            High-quality curation balances three core values:
+                            <strong>Ethical Safety</strong>, <strong>Semantic Fidelity</strong> and <strong>Reusability</strong>.
+                            Different archiving scenarios prioritize different dimensions.
+                        </span>
+                        <span class="lang-zh">
+                            高质量的策展需要在三个核心价值之间取得平衡：
+                            <strong>伦理安全</strong>、<strong>语义保真度</strong>与<strong>可复用性</strong>。
+                            不同的归档场景对应不同的优先级。
+                        </span>
+                    </p>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Academic Origins & Frontiers</span>
+                                <span class="lang-zh">📚 深度拓展：学术溯源与前沿方向</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Institutional development:</strong>
+                                    QDR (Qualitative Data Repository) at Syracuse University is the world’s leading dedicated qualitative data curation institution,
+                                    establishing many of the field’s standards and best practices.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>机构发展：</strong>
+                                    锡拉丘兹大学的QDR（定性数据仓库）是全球领先的专业定性数据策展机构，
+                                    奠定了该领域的诸多标准与最佳实践。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Frontier directions:</strong>
+                                    Contextual anonymization, dynamic de-identification, community-governed data,
+                                    and Indigenous data sovereignty are active areas of research.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>前沿方向：</strong>
+                                    语境匿名化、动态去标识化、社群治理数据、原住民数据主权等都是当前活跃的研究方向。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Interdisciplinarity:</strong>
+                                    Data curation sits at the intersection of library science, information studies,
+                                    computer science and research ethics.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>跨学科属性：</strong>
+                                    数据策展处于图书馆学、情报学、计算机科学与研究伦理的交叉领域。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 4.2 去标识化方法论 -->
+                <section id="section4-2" class="scroll-mt-24">
+                    <!-- 引导层 -->
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Dilemma</span>
+                                    <span class="lang-zh">Hazel 的难题</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        If I redact too much, the data loses its research value.
+                                        If I redact too little, participants could be identified.
+                                        How do I find the right balance?
+                                    </span>
+                                    <span class="lang-zh">
+                                        删多了数据就没研究价值了，删少了又可能识别出受访者。
+                                        怎么找到合适的平衡点？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Method: Use this guide's scenario-based three-tier model as a planning aid, then follow repository and institutional requirements.
+                                        Match the de-identification tier to your archiving scenario.
+                                    </span>
+                                    <span class="lang-zh">
+                                        方法：把本指南的场景化三级模型作为规划工具，并进一步遵循仓库与机构的具体要求。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.2 De-identification Methodology</span>
+                        <span class="lang-zh">4.2 去标识化方法论</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Three-Tier De-identification System</span>
+                        <span class="lang-zh">三级去标识化体系</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Tier</span>
+                                        <span class="lang-zh">级别</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Use Case</span>
+                                        <span class="lang-zh">适用场景</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Core Actions</span>
+                                        <span class="lang-zh">核心操作</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Risk / Fidelity</span>
+                                        <span class="lang-zh">风险 / 保真度</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium text-yellow-700">
+                                        <span class="lang-en">Basic</span>
+                                        <span class="lang-zh">基础级</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Intra-team sharing; student coursework</span>
+                                        <span class="lang-zh">团队内共享；课程作业</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Remove direct identifiers; apply consistent pseudonyms</span>
+                                        <span class="lang-zh">移除直接标识符；统一伪名替换</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Medium risk / High fidelity</span>
+                                        <span class="lang-zh">中等风险 / 高保真</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium text-orange-700">
+                                        <span class="lang-en">Intermediate</span>
+                                        <span class="lang-zh">进阶级</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Cross-institutional collaboration; controlled-access archiving</span>
+                                        <span class="lang-zh">跨机构合作；受控访问归档</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Generalize context; remove unique identifying traits</span>
+                                        <span class="lang-zh">上下文泛化；移除独特识别特征</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Low risk / Moderate fidelity</span>
+                                        <span class="lang-zh">低风险 / 中等保真</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-red-700">
+                                        <span class="lang-en">Strict</span>
+                                        <span class="lang-zh">严格级</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Fully open public archiving</span>
+                                        <span class="lang-zh">完全开放的公共归档</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Deep contextual redaction; remove all potentially identifying details</span>
+                                        <span class="lang-zh">深度语境脱敏；移除所有可能识别的细节</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Very low risk / Low fidelity</span>
+                                        <span class="lang-zh">极低风险 / 低保真</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Guide 5-Step Review Workflow</span>
+                        <span class="lang-zh">本指南五步复核流程</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        <span class="lang-en">
+                            An operational review sequence synthesised for this guide; adapt it to the selected repository and approved protocol.
+                        </span>
+                        <span class="lang-zh">
+                            本指南归纳的操作性复核顺序；应结合所选仓库与获批方案进行调整。
+                        </span>
+                    </p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">1</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Direct identifier removal & verification</span>
+                                    <span class="lang-zh">直接标识符移除与核验</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Systematically scan and remove all explicit identifiers; double-check for completeness.</span>
+                                    <span class="lang-zh">系统扫描并移除所有显式标识符，双人复核确保无遗漏。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">2</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Pseudonym system design</span>
+                                    <span class="lang-zh">伪名体系设计</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Create consistent IDs for all persons, places and organizations; store key separately and encrypted.</span>
+                                    <span class="lang-zh">为所有人物、地点、机构建立统一代号；密钥单独加密存储。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">3</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Context generalization</span>
+                                    <span class="lang-zh">上下文信息泛化</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Replace specific locations with regions, exact dates with time periods, precise roles with categories.</span>
+                                    <span class="lang-zh">具体地点→区域；精确日期→时间段；具体职位→类别。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">4</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Unique trait screening & removal</span>
+                                    <span class="lang-zh">独特特征筛查与移除</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Identify rare events, unusual biographies and other details that could uniquely identify someone.</span>
+                                    <span class="lang-zh">识别罕见事件、特殊履历等可能唯一锁定个人的细节并做处理。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">5</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Dual-person cross-check & QA</span>
+                                    <span class="lang-zh">双人交叉复核与质量保证</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Two independent reviewers verify de-identification quality; document the review process.</span>
+                                    <span class="lang-zh">两名独立审核人员核验脱敏质量，留存审核记录。</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500 mb-6"><a href="references.html#ukds-anonymisation" class="text-primary underline"><span class="lang-en">Source and limitation note: UK Data Service guidance supports planned, risk-based qualitative anonymisation. The tier labels and five steps here are this guide's operational synthesis, not a named external standard.</span><span class="lang-zh">来源与局限说明：英国数据服务指南支持预先规划、按风险实施定性资料匿名化；本页的三级名称与五步流程是本指南的操作性归纳，并非具名外部标准。</span></a></p>
+
+                    <!-- 交互式脱敏演示 -->
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Interactive De-identification Demo</span>
+                        <span class="lang-zh">交互式脱敏效果演示</span>
+                    </h3>
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <div class="flex gap-2 mb-4 flex-wrap">
+                            <button class="deid-btn active px-3 py-1.5 text-xs border border-gray-300 rounded transition-colors" data-tier="basic">
+                                <span class="lang-en">Basic Tier</span>
+                                <span class="lang-zh">基础级</span>
+                            </button>
+                            <button class="deid-btn px-3 py-1.5 text-xs border border-gray-300 rounded transition-colors" data-tier="intermediate">
+                                <span class="lang-en">Intermediate Tier</span>
+                                <span class="lang-zh">进阶级</span>
+                            </button>
+                            <button class="deid-btn px-3 py-1.5 text-xs border border-gray-300 rounded transition-colors" data-tier="strict">
+                                <span class="lang-en">Strict Tier</span>
+                                <span class="lang-zh">严格级</span>
+                            </button>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded p-4 deid-demo-text text-sm" id="deid-demo">
+                            <span class="lang-en">
+                                “I’m <span class="deid-name">Maple Squirrel</span>, I work at <span class="deid-org">the Oak Forest Research Institute</span>
+                                as a <span class="deid-role">senior health policy researcher</span>.
+                                Last <span class="deid-date">March 15th</span>, I was diagnosed with <span class="deid-health">type 2 diabetes</span>
+                                at <span class="deid-loc">Pinewood Central Hospital</span>.
+                                It’s been really hard to adjust, especially since my mother also had the same condition.”
+                            </span>
+                            <span class="lang-zh">
+                                “我叫<span class="deid-name">松鼠小枫</span>，在<span class="deid-org">橡树林研究院</span>
+                                做<span class="deid-role">高级卫生政策研究员</span>。
+                                今年<span class="deid-date">3月15日</span>，我在<span class="deid-loc">松木中心医院</span>
+                                确诊了<span class="deid-health">2型糖尿病</span>。
+                                适应起来挺难的，尤其是我妈妈也有同样的病。”
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">
+                            <span class="lang-en">
+                                Tip: Click different tiers to see how redaction depth changes with scenario.
+                                Real qualitative data requires manual review due to contextual risks.
+                            </span>
+                            <span class="lang-zh">
+                                提示：点击不同级别查看脱敏深度随场景的变化。
+                                真实定性数据因存在语境风险，必须人工复核。
+                            </span>
+                        </p>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Fidelity Judgment Principles</span>
+                        <span class="lang-zh">保真度判断原则</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="font-medium text-green-700">
+                                <span class="lang-en">Must keep:</span>
+                                <span class="lang-zh">✅ 必须保留：</span>
+                            </span>
+                            <span class="lang-en"> Core arguments, narrative logic, key quotes directly related to the research question.</span>
+                            <span class="lang-zh"> 与研究问题直接相关的核心论点、叙事逻辑、关键引语。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium text-yellow-700">
+                                <span class="lang-en">May generalize:</span>
+                                <span class="lang-zh">⚠️ 可以泛化：</span>
+                            </span>
+                            <span class="lang-en"> Contextual details that do not affect research conclusions (specific dates, exact locations).</span>
+                            <span class="lang-zh"> 不影响研究结论的语境细节（具体日期、精确地点等）。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium text-red-700">
+                                <span class="lang-en">Must remove:</span>
+                                <span class="lang-zh">❌ 必须移除：</span>
+                            </span>
+                            <span class="lang-en"> Any information that can directly or highly probably identify individuals.</span>
+                            <span class="lang-zh"> 所有可直接或高概率识别到个人的信息。</span>
+                        </li>
+                    </ul>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Theoretical Framework & Limitations</span>
+                                <span class="lang-zh">📚 深度拓展：理论框架与局限性</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>The impossibility of perfect anonymity:</strong>
+                                    No de-identification method can guarantee 100% non-identifiability for rich qualitative data.
+                                    Describe reasonably foreseeable residual risks in the consent process and repository documentation as required by the approved protocol.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>完美匿名的不可能性：</strong>
+                                    对于丰富的定性数据，没有任何去标识化方法能保证100%不可识别。
+                                    按获批方案要求，在知情同意过程与仓库文档中说明合理可预见的残余风险。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Automated tools vs. manual review:</strong>
+                                    NLP tools can efficiently remove named entities, but cannot reliably detect
+                                    contextual re-identification risks. Documented human review remains important; its design should be proportionate to risk.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>自动工具与人工复核：</strong>
+                                    NLP工具可高效移除命名实体，但无法可靠识别语境重识别风险；仍应进行有记录且与风险相称的人工复核。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 4.3 元数据标准 -->
+                <section id="section4-3" class="scroll-mt-24">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Question</span>
+                                    <span class="lang-zh">Hazel 的疑问</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Why do I need to write detailed metadata?
+                                        Isn’t it enough to just upload the data files with a short description?
+                                    </span>
+                                    <span class="lang-zh">
+                                        为什么一定要写详细的元数据？
+                                        上传文件的时候加一段简短说明不够吗？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Metadata is the instruction manual for data.
+                                        Without standardized metadata, future researchers cannot understand or reuse the data.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：元数据就是数据的说明书。没有标准化元数据，未来的研究者无法理解和复用数据。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.3 Metadata Standards</span>
+                        <span class="lang-zh">4.3 元数据标准</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Four Core Metadata Categories</span>
+                        <span class="lang-zh">四类核心元数据</span>
+                    </h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                                <i data-lucide="search" class="w-4 h-4 text-primary"></i>
+                                <span class="lang-en">1. Descriptive Metadata (for discovery)</span>
+                                <span class="lang-zh">1. 描述性元数据（用于发现）</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Help others find and understand the dataset at a glance.</span>
+                                <span class="lang-zh">帮助他人快速发现并从整体上理解数据集。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Required fields:</strong> Title, researcher(s), abstract, keywords, data type, collection date, geographic scope</span>
+                                <span class="lang-zh"><strong>必备字段：</strong>标题、研究者、摘要、关键词、数据类型、采集时间、地理范围</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-primary"></i>
+                                <span class="lang-en">2. Administrative Metadata (for preservation)</span>
+                                <span class="lang-zh">2. 管理性元数据（用于保存）</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Ensure long-term preservability and technical authenticity of the dataset.</span>
+                                <span class="lang-zh">保障数据集的长期可保存性与技术真实性。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Required fields:</strong> File format, file size, checksum, creation date, software used, version history, access rights</span>
+                                <span class="lang-zh"><strong>必备字段：</strong>文件格式、文件大小、校验值、创建时间、使用软件、版本历史、访问权限</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                                <i data-lucide="layers" class="w-4 h-4 text-primary"></i>
+                                <span class="lang-en">3. Structural Metadata (for comprehension)</span>
+                                <span class="lang-zh">3. 结构性元数据（用于理解）</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Explain how files are organized, coded and related to each other.</span>
+                                <span class="lang-zh">说明文件之间的组织方式、编码逻辑与相互关系。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Required fields:</strong> File structure, coding scheme, variable definitions, data collection methodology, sampling strategy</span>
+                                <span class="lang-zh"><strong>必备字段：</strong>文件结构、编码方案、变量定义、数据采集方法、抽样策略</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
+                                <span class="lang-en">4. Ethical Metadata (for compliance)</span>
+                                <span class="lang-zh">4. 伦理性元数据（用于合规）</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Document ethical approval, consent scope and usage constraints.</span>
+                                <span class="lang-zh">记录伦理审批情况、同意范围与使用限制。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Required fields:</strong> IRB approval number, consent type, de-identification tier, access mode, permitted uses, citation requirements</span>
+                                <span class="lang-zh"><strong>必备字段：</strong>IRB审批号、同意类型、去标识化级别、访问模式、允许用途、引用要求</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">README File Best Practices</span>
+                        <span class="lang-zh">README 文件撰写规范</span>
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            A plain-text README is a strong human-readable companion, but it does not replace repository-required structured metadata.
+                            Use open, durable formats (plain .txt or .md) to ensure long-term readability.
+                        </span>
+                        <span class="lang-zh">
+                            纯文本README是重要的人类可读说明，但不能替代仓库要求的结构化元数据。
+                            使用开放、持久的格式（纯文本 .txt 或 .md）以保障长期可读性。
+                        </span>
+                    </p>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Standard Specifications & Community Norms</span>
+                                <span class="lang-zh">📚 深度拓展：标准规范与社群惯例</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Mainstream standards:</strong>
+                                    DDI is a maintained suite for documenting social, behavioural, economic and health research data;
+                                    select the DDI product and repository schema that fit the dataset. Dublin Core is a general-purpose option.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>主流标准：</strong>
+                                    DDI是一套用于记录社会、行为、经济与健康研究数据的持续维护规范；应选择适合数据集的DDI产品与仓库模式。Dublin Core可作为通用方案。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Qualitative-specific standards:</strong>
+                                    Qualitative repositories may require repository-specific fields for methods, context, consent and access restrictions;
+                                    always validate the current deposit requirements of the selected repository.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>定性专属标准：</strong>
+                                    定性数据仓库可能要求方法、语境、同意范围及访问限制等专门字段；应始终核对所选仓库当前的提交要求。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>FAIR principles:</strong>
+                                    FAIR means Findable, Accessible, Interoperable and Reusable; "Accessible" can include authentication and authorisation, so FAIR does not require sensitive data to be open.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>FAIR 原则：</strong>
+                                    FAIR指可发现、可访问、可互操作、可复用；“可访问”可以包含认证与授权，因此FAIR不要求敏感数据必须开放。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                    <p class="text-xs text-gray-500 mt-4"><span class="lang-en">Sources: </span><span class="lang-zh">来源：</span><a href="references.html#ddi" class="text-primary underline">DDI Alliance</a> · <a href="references.html#fair" class="text-primary underline">FAIR Principles</a> · <a href="references.html#datacite" class="text-primary underline">DataCite Metadata Schema</a></p>
+                </section>
+
+                <!-- 4.4 数据仓库提交 -->
+                <section id="section4-4" class="scroll-mt-24">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Question</span>
+                                    <span class="lang-zh">Hazel 的疑问</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Where should I deposit my qualitative data?
+                                        A general repository, or one specifically for qualitative data?
+                                    </span>
+                                    <span class="lang-zh">
+                                        定性数据应该存在哪里？通用仓库好，还是专门的定性数据仓库好？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Choose repository based on data sensitivity, disciplinary norms and access mode.
+                                        Sensitive qualitative data is best suited for specialized qualitative data repositories.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：根据数据敏感度、学科惯例、访问模式选择仓库。敏感定性数据优先选择专业定性数据仓库。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.4 Repository Submission Workflow</span>
+                        <span class="lang-zh">4.4 数据仓库提交流程</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Repository Selection Framework</span>
+                        <span class="lang-zh">仓库选择框架</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Repository Type</span>
+                                        <span class="lang-zh">仓库类型</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Examples</span>
+                                        <span class="lang-zh">典型代表</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Best For</span>
+                                        <span class="lang-zh">最适合</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Specialized qualitative repository</span>
+                                        <span class="lang-zh">专业定性数据仓库</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">QDR, ICPSR Qualitative</td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Sensitive qualitative data requiring controlled access</span>
+                                        <span class="lang-zh">需要受控访问的敏感定性数据</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Disciplinary repository</span>
+                                        <span class="lang-zh">学科通用仓库</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Figshare, Zenodo, Harvard Dataverse</span>
+                                        <span class="lang-zh">Figshare、Zenodo、Harvard Dataverse</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Low-sensitivity data with open access</span>
+                                        <span class="lang-zh">低敏感度、开放获取的数据</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">
+                                        <span class="lang-en">Institutional repository</span>
+                                        <span class="lang-zh">机构知识库</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">University research data repositories</span>
+                                        <span class="lang-zh">大学研究数据仓库</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Internal institutional data management</span>
+                                        <span class="lang-zh">机构内部的数据管理需求</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">6-Step Standard Submission Workflow</span>
+                        <span class="lang-zh">六步标准提交流程</span>
+                    </h3>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">1</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Pre-submission compliance check</span>
+                                    <span class="lang-zh">提交前合规检查</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Verify IRB approval, consent scope, and that de-identification meets repository requirements.</span>
+                                    <span class="lang-zh">核验伦理审批、同意范围、去标识化程度是否符合仓库要求。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">2</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Data file organization & formatting</span>
+                                    <span class="lang-zh">数据文件整理与格式化</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Organize files into logical folders; convert to open, sustainable formats; standardize naming conventions.</span>
+                                    <span class="lang-zh">按逻辑整理文件夹结构，转换为开放可持续格式，统一命名规范。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">3</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Prepare complete metadata documentation</span>
+                                    <span class="lang-zh">准备完整元数据文档</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Write README file; complete all required metadata fields according to repository specifications.</span>
+                                    <span class="lang-zh">撰写 README 文件，按仓库规范填写所有必填元数据字段。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">4</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Select access mode & usage license</span>
+                                    <span class="lang-zh">选择访问模式与使用协议</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Choose open / registered / controlled access; select appropriate data usage license.</span>
+                                    <span class="lang-zh">选择开放/注册/受控访问模式，选用合适的数据使用许可协议。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">5</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Upload files & submit for review</span>
+                                    <span class="lang-zh">上传文件并提交审核</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Upload all files via secure channel; submit for repository curatorial review.</span>
+                                    <span class="lang-zh">通过安全通道上传所有文件，提交仓库策展审核。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">6</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Obtain DOI & complete citation documentation</span>
+                                    <span class="lang-zh">获取 DOI 并完善引用信息</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">After publication, obtain persistent DOI; add citation information to papers and project outputs.</span>
+                                    <span class="lang-zh">发布后获取永久 DOI，在论文与项目成果中补充引用信息。</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Persistent Identifier (DOI) & Citation</span>
+                        <span class="lang-zh">永久标识符与引用规范</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="lang-en">
+                                All formally archived datasets should obtain a DOI (Digital Object Identifier) for persistent, citable access.
+                            </span>
+                            <span class="lang-zh">
+                                所有正式归档的数据集都应获取 DOI（数字对象标识符），实现永久可访问、可引用。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                When publishing papers, cite the dataset formally to give credit to data producers and increase transparency.
+                            </span>
+                            <span class="lang-zh">
+                                发表论文时正式引用数据集，体现对数据生产者的学术认可，提升研究透明度。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                Follow the data citation standard: Author (Year). Title. Repository. DOI.
+                            </span>
+                            <span class="lang-zh">
+                                遵循数据引用标准格式：作者 (年份). 标题. 数据仓库. DOI。
+                            </span>
+                        </li>
+                    </ul>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Repository Curation & Peer Review</span>
+                                <span class="lang-zh">📚 深度拓展：仓库策展与同行评审</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Curatorial review:</strong>
+                                    Professional repositories conduct formal curatorial review, including metadata completeness,
+                                    de-identification quality, file format sustainability and ethical compliance.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>策展审核：</strong>
+                                    专业仓库会进行正式的策展审核，包括元数据完整性、去标识化质量、
+                                    文件格式可持续性、伦理合规性等维度。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Data peer review:</strong>
+                                    Some high-standard repositories implement data peer review,
+                                    where domain experts evaluate the scientific quality and reusability of the dataset.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数据同行评审：</strong>
+                                    部分高标准仓库实行数据同行评审，由领域专家评估数据集的科学质量与可复用性。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 4.5 受控访问伦理 -->
+                <section id="section4-5" class="scroll-mt-24">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Question</span>
+                                    <span class="lang-zh">Hazel 的疑问</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        If data is in a repository, shouldn’t everyone be able to download it freely?
+                                        Why do we need “controlled access” with applications and reviews?
+                                    </span>
+                                    <span class="lang-zh">
+                                        数据放进仓库不就应该人人都能自由下载吗？
+                                        为什么还要「受控访问」，还要申请审核？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Openness is a goal, not an absolute.
+                                        For sensitive qualitative data, controlled access balances public benefit with participant protection.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：开放是目标，而非绝对。敏感定性数据通过受控访问，平衡公共利益与受访者保护。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.5 Controlled Access Ethics & Governance</span>
+                        <span class="lang-zh">4.5 受控访问伦理与治理</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Three Access Modes</span>
+                        <span class="lang-zh">三级访问模式</span>
+                    </h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="border border-green-200 bg-green-50/30 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">
+                                <span class="lang-en">Open Access</span>
+                                <span class="lang-zh">开放访问</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Anyone can download the data freely without registration.</span>
+                                <span class="lang-zh">任何人无需注册即可自由下载数据。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Applicable to:</strong> Fully de-identified, non-sensitive data with no risk of re-identification</span>
+                                <span class="lang-zh"><strong>适用：</strong>完全脱敏、无敏感内容、无重识别风险的数据</span>
+                            </p>
+                        </div>
+                        <div class="border border-yellow-200 bg-yellow-50/30 rounded-lg p-4">
+                            <h4 class="font-semibold text-yellow-800 mb-2">
+                                <span class="lang-en">Registered Access</span>
+                                <span class="lang-zh">注册访问</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Users must register with real identity and agree to terms of use before accessing data.</span>
+                                <span class="lang-zh">用户需实名注册并同意使用条款，方可访问数据。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Applicable to:</strong> Moderately sensitive data with low re-identification risk</span>
+                                <span class="lang-zh"><strong>适用：</strong>中等敏感、重识别风险较低的数据</span>
+                            </p>
+                        </div>
+                        <div class="border border-red-200 bg-red-50/30 rounded-lg p-4">
+                            <h4 class="font-semibold text-red-800 mb-2">
+                                <span class="lang-en">Controlled Access</span>
+                                <span class="lang-zh">受控访问</span>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <span class="lang-en">Users must submit a formal application stating research purpose; access is granted only after review and approval.</span>
+                                <span class="lang-zh">用户需提交正式申请说明研究用途，审核通过后方可访问数据。</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en"><strong>Applicable to:</strong> Highly sensitive qualitative data with potential re-identification risk</span>
+                                <span class="lang-zh"><strong>适用：</strong>高度敏感、存在潜在重识别风险的定性数据</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Controlled Access Review Process</span>
+                        <span class="lang-zh">受控访问审核流程</span>
+                    </h3>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">1</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Formal application submission</span>
+                                    <span class="lang-zh">正式申请提交</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Applicant provides research project description, methodology, intended use and institutional affiliation.</span>
+                                    <span class="lang-zh">申请者提供研究项目说明、方法、预期用途与所属机构。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">2</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Ethical & scientific review</span>
+                                    <span class="lang-zh">伦理与科学审核</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Data access committee reviews whether the purpose is legitimate and whether risks to participants are minimized.</span>
+                                    <span class="lang-zh">数据访问委员会审核用途是否正当、对受访者的风险是否最小化。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">3</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Data Use Agreement signing</span>
+                                    <span class="lang-zh">签署数据使用协议</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Approved users sign a legally binding DUA specifying usage constraints and confidentiality obligations.</span>
+                                    <span class="lang-zh">通过审核的用户签署具有约束力的使用协议，明确使用限制与保密义务。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">4</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Secure data delivery & monitoring</span>
+                                    <span class="lang-zh">安全交付与使用监控</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Data is delivered through a secure channel; access logs are maintained for compliance tracking.</span>
+                                    <span class="lang-zh">通过安全渠道交付数据，保留访问日志用于合规追踪。</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Core Clauses of a Data Use Agreement (DUA)</span>
+                        <span class="lang-zh">数据使用协议核心条款</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="font-medium">Purpose limitation:</span>
+                            <span class="lang-en"> Data may only be used for the stated research project.</span>
+                            <span class="lang-zh"> 用途限定：仅可用于约定的研究项目。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">No re-identification:</span>
+                            <span class="lang-en"> Explicit prohibition on attempting to identify individual participants.</span>
+                            <span class="lang-zh"> 禁止重识别：明确禁止尝试识别受访者个人身份。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">No secondary transfer:</span>
+                            <span class="lang-en"> Data may not be shared or transferred to third parties.</span>
+                            <span class="lang-zh"> 禁止二次传播：不得将数据共享或转发给第三方。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Security obligations:</span>
+                            <span class="lang-en"> Maintain appropriate technical and organizational security measures.</span>
+                            <span class="lang-zh"> 安全义务：保持适当的技术与组织安全措施。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Citation requirement:</span>
+                            <span class="lang-en"> Formal citation of the dataset in all research outputs.</span>
+                            <span class="lang-zh"> 引用要求：所有研究成果中正式引用该数据集。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Destruction upon completion:</span>
+                            <span class="lang-en"> Securely destroy all copies of the data when the project ends.</span>
+                            <span class="lang-zh"> 到期销毁：项目结束后安全销毁所有数据副本。</span>
+                        </li>
+                    </ul>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Governance Models & Data Justice</span>
+                                <span class="lang-zh">📚 深度拓展：治理模式与数据正义</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Data Access Committees:</strong>
+                                    Professional repositories typically establish independent DACs (Data Access Committees)
+                                    with mixed membership including researchers, ethicists and community representatives.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数据访问委员会：</strong>
+                                    专业仓库通常设立独立的 DAC（数据访问委员会），
+                                    成员包括研究者、伦理学家与社群代表。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Data justice perspective:</strong>
+                                    Controlled access is not just about “restricting data”,
+                                    but about upholding the autonomy and dignity of research participants,
+                                    especially marginalized and vulnerable groups.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数据正义视角：</strong>
+                                    受控访问不只是「限制数据」，更是维护研究参与者、
+                                    尤其是边缘弱势群体的自主权与尊严。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 4.6 质量核查清单 -->
+                <section id="section4-6" class="scroll-mt-24">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">4.6 Curation Quality Checklist</span>
+                        <span class="lang-zh">4.6 策展质量核查清单</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            Use this checklist before submitting data to a repository to ensure completeness, compliance and quality.
+                        </span>
+                        <span class="lang-zh">
+                            提交数据到仓库前，使用本清单做最终核查，确保完整性、合规性与质量达标。
+                        </span>
+                    </p>
+
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">
+                            <span class="lang-en">A. De-identification & Privacy</span>
+                            <span class="lang-zh">A. 去标识化与隐私</span>
+                        </h3>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">All direct identifiers have been systematically removed</span>
+                                    <span class="lang-zh">所有直接标识符已系统移除</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Pseudonym system is consistent across all files</span>
+                                    <span class="lang-zh">所有文件中伪名体系保持一致</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Contextual details have been appropriately generalized</span>
+                                    <span class="lang-zh">语境细节已做适当泛化处理</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Unique identifying traits have been screened and removed</span>
+                                    <span class="lang-zh">独特识别特征已筛查并移除</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Dual-person cross-check has been completed and documented</span>
+                                    <span class="lang-zh">已完成双人交叉复核并留存记录</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">
+                            <span class="lang-en">B. Metadata & Documentation</span>
+                            <span class="lang-zh">B. 元数据与文档</span>
+                        </h3>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">README file is complete and follows standard structure</span>
+                                    <span class="lang-zh">README 文件完整并遵循标准结构</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">All four categories of metadata are covered</span>
+                                    <span class="lang-zh">覆盖了四类核心元数据</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">File structure and coding scheme are clearly explained</span>
+                                    <span class="lang-zh">文件结构与编码方案有清晰说明</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Ethical and consent information is fully documented</span>
+                                    <span class="lang-zh">伦理与同意信息完整记录</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">
+                            <span class="lang-en">C. Compliance & Repository Requirements</span>
+                            <span class="lang-zh">C. 合规与仓库要求</span>
+                        </h3>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">IRB approval covers data archiving and sharing</span>
+                                    <span class="lang-zh">伦理审批覆盖数据归档与共享</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Informed consent scope matches the selected access mode</span>
+                                    <span class="lang-zh">知情同意范围与所选访问模式匹配</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">File formats meet repository long-term preservation requirements</span>
+                                    <span class="lang-zh">文件格式符合仓库长期保存要求</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Appropriate license and access mode have been selected</span>
+                                    <span class="lang-zh">已选用合适的许可协议与访问模式</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 底部下一步引导 -->
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="bg-accent/20 border border-primary/10 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">
+                                    <span class="lang-en">Next: Use Practical Tools & Templates</span>
+                                    <span class="lang-zh">下一步：使用实用工具与模板</span>
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">
+                                        Go to the Toolkit page to get ready-to-use checklists, README templates and de-identification worksheets.
+                                    </span>
+                                    <span class="lang-zh">
+                                        前往工具中心页面，获取可直接使用的核查清单、README 模板与去标识化工单。
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-2 flex-shrink-0">
+                                <a href="tools.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Go to Toolkit</span>
+                                    <span class="lang-zh">前往工具中心</span>
+                                </a>
+                                <a href="index.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                    <span class="lang-en">Back to Home</span>
+                                    <span class="lang-zh">返回首页</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="text-white w-5 h-5"></i>
+                    <span class="font-bold text-white text-lg">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        Sensitive Qualitative Data Management & Curation Guide
+                        for researchers and data practitioners.
+                    </span>
+                    <span class="lang-zh">
+                        面向研究者与数据从业者的敏感定性数据管理与策展指南。
+                    </span>
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">Modules</span>
+                    <span class="lang-zh">模块导航</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="module1.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Foundations</span>
+                        <span class="lang-zh">基础认知</span>
+                    </a></li>
+                    <li><a href="module2.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Lifecycle Management</span>
+                        <span class="lang-zh">全流程管理</span>
+                    </a></li>
+                    <li><a href="module3.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Legal & Ethics</span>
+                        <span class="lang-zh">法规伦理</span>
+                    </a></li>
+                    <li><a href="module4.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Curation & Archiving</span>
+                        <span class="lang-zh">策展进阶</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">Resources</span>
+                    <span class="lang-zh">相关资源</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tools.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Toolkit & Templates</span>
+                        <span class="lang-zh">工具与模板</span>
+                    </a></li>
+                    <li><a href="references.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">References</span>
+                        <span class="lang-zh">参考文献</span>
+                    </a></li>
+                    <li><a href="glossary.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Glossary</span>
+                        <span class="lang-zh">术语表</span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+            <span class="lang-en">For educational reference only. Not legal or professional advice.</span>
+            <span class="lang-zh">仅供学习参考，不构成法律或专业建议。</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 语言切换逻辑（全站通用）
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    const savedLang = localStorage.getItem('sqdmc_lang') || 'en';
+    if (savedLang === 'zh') {
+        body.classList.add('show-zh');
+        document.documentElement.lang = 'zh-CN';
+    }
+
+    langToggle.addEventListener('click', () => {
+        body.classList.toggle('show-zh');
+        const currentLang = body.classList.contains('show-zh') ? 'zh' : 'en';
+        localStorage.setItem('sqdmc_lang', currentLang);
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    });
+
+    // 初始化 Lucide 图标
+    lucide.createIcons();
+
+    // 脱敏演示交互
+    const deidBtns = document.querySelectorAll('.deid-btn');
+    const nameEls = document.querySelectorAll('.deid-name');
+    const orgEls = document.querySelectorAll('.deid-org');
+    const roleEls = document.querySelectorAll('.deid-role');
+    const dateEls = document.querySelectorAll('.deid-date');
+    const healthEls = document.querySelectorAll('.deid-health');
+    const locEls = document.querySelectorAll('.deid-loc');
+
+    function setDeidTier(tier) {
+        // 重置按钮状态
+        deidBtns.forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.deid-btn[data-tier="${tier}"]`).classList.add('active');
+
+        // 清除所有脱敏
+        [nameEls, orgEls, roleEls, dateEls, healthEls, locEls].forEach(group => {
+            group.forEach(el => el.classList.remove('deid-redact'));
+        });
+
+        if (tier === 'basic') {
+            // 基础级：只隐藏姓名与机构
+            nameEls.forEach(el => el.classList.add('deid-redact'));
+            orgEls.forEach(el => el.classList.add('deid-redact'));
+        } else if (tier === 'intermediate') {
+            // 进阶级：姓名、机构、地点、日期全部隐藏，保留职位与健康信息
+            nameEls.forEach(el => el.classList.add('deid-redact'));
+            orgEls.forEach(el => el.classList.add('deid-redact'));
+            locEls.forEach(el => el.classList.add('deid-redact'));
+            dateEls.forEach(el => el.classList.add('deid-redact'));
+        } else if (tier === 'strict') {
+            // 严格级：演示性地隐藏全部标记字段；实际项目应按语境与研究价值逐项判断
+            nameEls.forEach(el => el.classList.add('deid-redact'));
+            orgEls.forEach(el => el.classList.add('deid-redact'));
+            roleEls.forEach(el => el.classList.add('deid-redact'));
+            locEls.forEach(el => el.classList.add('deid-redact'));
+            dateEls.forEach(el => el.classList.add('deid-redact'));
+            healthEls.forEach(el => el.classList.add('deid-redact'));
+        }
+
+        let project = {};
+        try { project = JSON.parse(localStorage.getItem('sqdmc_project') || '{}'); } catch { project = {}; }
+        project.deidTier = tier;
+        project.deidUpdatedAt = new Date().toISOString();
+        localStorage.setItem('sqdmc_project', JSON.stringify(project));
+    }
+
+    deidBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            setDeidTier(btn.dataset.tier);
+        });
+    });
+
+    // 初始化默认基础级
+    setDeidTier('basic');
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

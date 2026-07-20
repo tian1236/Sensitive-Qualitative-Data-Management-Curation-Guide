@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal & Ethical Frameworks | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f5132',
+                        secondary: '#2f6f4f',
+                        accent: '#e6f0ea',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/30;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .tab-active {
+                @apply text-primary border-primary bg-primary/5;
+            }
+        }
+    </style>
+    <style>
+        /* 双语切换基础样式 */
+        .lang-zh { display: none; }
+        body.show-zh .lang-en { display: none; }
+        body.show-zh .lang-zh { display: inline; }
+        body.show-zh blockquote.lang-zh,
+        body.show-zh p.lang-zh,
+        body.show-zh div.lang-zh { display: block; }
+
+        /* 折叠面板样式 */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        /* Tab 内容切换 */
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* 自定义复选框 */
+        .checklist-item input[type="checkbox"] {
+            accent-color: #0f5132;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- 顶部全局导航栏 -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+            <span class="font-bold text-lg text-primary">SQDMC Guide</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Foundations</span>
+                <span class="lang-zh">基础认知</span>
+            </a>
+            <a href="module2.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Lifecycle Management</span>
+                <span class="lang-zh">全流程管理</span>
+            </a>
+            <a href="module3.html" class="text-primary font-medium">
+                <span class="lang-en">Legal & Ethics</span>
+                <span class="lang-zh">法规伦理</span>
+            </a>
+            <a href="module4.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Curation & Archiving</span>
+                <span class="lang-zh">策展进阶</span>
+            </a>
+            <a href="tools.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Toolkit</span>
+                <span class="lang-zh">工具中心</span>
+            </a>
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- 页面标题区 -->
+<section class="bg-gradient-to-b from-accent/30 to-white py-10 border-b border-gray-100">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-sm text-gray-500 mb-2">
+            <a href="index.html" class="hover:text-primary">
+                <span class="lang-en">Home</span>
+                <span class="lang-zh">首页</span>
+            </a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-700">
+                <span class="lang-en">Module 3: Legal & Ethical Frameworks</span>
+                <span class="lang-zh">模块三：法规与伦理框架</span>
+            </span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <span class="lang-en">Module 3: Legal & Ethical Frameworks</span>
+            <span class="lang-zh">模块三：法规与伦理框架</span>
+        </h1>
+        <p class="text-gray-600 max-w-3xl">
+            <span class="lang-en">
+                Understand jurisdiction rules, compare PDPO, GDPR and IRB ethics side by side,
+                and master the compliance foundations for all data management operations.
+            </span>
+            <span class="lang-zh">
+                理解管辖权判定规则，横向对比 PDPO、GDPR 与 IRB 伦理体系，
+                掌握全流程数据管理的合规底层依据。
+            </span>
+        </p>
+    </div>
+</section>
+
+<!-- Tab 导航栏 -->
+<section class="py-6 border-b border-gray-100 bg-white sticky top-[73px] z-40 overflow-x-auto">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="flex gap-1 md:gap-4 min-w-max">
+            <button class="tab-btn tab-active px-4 py-2 text-sm font-medium border-b-2 border-transparent transition-colors" data-tab="overview">
+                <span class="lang-en">Overview & Jurisdiction</span>
+                <span class="lang-zh">总览与管辖权</span>
+            </button>
+            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="pdpo">
+                PDPO
+            </button>
+            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="gdpr">
+                GDPR
+            </button>
+            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="irb">
+                <span class="lang-en">IRB Ethics</span>
+                <span class="lang-zh">IRB 伦理</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容区 -->
+<section class="py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-4 gap-10">
+            <!-- 左侧固定目录 -->
+            <aside class="md:col-span-1 hidden md:block">
+                <div class="sticky top-[180px]">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">
+                        <span class="lang-en">Sections</span>
+                        <span class="lang-zh">章节导航</span>
+                    </h4>
+                    <nav class="space-y-2 text-sm border-l-2 border-gray-100 pl-4">
+                        <a href="#" class="tab-nav block text-primary font-medium py-1 transition-colors" data-tab="overview">
+                            <span class="lang-en">Overview & Jurisdiction</span>
+                            <span class="lang-zh">总览与管辖权</span>
+                        </a>
+                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="pdpo">
+                            PDPO
+                        </a>
+                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="gdpr">
+                            GDPR
+                        </a>
+                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="irb">
+                            <span class="lang-en">IRB Ethics</span>
+                            <span class="lang-zh">IRB 伦理</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 右侧正文区 -->
+            <main class="md:col-span-3">
+
+                <!-- ========== Tab 1: 总览与管辖权 ========== -->
+                <div class="tab-panel active" id="tab-overview">
+                    <!-- 引导层 -->
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Question</span>
+                                    <span class="lang-zh">Hazel 的疑问</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        My university is based in the woodland region, and all my participants are local residents.
+                                        Which rules do I actually need to follow? What if I collaborate with researchers overseas?
+                                    </span>
+                                    <span class="lang-zh">
+                                        我的学校在森林地区，受访者也都是本地居民。我到底要遵守哪些规则？
+                                        如果和境外研究者合作，又会有什么不同？
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: determine the scope of each law separately. Establishment, processing activity,
+                                        participant location, targeting or monitoring, funding and data transfers may all matter.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：分别判断每部法律的适用范围。机构设立地、处理活动、受访者所在地、是否定向提供服务或监测、资助条件与数据跨境都可能产生影响。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Jurisdiction Self-Assessment</span>
+                        <span class="lang-zh">管辖权两步判定</span>
+                    </h2>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">1</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Institutional location</span>
+                                    <span class="lang-zh">机构所在地</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">
+                                        Establishment and the location of processing are important connecting factors, but do not decide every case alone.
+                                        Institutional ethics and sponsor requirements must also be checked.
+                                    </span>
+                                    <span class="lang-zh">
+                                        机构设立地和数据处理地是重要连接因素，但不能单独决定所有情形；还需核查机构伦理与资助方要求。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">2</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Participant location</span>
+                                    <span class="lang-zh">受访者所在地</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">
+                                        Participant location may create additional obligations, but location alone does not automatically make every foreign law applicable.
+                                        Check the law's territorial-scope test and the actual processing activity.
+                                    </span>
+                                    <span class="lang-zh">
+                                        受访者所在地可能产生额外义务，但并非只要受访者在境外就自动适用当地全部法律；应结合该法律的属地范围条款与实际处理活动判断。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Three-Framework Comparison</span>
+                        <span class="lang-zh">三大框架横向对比</span>
+                    </h2>
+
+                    <div class="overflow-x-auto mb-8">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800 w-1/5">
+                                        <span class="lang-en">Dimension</span>
+                                        <span class="lang-zh">对比维度</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">PDPO</th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">GDPR</th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">IRB Ethics</span>
+                                        <span class="lang-zh">IRB 伦理</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Governing Body</span>
+                                        <span class="lang-zh">监管主体</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Office of the Privacy Commissioner for Personal Data (Hong Kong)</span>
+                                        <span class="lang-zh">香港个人资料私隐专员公署</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">European Data Protection Board</span>
+                                        <span class="lang-zh">欧洲数据保护委员会</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Institutional Ethics Committee</span>
+                                        <span class="lang-zh">机构伦理委员会</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Core Logic</span>
+                                        <span class="lang-zh">核心逻辑</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">6 data protection principles; fair and lawful processing</span>
+                                        <span class="lang-zh">六项数据保护原则；公平合法处理</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Data subject rights; strict accountability</span>
+                                        <span class="lang-zh">数据主体权利；严格问责制</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Protect participants; minimize risk</span>
+                                        <span class="lang-zh">保护受试者；风险最小化</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Sensitive Data Definition</span>
+                                        <span class="lang-zh">敏感数据定义</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">No GDPR-style statutory special-category list; risk-based safeguards still apply</span>
+                                        <span class="lang-zh">没有与GDPR相同的法定特殊类别清单；仍应按风险采取更强保障</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Special category personal data; strictly restricted</span>
+                                        <span class="lang-zh">特殊类别个人数据；严格限制处理</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">All information that may cause harm</span>
+                                        <span class="lang-zh">所有可能造成伤害的信息</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Consent Requirement</span>
+                                        <span class="lang-zh">同意要求</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Clear purpose; written form not mandatory</span>
+                                        <span class="lang-zh">目的明确；不强制书面形式</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Consent is one possible basis; identify both an Art.6 basis and, where relevant, an Art.9 exception</span>
+                                        <span class="lang-zh">同意只是可能依据之一；应同时确定第6条依据，并在适用时确定第9条例外</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Consent and documentation depend on the governing rules and the ethics committee's determination; waivers may exist</span>
+                                        <span class="lang-zh">同意及其书面记录取决于适用规则与伦理委员会决定；符合条件时可能获豁免</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Cross-Border Transfer</span>
+                                        <span class="lang-zh">跨境传输</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">PDPO DPPs remain relevant; section 33 is not yet in force and PCPD safeguards are recommended practice</span>
+                                        <span class="lang-zh">现行资料保障原则仍适用；第33条尚未生效，私隐专员的跨境保障属于建议实践</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Strictly restricted; valid transfer mechanism required</span>
+                                        <span class="lang-zh">严格限制；需具备合法传输机制</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Follow the approved protocol and institutional policy; amendments may require prior ethics approval</span>
+                                        <span class="lang-zh">遵循获批方案和机构政策；方案变更可能需要事先伦理批准</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">
+                                        <span class="lang-en">Maximum Penalty</span>
+                                        <span class="lang-zh">最高处罚</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Statutory fines and criminal liability</span>
+                                        <span class="lang-zh">法定罚款与刑事责任</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Up to 4% global annual turnover</span>
+                                        <span class="lang-zh">最高全球年营业额的 4%</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Research suspension, retraction, institutional sanctions</span>
+                                        <span class="lang-zh">研究暂停、撤稿、机构处分</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-xs text-gray-500 mb-6"><span class="lang-en">Sources: </span><span class="lang-zh">来源：</span><a href="references.html#pdpo" class="text-primary underline">PDPO / PCPD</a> · <a href="references.html#gdpr" class="text-primary underline">GDPR Arts. 3, 6, 9, 44–49, 89</a> · <a href="references.html#common-rule" class="text-primary underline">45 CFR 46 / OHRP</a></p>
+
+                    <!-- 管辖权自测 -->
+                    <div id="jurisdiction-check" class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h3 class="font-semibold text-gray-800 mb-3">
+                            <span class="lang-en">Quick Jurisdiction Check</span>
+                            <span class="lang-zh">快速管辖权自测</span>
+                        </h3>
+                        <div class="space-y-3 text-sm">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5" data-label="PDPO/Hong Kong">
+                                <span>
+                                    <span class="lang-en">My institution is based in the PDPO jurisdiction</span>
+                                    <span class="lang-zh">我的机构位于 PDPO 辖区内</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5" data-label="GDPR/EU-EEA scope to verify">
+                                <span>
+                                    <span class="lang-en">Some participants are located in GDPR jurisdictions</span>
+                                    <span class="lang-zh">部分受访者位于 GDPR 辖区内</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5" data-label="International transfer/collaboration">
+                                <span>
+                                    <span class="lang-en">I plan to share data with international collaborators</span>
+                                    <span class="lang-zh">我计划与国际合作者共享数据</span>
+                                </span>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">
+                            <span class="lang-en">
+                                Tip: Check whether institutional, sponsor or national human-subject rules apply, then assess each data-protection law using its own territorial-scope test.
+                            </span>
+                            <span class="lang-zh">
+                                提示：先核查机构、资助方或国家层面的人类受试者规则，再按各数据保护法自身的属地范围条款逐一判断。
+                            </span>
+                        </p>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Legislative Logic Differences</span>
+                                <span class="lang-zh">📚 深度拓展：立法逻辑差异</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Common law vs. civil law traditions:</strong>
+                                    PDPO follows a common law approach with principle-based regulation and flexible interpretation.
+                                    GDPR is rooted in civil law, with detailed prescriptive rules and strong enforcement.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>普通法与大陆法传统：</strong>
+                                    PDPO 遵循普通法路径，以原则性监管为主，解释灵活；
+                                    GDPR 根植于大陆法体系，规则详尽、执行力度强。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Legal compliance vs. ethical duty:</strong>
+                                    Data protection laws set the minimum legal baseline,
+                                    while research ethics impose higher standards of care, dignity and justice for participants.
+                                    Ethics goes beyond what is legally required.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>法律合规与伦理义务：</strong>
+                                    数据保护法设定最低法律底线，研究伦理则对受试者的尊严、公正与福祉提出更高要求。
+                                    伦理要求高于法律底线。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Global convergence trend:</strong>
+                                    Worldwide data protection regimes are converging toward stronger individual rights,
+                                    stricter sensitive data rules and greater cross-border cooperation.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>全球趋同趋势：</strong>
+                                    全球数据保护体系正逐步趋同，整体朝向更强的个人权利、更严的敏感数据规则、
+                                    更多的跨境合作方向发展。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- ========== Tab 2: PDPO ========== -->
+                <div class="tab-panel" id="tab-pdpo">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="landmark" class="text-primary w-5 h-5"></i>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    Personal Data (Privacy) Ordinance (PDPO)
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Hong Kong's principal legislation governing the collection, holding, processing and use of personal data.
+                                    </span>
+                                    <span class="lang-zh">
+                                        香港规管个人资料收集、持有、处理与使用的主要法律。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Core Scope of Application</span>
+                        <span class="lang-zh">核心适用范围</span>
+                    </h2>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-6">
+                        <li>
+                            <span class="lang-en">
+                                Applies where the statutory connection to Hong Kong is met. Confirm the role of the data user,
+                                where the processing occurs and any applicable exemptions.
+                            </span>
+                            <span class="lang-zh">
+                                在满足香港法定连接因素时适用；应核实资料使用者角色、处理地点及适用豁免。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                Interview recordings, transcripts and field notes containing identifiable information
+                                all qualify as personal data.
+                            </span>
+                            <span class="lang-zh">
+                                包含可识别信息的访谈录音、转录稿、田野笔记，均属于个人资料。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                Applies to both electronic and physical forms of personal data.
+                            </span>
+                            <span class="lang-zh">
+                                电子与实体形式的个人资料均受规管。
+                            </span>
+                        </li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Six Data Protection Principles</span>
+                        <span class="lang-zh">六项数据保护原则</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            Research processing that falls within the PDPO must comply with the six Data Protection Principles.
+                        </span>
+                        <span class="lang-zh">
+                            属于《个人资料（私隐）条例》规管范围的研究处理活动，须遵守六项资料保障原则。
+                        </span>
+                    </p>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">1. Fair and Lawful Collection</span>
+                                <span class="lang-zh">1. 公平合法地收集</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Data must be collected by fair and lawful means, with transparency about purpose and use.
+                                    No deception or undue influence on participants.
+                                </span>
+                                <span class="lang-zh">
+                                    必须以公平合法的方式收集数据，对收集目的与用途保持透明，不得欺骗或不当影响受访者。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">2. Accuracy and Retention</span>
+                                <span class="lang-zh">2. 准确性与保留期限</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Take practicable steps to keep data accurate and do not retain personal data longer than necessary.
+                                </span>
+                                <span class="lang-zh">
+                                    采取切实可行步骤确保资料准确，并不得把个人资料保留超过实际需要的时间。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">3. Use of Personal Data</span>
+                                <span class="lang-zh">3. 个人资料的使用</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Use data only for the purpose stated on collection or a directly related purpose, unless prescribed consent or another legal permission applies.
+                                </span>
+                                <span class="lang-zh">
+                                    个人资料只可用于收集时说明的目的或与其直接有关的目的，除非取得订明同意或另有法律许可。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">4. Data Security</span>
+                                <span class="lang-zh">4. 资料保安</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Take practicable steps against unauthorised or accidental access, processing, erasure, loss or use.
+                                </span>
+                                <span class="lang-zh">
+                                    采取切实可行步骤，防止未经授权或意外地查阅、处理、删除、丧失或使用个人资料。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">5. Openness and Transparency</span>
+                                <span class="lang-zh">5. 公开与透明</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Maintain generally available information about personal-data policies, practices, purposes and data categories held.
+                                </span>
+                                <span class="lang-zh">
+                                    公开个人资料政策与实务、使用目的，以及所持个人资料的种类。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">6. Access and Correction</span>
+                                <span class="lang-zh">6. 查阅与改正</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Give data subjects rights of access to and correction of their personal data, subject to statutory procedures and exemptions.
+                                </span>
+                                <span class="lang-zh">
+                                    按法定程序与豁免，保障资料当事人查阅及改正个人资料的权利。
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Higher-Risk Personal Data & Cross-Border Guidance</span>
+                        <span class="lang-zh">较高风险个人资料与跨境指引</span>
+                    </h2>
+                    <div class="space-y-4 mb-6">
+                        <div class="border-l-4 border-primary pl-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">Risk-proportionate safeguards</span>
+                                <span class="lang-zh">与风险相称的保障</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    PDPO does not use GDPR's special-category structure. Apply stronger security, access and transparency controls where disclosure could cause greater harm.
+                                </span>
+                                <span class="lang-zh">
+                                    PDPO没有采用GDPR的特殊类别结构；若泄露可能造成较大伤害，应加强保安、权限和透明度控制。
+                                </span>
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4">
+                            <h3 class="font-semibold text-gray-800 mb-1">
+                                <span class="lang-en">Cross-border transfer rules</span>
+                                <span class="lang-zh">跨境传输规则</span>
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">
+                                    Section 33's transfer restrictions are not yet in force. Existing DPP obligations remain relevant,
+                                    and PCPD recommends due diligence, contractual safeguards and comparable protection as good practice.
+                                </span>
+                                <span class="lang-zh">
+                                    第33条的跨境限制尚未生效；现行资料保障原则仍然相关，私隐专员建议以尽职调查、合同保障和相若保护作为良好实践。
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500 mb-6"><a href="references.html#pdpo" class="text-primary underline"><span class="lang-en">Source: PCPD — Six Data Protection Principles and cross-border transfer guidance</span><span class="lang-zh">来源：香港个人资料私隐专员公署——六项资料保障原则及跨境资料转移指引</span></a></p>
+
+                    <!-- PDPO 自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">PDPO Compliance Checklist</span>
+                            <span class="lang-zh">PDPO 合规自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Data is collected fairly and transparently with stated purposes</span>
+                                    <span class="lang-zh">数据以公平透明的方式收集，并明确告知目的</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">All data use stays within the original stated purposes</span>
+                                    <span class="lang-zh">所有数据使用均不超出原始告知的目的范围</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Only minimum necessary data is collected</span>
+                                    <span class="lang-zh">仅收集了最小必要的数据量</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Appropriate security safeguards are in place</span>
+                                    <span class="lang-zh">已落实适当的安全保障措施</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Retention period complies with the purpose limitation principle</span>
+                                    <span class="lang-zh">留存期限符合目的限定原则</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Cross-border safeguards, recipient due diligence and continuing DPP obligations are documented</span>
+                                    <span class="lang-zh">已记录跨境保障、接收方尽职调查及持续适用的资料保障原则</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Research Exemption & Enforcement</span>
+                                <span class="lang-zh">📚 深度拓展：研究豁免与执法处罚</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Research exemption conditions:</strong>
+                                    Purely academic research with no direct decisions affecting individuals may be exempt
+                                    from certain access and correction requirements, provided confidentiality is maintained
+                                    and results are published only in aggregated form.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>研究豁免条件：</strong>
+                                    纯学术研究、不会对个人产生直接决策影响的，在保密且仅以汇总形式发布结果的前提下，
+                                    可豁免部分查阅与更正要求。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Enforcement and penalties:</strong>
+                                    Violations may result in administrative fines, enforcement notices,
+                                    and in serious cases criminal liability for intentional unlawful disclosure.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>执法与处罚：</strong>
+                                    违规可能导致行政罚款、执行通知，严重情况下故意非法泄露还可能承担刑事责任。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- ========== Tab 3: GDPR ========== -->
+                <div class="tab-panel" id="tab-gdpr">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="globe" class="text-primary w-5 h-5"></i>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    General Data Protection Regulation (GDPR)
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        The European Union's rights-based data protection regulation. Its territorial scope is determined by Article 3,
+                                        not simply by a participant's nationality or location.
+                                    </span>
+                                    <span class="lang-zh">
+                                        欧盟以权利为核心的数据保护法规；其属地范围由第3条判断，不能只看受访者国籍或所在地。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Scope of Application</span>
+                        <span class="lang-zh">适用范围</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            GDPR applies to processing in the context of an EU/EEA establishment and, in specified circumstances,
+                            to organisations outside the EU/EEA that offer goods or services to, or monitor the behaviour of, people in the Union.
+                            Participant location alone is not a complete test.
+                        </span>
+                        <span class="lang-zh">
+                            GDPR适用于欧盟/欧洲经济区机构业务活动中的处理，并在特定情况下适用于向欧盟境内个人提供商品或服务、或监测其行为的境外机构。受访者所在地本身不是完整判断标准。
+                        </span>
+                    </p>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Article 9 — Special Category Personal Data</span>
+                        <span class="lang-zh">第 9 条 — 特殊类别个人数据</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            Processing of special category data is prohibited in principle,
+                            unless one of the explicit derogations applies.
+                        </span>
+                        <span class="lang-zh">
+                            特殊类别数据的处理原则上被禁止，除非符合明确的豁免情形。
+                        </span>
+                    </p>
+
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-yellow-800">
+                            <span class="lang-en"><strong>Key point for qualitative research:</strong> Article 9 covers only the listed special categories. Trauma narratives or alleged illegal activity are not automatically Article 9 data unless they reveal a listed category; criminal-offence data is addressed separately by Article 10.</span>
+                            <span class="lang-zh"><strong>定性研究要点：</strong>第9条只涵盖法定列举的特殊类别。创伤叙事或涉嫌违法行为不会自动成为第9条数据，除非其揭示了列举类别；刑事定罪与违法相关数据另由第10条规管。</span>
+                        </p>
+                    </div>
+
+                    <h3 class="font-semibold text-gray-800 mb-2">
+                        <span class="lang-en">List of Article 9 Special Category Data</span>
+                        <span class="lang-zh">第9条特殊类别数据清单</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1 mb-6">
+                        <li><span class="lang-en">Racial / ethnic origin</span><span class="lang-zh">种族/民族出身</span></li>
+                        <li><span class="lang-en">Political opinions, beliefs</span><span class="lang-zh">政治观点、信仰</span></li>
+                        <li><span class="lang-en">Religious / philosophical beliefs</span><span class="lang-zh">宗教/哲学信仰</span></li>
+                        <li><span class="lang-en">Trade union membership</span><span class="lang-zh">工会会员身份</span></li>
+                        <li><span class="lang-en">Genetic & biometric identification data</span><span class="lang-zh">基因、生物识别数据</span></li>
+                        <li><span class="lang-en">Health, medical, psychological records</span><span class="lang-zh">健康、医疗、心理记录</span></li>
+                        <li><span class="lang-en">Sex life & sexual orientation</span><span class="lang-zh">性生活与性取向</span></li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Valid Legal Bases for Qualitative Research</span>
+                        <span class="lang-zh">定性研究适用的合法处理依据</span>
+                    </h2>
+                    <div class="space-y-4 mb-6">
+                        <div class="border border-gray-200 rounded p-4">
+                            <h4 class="font-medium text-primary mb-1">1. Explicit Consent (Art.6(1)a + Art.9(2)a)</h4>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">When consent is used, it must be demonstrably freely given, specific, informed and unambiguous; Article 9 consent must also be explicit. Withdrawal must be possible and as easy as giving consent. A signed form is one way to document consent, not a universal GDPR requirement.</span>
+                                <span class="lang-zh">采用同意作为依据时，必须能够证明其为自愿、具体、知情且明确；第9条所称同意还须达到“明示”标准。撤回同意应当可行，且不得比给予同意更困难。签字表格是记录方式之一，并非 GDPR 的普遍强制要求。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded p-4">
+                            <h4 class="font-medium text-primary mb-1">2. Research basis authorised by law (e.g. Art.6(1)e + Art.9(2)j)</h4>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Available only where relevant Union or Member State law authorises it and its conditions are met. Article 89 safeguards include data minimisation and, where feasible, pseudonymisation.</span>
+                                <span class="lang-zh">只有相关欧盟或成员国法律授权且满足其条件时才能使用；第89条保障包括数据最小化，以及在可行时采用假名化。</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Core Data Subject Rights Under GDPR</span>
+                        <span class="lang-zh">GDPR赋予数据主体核心权利</span>
+                    </h2>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border px-3 py-2 text-left font-semibold">
+                                        <span class="lang-en">Right</span><span class="lang-zh">权利名称</span>
+                                    </th>
+                                    <th class="border px-3 py-2 text-left font-semibold">
+                                        <span class="lang-en">Research Impact</span><span class="lang-zh">对研究的影响</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium">
+                                        <span class="lang-en">Right of Access</span><span class="lang-zh">查阅权</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">Participants can request full copies of their interview transcripts.</span>
+                                        <span class="lang-zh">受访者可索取完整个人访谈转录稿副本。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium">
+                                        <span class="lang-en">Right to Rectification</span><span class="lang-zh">更正权</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">Correct factual errors in field notes or recordings.</span>
+                                        <span class="lang-zh">修正田野笔记、录音中的事实错误。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium">
+                                        <span class="lang-en">Right to Erasure ("Right to be Forgotten")</span><span class="lang-zh">删除权（被遗忘权）</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">The right is not absolute; Article 17 includes exceptions, including where erasure would seriously impair qualifying research and Article 89 safeguards apply.</span>
+                                        <span class="lang-zh">删除权并非绝对；第17条包含例外，例如删除将严重妨碍符合条件的研究且已落实第89条保障时。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium">
+                                        <span class="lang-en">Right to Object</span><span class="lang-zh">反对权</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">Objection rights depend on the processing basis and statutory research exceptions; requests require case-by-case assessment.</span>
+                                        <span class="lang-zh">反对权取决于处理依据和法定研究例外；相关请求需逐案评估。</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Cross-Border Transfer & Penalties</span>
+                        <span class="lang-zh">跨境传输与处罚规则</span>
+                    </h2>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-gray-50 border rounded p-4">
+                            <h3 class="font-semibold mb-1"><span class="lang-en">Cross-border rules</span><span class="lang-zh">跨境传输要求</span></h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Chapter V permits transfers through adequacy decisions, appropriate safeguards such as standard contractual clauses or binding corporate rules, and limited derogations. Assess the correct mechanism and any supplementary measures.</span>
+                                <span class="lang-zh">第五章允许通过充分性决定、标准合同条款或约束性公司规则等适当保障，以及有限的例外进行传输；应评估正确机制及所需补充措施。</span>
+                            </p>
+                        </div>
+                        <div class="bg-red-50 border border-red-200 rounded p-4">
+                            <h3 class="font-semibold text-red-800 mb-1"><span class="lang-en">Maximum Penalty</span><span class="lang-zh">最高处罚标准</span></h3>
+                            <p class="text-sm text-red-700">
+                                <span class="lang-en">For infringements listed in Article 83(5), the upper tier is €20 million or 4% of worldwide annual turnover, whichever is higher. Actual enforcement depends on the facts and Article 83 criteria.</span>
+                                <span class="lang-zh">对第83(5)条列明的违规，上限为2000万欧元或全球年营业额4%，取较高者；实际执法取决于事实及第83条衡量因素。</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- GDPR合规清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">GDPR Research Compliance Checklist</span>
+                            <span class="lang-zh">GDPR研究合规自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Identified clear lawful basis for all data processing</span><span class="lang-zh">已为全部数据处理确立合法依据</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Assessed which fields, if any, reveal an Article 9 special category or Article 10 criminal-offence data</span><span class="lang-zh">已判断哪些字段（如有）揭示第9条特殊类别资料或第10条刑事定罪与犯罪资料</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">The Article 13/14 information notice accurately explains applicable rights and any lawful limits</span><span class="lang-zh">第13/14条信息告知准确说明适用的数据主体权利及其合法限制</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Data pseudonymisation / anonymisation workflow documented</span><span class="lang-zh">假名化/匿名化处理流程完整存档</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">The correct Chapter V transfer mechanism and supplementary measures are documented where applicable</span><span class="lang-zh">适用时已记录正确的第五章传输机制及补充措施</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Data retention timeline defined and aligned with research purpose</span><span class="lang-zh">数据留存期限明确且匹配研究目的</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span><span class="lang-en">📚 Deep Dive: Art.89 Scientific Research Safeguards</span><span class="lang-zh">📚 深度拓展：第89条科研专项保护措施</span></span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">Article 89 requires appropriate safeguards for public-interest archiving, scientific or historical research and statistics. Union or Member State law may provide specified derogations subject to conditions. Relevant safeguards may include:</span>
+                                <span class="lang-zh">第89条要求公共利益归档、科学或历史研究及统计处理采用适当保障；欧盟或成员国法律可在特定条件下规定有限克减。相关保障可包括：</span>
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><span class="lang-en">Pseudonymisation where the research purpose can be fulfilled in that manner</span><span class="lang-zh">在研究目的能够实现时采用假名化</span></li>
+                                <li><span class="lang-en">Strict access control with role-based permissions</span><span class="lang-zh">基于角色的严格访问权限管控</span></li>
+                                <li><span class="lang-en">Data minimisation: no collection of unnecessary identifying details</span><span class="lang-zh">数据最小化，不采集多余识别信息</span></li>
+                                <li><span class="lang-en">Retention limited to the minimum period required for research and archival</span><span class="lang-zh">留存期限压缩至研究与归档所需最短时长</span></li>
+                                <li><span class="lang-en">Procedural limits on combining research datasets with external personal records</span><span class="lang-zh">限制研究数据集与外部个人档案合并使用</span></li>
+                            </ul>
+                            <p>
+                                <span class="lang-en">Data-subject rights and any research derogations must be assessed under the relevant processing basis and applicable Union or Member State law; they should not be presented as universally absolute or universally waived.</span>
+                                <span class="lang-zh">数据主体权利及研究克减应结合处理依据与适用的欧盟或成员国法律判断，不能表述为一律绝对或一律豁免。</span>
+                            </p>
+                        </div>
+                    </details>
+                    <p class="text-xs text-gray-500 mt-4"><a href="references.html#gdpr" class="text-primary underline"><span class="lang-en">Source: official GDPR text — Articles 3, 6, 9, 10, 17, 21, 44–49, 83 and 89</span><span class="lang-zh">来源：GDPR官方文本——第3、6、9、10、17、21、44–49、83及89条</span></a></p>
+                </div>
+
+                <!-- ========== Tab4: IRB Research Ethics ========== -->
+                <div class="tab-panel" id="tab-irb">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="shield-check" class="text-primary w-5 h-5"></i>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Institutional Review Board (IRB) Human Research Ethics Framework</span>
+                                    <span class="lang-zh">机构伦理审查委员会（IRB）人类研究伦理框架</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">Ethics oversight complements data-protection law. Before collection, obtain the required determination—such as not-human-subjects, exempt, expedited or convened review—under the rules that govern the institution and project.</span>
+                                    <span class="lang-zh">伦理监督是数据保护法的补充。采集前应依机构与项目适用规则取得相应认定，例如不属于人类受试者研究、豁免、快速审查或全体会议审查。</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Four Core Ethical Principles</span>
+                        <span class="lang-zh">四大核心伦理原则</span>
+                    </h2>
+                    <div class="space-y-4 mb-8">
+                        <div class="border border-gray-200 rounded p-4">
+                            <h3 class="font-semibold text-primary mb-1">1. Respect for Persons</h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Autonomy of participants; voluntary informed consent; special additional protections for vulnerable populations (minors, prisoners, undocumented persons, trauma survivors). No coercion, manipulation or hidden study objectives.</span>
+                                <span class="lang-zh">尊重受试者自主决定权；自愿知情同意；弱势群体（未成年人、囚犯、无证件人士、创伤幸存者）额外保护。禁止胁迫、诱导、隐瞒研究目的。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded p-4">
+                            <h3 class="font-semibold text-primary mb-1">2. Beneficence</h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Maximise research social value and minimise physical, psychological and social risks. Assess whether appropriate support resources or referral information should be included for the actual risk profile.</span>
+                                <span class="lang-zh">最大化研究社会价值并最小化身心与社会风险；根据实际风险判断是否应提供适当支持资源或转介信息。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded p-4">
+                            <h3 class="font-semibold text-primary mb-1">3. Justice</h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Fair recruitment and participant selection; avoid over-reliance on marginalised groups to bear all research risks while privileged groups receive research benefits. Equitable access to research compensation and support services.</span>
+                                <span class="lang-zh">公平招募受试者，避免仅由边缘群体承担全部研究风险、优势群体独享研究收益；补偿与支持资源公平分配。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded p-4">
+                            <h3 class="font-semibold text-primary mb-1">4. Integrity & Confidentiality</h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Full transparency in research design, data handling and publication; strict confidentiality measures to prevent identification of participants in transcripts, field notes and published outputs.</span>
+                                <span class="lang-zh">研究设计、数据处理、成果发表全程透明；严格保密措施，防止转录稿、田野笔记、出版物识别出受试者身份。</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Three Levels of IRB Review for Qualitative Research</span>
+                        <span class="lang-zh">定性研究三类IRB审查等级</span>
+                    </h2>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border px-3 py-2 text-left font-semibold w-1/4">
+                                        <span class="lang-en">Review Type</span><span class="lang-zh">审查类型</span>
+                                    </th>
+                                    <th class="border px-3 py-2 text-left font-semibold w-1/4">
+                                        <span class="lang-en">Eligibility Criteria</span><span class="lang-zh">适用条件</span>
+                                    </th>
+                                    <th class="border px-3 py-2 text-left font-semibold">
+                                        <span class="lang-en">Qualitative Research Examples</span><span class="lang-zh">定性研究示例</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium text-green-700">
+                                        <span class="lang-en">Exempt Review</span><span class="lang-zh">豁免审查</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">Only research that fits a specific exemption category under the governing rules; "minimal risk" alone is not sufficient</span>
+                                        <span class="lang-zh">必须符合适用规则中的具体豁免类别；仅仅“最低风险”并不足以获得豁免</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">General workplace routine interviews, public opinion non-sensitive surveys</span>
+                                        <span class="lang-zh">普通职场日常访谈、无敏感内容公共观点调研</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium text-amber-700">
+                                        <span class="lang-en">Expedited Review</span><span class="lang-zh">快速审查</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">No more than minimal risk and within an eligible expedited-review category; institutions may apply additional requirements</span>
+                                        <span class="lang-zh">风险不得超过最低风险，且必须属于允许快速审查的类别；机构可规定额外要求</span>
+                                    </td>
+                                    <td class="border px-3 py-2 text-gray-600">
+                                        <span class="lang-en">General mental health non-trauma interviews, consumer experience focus groups</span>
+                                        <span class="lang-zh">普通心理健康（无创伤）访谈、消费体验焦点小组</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border px-3 py-2 font-medium text-red-700">
+                                        <span class="lang-en">Full Board Convened Review</span><span class="lang-zh">全体委员会完整审查</span>
+                                </td>
+                                <td class="border px-3 py-2 text-gray-600">
+                                    <span class="lang-en">Greater than minimal risk, or research not eligible for exemption/expedited review; topic and population inform the risk assessment but do not determine the result alone</span>
+                                    <span class="lang-zh">超过最低风险，或不符合豁免/快速审查条件；议题与人群影响风险判断，但不能单独决定审查类型</span>
+                                </td>
+                                <td class="border px-3 py-2 text-gray-600">
+                                    <span class="lang-en">Domestic violence survivor interviews, minor youth focus groups, undocumented migrant research</span>
+                                    <span class="lang-zh">家暴幸存者访谈、青少年焦点小组、无证件移民研究</span>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Informed Consent and Documentation</span>
+                        <span class="lang-zh">知情同意与记录</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">Obtain legally effective informed consent unless the governing rules and ethics committee permit an exemption, waiver or alteration. Documentation is often written, but an IRB may waive signed documentation in specified circumstances. Follow the approved protocol.</span>
+                        <span class="lang-zh">除非适用规则与伦理委员会允许豁免、免除或变更，否则应取得具有法律效力的知情同意。知情同意通常以书面方式记录，但在特定条件下伦理委员会可免除签字记录；应以获批方案为准。</span>
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">1. Full clear explanation of research purpose, procedures, duration</span><span class="lang-zh">1. 完整清晰说明研究目的、流程、参与时长</span></p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">2. Reasonably foreseeable risks or discomforts, with support resources where appropriate</span><span class="lang-zh">2. 告知可合理预见的风险或不适，并在适当时提供支持资源</span></p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">3. Explicit statement of voluntary participation and the right to discontinue without penalty or loss of entitled benefits</span><span class="lang-zh">3. 明确自愿参与，并说明可停止参与且不会受处罚或丧失应得利益</span></p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">4. Full disclosure of data storage, de-identification, archiving and secondary sharing plans</span><span class="lang-zh">4. 完整披露数据存储、脱敏、归档、二次共享方案</span></p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">5. Contact information for principal investigator, IRB ethics hotline for complaints</span><span class="lang-zh">5. 主研人员联系方式、IRB伦理投诉热线</span></p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-1">
+                            <p class="text-sm text-gray-700"><span class="lang-en">6. No waiver of liability or exculpatory language invalidating participant legal rights</span><span class="lang-zh">6. 禁止包含免除研究者责任、剥夺受试者法定权利的免责条款</span></p>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">
+                        <span class="lang-en">Data Confidentiality & De-identification Ethics Rules</span>
+                        <span class="lang-zh">数据保密与脱敏伦理规范</span>
+                    </h2>
+                    <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2 mb-6">
+                        <li>
+                            <span class="lang-en">Remove, replace or securely separate direct identifiers according to the approved protocol and documented risk assessment; retain only when justified and protected.</span>
+                            <span class="lang-zh">依照获批方案与书面风险评估删除、替换或安全分离直接标识符；只有在有充分理由并采取保护时才保留。</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Assess contextual identifiers—such as unique roles, rare conditions and specific locations—and remove, generalise, separate or restrict access where needed to manage disclosure risk.</span>
+                            <span class="lang-zh">评估独特职业、罕见病症、特定地点等语境标识符，并在需要时删除、泛化、分离或限制访问，以控制泄露风险。</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Encrypt raw recordings and apply the retention or destruction schedule approved for the project; transcription completion does not create a universal deletion deadline.</span>
+                            <span class="lang-zh">加密原始录音，并执行项目获批的留存或销毁计划；转录完成并不会产生一律适用的删除期限。</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Store the re-identification key separately with least-privilege access assigned to named authorised roles, not automatically to one universal job title.</span>
+                            <span class="lang-zh">将重新识别密钥分离存储，并按最小权限授予明确的获授权角色，而不是一律限定为某个通用职位。</span>
+                        </li>
+                    </ul>
+
+                    <!-- IRB伦理自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">IRB Ethical Pre-Data-Collection Checklist</span>
+                            <span class="lang-zh">数据采集前IRB伦理自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Study protocol fully reviewed and approved by IRB before recruitment</span><span class="lang-zh">招募前研究方案已通过IRB完整审批</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Written informed consent document reviewed and stamped by ethics committee</span><span class="lang-zh">书面知情同意书经伦理委员会审核盖章</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Risk mitigation plan and participant support resources documented</span><span class="lang-zh">风险缓解方案与受试者支持资源完整存档</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">De-identification and secure data storage workflow submitted to IRB</span><span class="lang-zh">脱敏与安全存储流程已提交IRB备案</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">All vulnerable population protections included if applicable</span><span class="lang-zh">如涉及弱势群体，配套完整特殊保护措施</span></span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span><span class="lang-en">Archiving or cross-border plans are included in the approved protocol, and material changes are submitted when required</span><span class="lang-zh">归档或跨境计划已纳入获批方案，且重大变更会在需要时提交审查</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg mb-8">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span><span class="lang-en">📚 Deep Dive: Consequences of IRB Non-Compliance</span><span class="lang-zh">📚 深度拓展：违反IRB伦理审查的后果</span></span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">Where prior ethics review is required, non-compliance can lead to outcomes determined by the governing law, funder and institution, including:</span>
+                                <span class="lang-zh">在依法或依机构政策需要事先伦理审查时，违规后果由适用法律、资助方与机构决定，可能包括：</span>
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><span class="lang-en">Suspension of affected research activities while the matter is assessed</span><span class="lang-zh">在调查期间暂停受影响的研究活动</span></li>
+                                <li><span class="lang-en">Corrective action, additional monitoring or funding consequences</span><span class="lang-zh">整改、附加监督或资助后果</span></li>
+                                <li><span class="lang-en">Publication correction or retraction where journal standards are breached</span><span class="lang-zh">在违反期刊规范时更正或撤回论文</span></li>
+                                <li><span class="lang-en">Institutional discipline proportionate to the findings</span><span class="lang-zh">与调查结论相称的机构处分</span></li>
+                                <li><span class="lang-en">Legal liability where the applicable elements are established</span><span class="lang-zh">在符合相应法律构成要件时承担法律责任</span></li>
+                            </ul>
+                            <p>
+                                <span class="lang-en">IRB violations also create compound legal risk alongside PDPO / GDPR data protection regulatory penalties.</span>
+                                <span class="lang-zh">违反IRB伦理要求将叠加PDPO、GDPR等数据保护法规的法律处罚风险。</span>
+                            </p>
+                        </div>
+                    </details>
+                    <p class="text-xs text-gray-500 mb-6"><a href="references.html#common-rule" class="text-primary underline"><span class="lang-en">Source: HHS 45 CFR 46 and OHRP guidance on exemptions, expedited review and informed consent</span><span class="lang-zh">来源：美国HHS《45 CFR 46》及OHRP关于豁免、快速审查与知情同意的官方说明</span></a></p>
+                </div>
+
+                <!-- 页面底部跳转导航 -->
+                <div class="border-t border-gray-200 pt-8 mt-10">
+                    <div class="bg-accent/20 border border-primary/10 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">
+                                    <span class="lang-en">Next: apply the requirements across the lifecycle</span>
+                                    <span class="lang-zh">下一步：把要求落实到数据全生命周期</span>
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Move to the lifecycle module for collection, processing, storage, sharing and end-of-project decisions.</span>
+                                    <span class="lang-zh">前往全生命周期模块，落实收集、处理、存储、共享与结项决策。</span>
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-2 flex-shrink-0">
+                                <a href="module2.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Open Lifecycle Module</span>
+                                    <span class="lang-zh">进入全生命周期模块</span>
+                                </a>
+                                <a href="index.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                    <span class="lang-en">Back to Homepage</span>
+                                    <span class="lang-zh">返回首页</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- 全局页脚 -->
+<footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="text-white w-5 h-5"></i>
+                    <span class="font-bold text-white text-lg">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">Sensitive Qualitative Data Management & Curation Guide for academic researchers.</span>
+                    <span class="lang-zh">面向学术研究者的敏感定性数据管理与策展完整指南。</span>
+                </p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">All Modules</span>
+                    <span class="lang-zh">全部模块</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="module1.html" class="hover:text-white transition-colors"><span class="lang-en">1. Foundations</span><span class="lang-zh">1. 基础认知</span></a></li>
+                    <li><a href="module2.html" class="hover:text-white transition-colors"><span class="lang-en">2. Data Lifecycle</span><span class="lang-zh">2. 数据全生命周期</span></a></li>
+                    <li><a href="module3.html" class="text-white font-medium"><span class="lang-en">3. Legal & Ethics</span><span class="lang-zh">3. 法规与伦理</span></a></li>
+                    <li><a href="module4.html" class="hover:text-white transition-colors"><span class="lang-en">4. Curation & Archiving</span><span class="lang-zh">4. 策展归档</span></a></li>
+                    <li><a href="tools.html" class="hover:text-white transition-colors"><span class="lang-en">Toolkit Templates</span><span class="lang-zh">工具模板库</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">
+                    <span class="lang-en">Resources</span>
+                    <span class="lang-zh">配套资源</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="references.html" class="hover:text-white transition-colors"><span class="lang-en">Reference Literature</span><span class="lang-zh">参考文献</span></a></li>
+                    <li><a href="glossary.html" class="hover:text-white transition-colors"><span class="lang-en">Term Glossary</span><span class="lang-zh">专业术语表</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+            <span class="lang-en">All content for educational reference only, not legal counsel.</span>
+            <span class="lang-zh">全部内容仅作教学参考，不构成专业法律意见。</span>
+        </div>
+    </div>
+</footer>
+
+<!-- 页面交互JS -->
+<script>
+    // 双语切换逻辑（全站统一）
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+    const savedLang = localStorage.getItem('sqdmc_lang') || 'en';
+    if (savedLang === 'zh') {
+        body.classList.add('show-zh');
+        document.documentElement.lang = 'zh-CN';
+    }
+    langToggle.addEventListener('click', () => {
+        body.classList.toggle('show-zh');
+        const currentLang = body.classList.contains('show-zh') ? 'zh' : 'en';
+        localStorage.setItem('sqdmc_lang', currentLang);
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    });
+
+    // Tab切换逻辑
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    const tabNavLinks = document.querySelectorAll('.tab-nav');
+
+    function switchTab(tabId) {
+        // 重置所有tab按钮样式
+        tabButtons.forEach(btn => {
+            btn.classList.remove('tab-active');
+            btn.classList.add('text-gray-600');
+        });
+        // 激活当前tab按钮
+        const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        activeBtn.classList.add('tab-active');
+        activeBtn.classList.remove('text-gray-600');
+
+        // 隐藏所有面板，显示目标面板
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+
+        // 同步左侧目录高亮
+        tabNavLinks.forEach(link => {
+            if(link.dataset.tab === tabId) {
+                link.classList.add('text-primary','font-medium');
+            } else {
+                link.classList.remove('text-primary','font-medium');
+            }
+        });
+    }
+
+    // 顶部Tab按钮点击事件
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.dataset.tab;
+            switchTab(targetTab);
+        });
+    });
+
+    // 左侧目录点击跳转Tab
+    tabNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetTab = link.dataset.tab;
+            switchTab(targetTab);
+        });
+    });
+
+    // 初始化默认tab
+    switchTab('overview');
+
+    // 初始化图标渲染
+    lucide.createIcons();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

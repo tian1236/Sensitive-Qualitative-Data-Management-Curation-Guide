@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQDMC Guide | Sensitive Qualitative Data Management & Curation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f5132',
+                        secondary: '#2f6f4f',
+                        accent: '#e6f0ea',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+    </style>
+    <style>
+        /* 双语切换基础样式 */
+        .lang-zh { display: none; }
+        body.show-zh .lang-en { display: none; }
+        body.show-zh .lang-zh { display: inline; }
+        body.show-zh blockquote.lang-zh,
+        body.show-zh p.lang-zh,
+        body.show-zh div.lang-zh { display: block; }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- 顶部导航栏 -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+            <span class="font-bold text-lg text-primary">SQDMC Guide</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Foundations</span>
+                <span class="lang-zh">基础认知</span>
+            </a>
+            <a href="module2.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Lifecycle Management</span>
+                <span class="lang-zh">全流程管理</span>
+            </a>
+            <a href="module3.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Legal & Ethics</span>
+                <span class="lang-zh">法规伦理</span>
+            </a>
+            <a href="module4.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Curation & Archiving</span>
+                <span class="lang-zh">策展进阶</span>
+            </a>
+            <a href="tools.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Toolkit</span>
+                <span class="lang-zh">工具中心</span>
+            </a>
+            <!-- 语言切换按钮 -->
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero 首屏 + 叙事引导 -->
+<section class="py-16 md:py-24 bg-gradient-to-b from-accent/40 to-white">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <!-- 左侧：标题 + 叙事 + 行动按钮 -->
+            <div>
+                <div class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full mb-4">
+                    <span class="lang-en">An Interactive Guide for Qualitative Researchers</span>
+                    <span class="lang-zh">面向人文社科研究者的交互式指南</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight text-balance">
+                    <span class="lang-en">Sensitive Qualitative Data<br>Management & Curation Guide</span>
+                    <span class="lang-zh">敏感定性数据管理<br>与策展进阶指南</span>
+                </h1>
+                <p class="text-gray-600 mb-6 text-balance">
+                    <span class="lang-en">
+                        Compliance practices across the full data lifecycle — from collection and processing to storage and destruction.
+                        Move beyond basic management to professional curation, balancing privacy protection with long-term data reuse.
+                    </span>
+                    <span class="lang-zh">
+                        覆盖收集、处理、存储到销毁的全生命周期合规操作方法。
+                        从基础管理到专业策展，兼顾隐私保护与数据长期复用价值。
+                    </span>
+                </p>
+
+                <!-- 叙事引入卡片 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8 shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                            <span class="text-primary">🐿️</span>
+                        </div>
+                        <div class="text-sm text-gray-700">
+                            <p class="font-medium text-gray-900 mb-1">
+                                <span class="lang-en">Hazel’s Dilemma</span>
+                                <span class="lang-zh">Hazel 的困境</span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    Hazel is a master’s student in Social Sciences at Woodland University,
+                                    conducting narrative interviews with forest dwellers about habitat and life experiences.
+                                    She originally thought removing names was enough to protect privacy — until her advisor warned that
+                                    habitat locations, unique life events and community ties can all re-identify individuals.
+                                    She needs a complete, actionable roadmap from compliance to archiving.
+                                </span>
+                                <span class="lang-zh">
+                                    Hazel 是森林大学社科系硕士生，正在做森林居民栖息地与生活叙事访谈研究。
+                                    她原本以为删掉受访者名字就足够安全，直到导师提醒：
+                                    栖息地位置、独特经历、社群关系都可能反向定位到个体。
+                                    从合规管理到公开归档，她需要一套完整可落地的操作方案。
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="module1.html" class="px-6 py-3 bg-primary text-white rounded-md font-medium hover:bg-secondary transition-colors">
+                        <span class="lang-en">Start Learning</span>
+                        <span class="lang-zh">开始学习</span>
+                    </a>
+                    <a href="tools.html" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-md font-medium hover:border-primary hover:text-primary transition-colors">
+                        <span class="lang-en">Go to Toolkit</span>
+                        <span class="lang-zh">直接使用工具</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 右侧：核心价值卡片 -->
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm card-hover">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="shield-check" class="text-primary w-5 h-5"></i>
+                        <h3 class="font-semibold">
+                            <span class="lang-en">Compliance & Control</span>
+                            <span class="lang-zh">合规可控</span>
+                        </h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <span class="lang-en">
+                            Aligned with PDPO, GDPR and IRB ethics standards; every step has a clear regulatory basis.
+                        </span>
+                        <span class="lang-zh">
+                            贴合 PDPO、GDPR 与高校 IRB 伦理要求，全流程有规可循。
+                        </span>
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm card-hover">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="layers" class="text-primary w-5 h-5"></i>
+                        <h3 class="font-semibold">
+                            <span class="lang-en">Layered Learning</span>
+                            <span class="lang-zh">分层学习</span>
+                        </h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <span class="lang-en">
+                            Basic management for thesis work, advanced curation for data archiving — choose what you need.
+                        </span>
+                        <span class="lang-zh">
+                            基础管理满足论文需求，进阶策展覆盖数据归档，按需选择不冗余。
+                        </span>
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm card-hover">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i data-lucide="mouse-pointer-click" class="text-primary w-5 h-5"></i>
+                        <h3 class="font-semibold">
+                            <span class="lang-en">Interactive Tools</span>
+                            <span class="lang-zh">交互工具</span>
+                        </h3>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <span class="lang-en">
+                            Risk triage, persistent compliance checklists, reusable templates and a compact project-record export.
+                        </span>
+                        <span class="lang-zh">
+                            风险初筛、可保存的合规清单、可复用模板与项目决策记录导出，可直接用于工作记录。
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心模块入口 -->
+<section class="py-16 md:py-20">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                <span class="lang-en">Core Learning Modules</span>
+                <span class="lang-zh">核心学习模块</span>
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                <span class="lang-en">
+                    Build complete sensitive qualitative data management capabilities step by step, from basics to professional curation.
+                </span>
+                <span class="lang-zh">
+                    从基础认知到专业策展，循序渐进搭建完整的敏感定性数据管理能力。
+                </span>
+            </p>
+        </div>
+
+        <div class="mb-10 rounded-xl border border-primary/20 bg-primary/5 p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-primary mb-3"><span class="lang-en">Recommended workflow</span><span class="lang-zh">推荐执行顺序</span></p>
+            <div class="flex flex-wrap items-center gap-2 text-sm text-gray-700">
+                <a href="module1.html" class="font-medium hover:text-primary"><span class="lang-en">1. Risk triage</span><span class="lang-zh">1. 风险初筛</span></a><span>→</span>
+                <a href="module3.html" class="font-medium hover:text-primary"><span class="lang-en">2. Legal & ethics</span><span class="lang-zh">2. 法规伦理</span></a><span>→</span>
+                <a href="module2.html" class="font-medium hover:text-primary"><span class="lang-en">3. Lifecycle controls</span><span class="lang-zh">3. 全周期控制</span></a><span>→</span>
+                <a href="module4.html" class="font-medium hover:text-primary"><span class="lang-en">4. Archive or destroy</span><span class="lang-zh">4. 归档或销毁</span></a><span>→</span>
+                <a href="tools.html" class="font-medium hover:text-primary"><span class="lang-en">5. Export records</span><span class="lang-zh">5. 输出记录</span></a>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- 模块一 -->
+            <a href="module1.html" class="block bg-white border border-gray-200 rounded-xl p-6 card-hover">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="book-open" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">
+                            <span class="lang-en">Module 1 · Foundations</span>
+                            <span class="lang-zh">模块一 · 基础认知</span>
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-3">
+                            <span class="lang-en">
+                                What is sensitive qualitative data? Understand the unique risks, master the four-dimension assessment framework and three-tier risk classification.
+                            </span>
+                            <span class="lang-zh">
+                                什么是敏感定性数据？理解定性数据的特殊风险，掌握四维度判定标准与三级风险分级体系。
+                            </span>
+                        </p>
+                        <span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+                            <span class="lang-en">Start Learning</span>
+                            <span class="lang-zh">进入学习</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 模块二 -->
+            <a href="module2.html" class="block bg-white border border-gray-200 rounded-xl p-6 card-hover">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="list-checks" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">
+                            <span class="lang-en">Module 2 · Full Lifecycle Management</span>
+                            <span class="lang-zh">模块二 · 全生命周期管理</span>
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-3">
+                            <span class="lang-en">
+                                Five stages from collection to destruction, with actionable operational standards and pitfalls to avoid at every step.
+                            </span>
+                            <span class="lang-zh">
+                                覆盖收集、处理、存储、共享、销毁五大阶段，每一步都有可直接落地的操作规范与避坑指南。
+                            </span>
+                        </p>
+                        <span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+                            <span class="lang-en">Start Learning</span>
+                            <span class="lang-zh">进入学习</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 模块三 -->
+            <a href="module3.html" class="block bg-white border border-gray-200 rounded-xl p-6 card-hover">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="scale" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">
+                            <span class="lang-en">Module 3 · Legal & Ethical Frameworks</span>
+                            <span class="lang-zh">模块三 · 法规与伦理框架</span>
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-3">
+                            <span class="lang-en">
+                                Side-by-side comparison of PDPO, GDPR and IRB ethics, with clear compliance boundaries for all operations.
+                            </span>
+                            <span class="lang-zh">
+                                PDPO、GDPR、IRB 伦理审查横向对比，明确合规边界，让所有操作有据可依。
+                            </span>
+                        </p>
+                        <span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+                            <span class="lang-en">Start Learning</span>
+                            <span class="lang-zh">进入学习</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 模块四 -->
+            <a href="module4.html" class="block bg-white border border-primary/20 rounded-xl p-6 card-hover bg-primary/[0.02]">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <h3 class="font-semibold text-lg">
+                                <span class="lang-en">Module 4 · Curation & Archiving</span>
+                                <span class="lang-zh">模块四 · 策展与归档专题</span>
+                            </h3>
+                            <span class="text-[10px] px-2 py-0.5 bg-primary text-white rounded-full">
+                                <span class="lang-en">Advanced</span>
+                                <span class="lang-zh">进阶</span>
+                            </span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">
+                            <span class="lang-en">
+                                Deep dive into de-identification methodology, metadata standards and repository submission workflows.
+                            </span>
+                            <span class="lang-zh">
+                                深入去标识化方法论、元数据规范、数据仓库提交流程，掌握敏感定性数据专业策展能力。
+                            </span>
+                        </p>
+                        <span class="text-primary text-sm font-medium inline-flex items-center gap-1">
+                            <span class="lang-en">Start Learning</span>
+                            <span class="lang-zh">进入学习</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 双学习路径 -->
+<section class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                <span class="lang-en">Choose Your Learning Path</span>
+                <span class="lang-zh">选择适合你的学习路径</span>
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                <span class="lang-en">
+                    Pick the path that matches your research needs for efficient, targeted learning.
+                </span>
+                <span class="lang-zh">
+                    根据你的研究需求选择对应路线，按需学习，高效解决实际问题。
+                </span>
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- 路径一：新手毕业路径 -->
+            <div class="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i data-lucide="graduation-cap" class="text-blue-600 w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl">
+                        <span class="lang-en">Beginner Thesis Path</span>
+                        <span class="lang-zh">新手毕业路径</span>
+                    </h3>
+                </div>
+                <p class="text-gray-600 text-sm mb-6">
+                    <span class="lang-en">
+                        For graduate students and early-career researchers fulfilling basic thesis and research compliance requirements.
+                    </span>
+                    <span class="lang-zh">
+                        适合人文社科研究生、青年研究者，满足毕业论文与常规研究的基础合规需求。
+                    </span>
+                </p>
+                
+                <ol class="space-y-3 mb-6">
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-medium">1</span>
+                        <span>
+                            <span class="lang-en">Assess your data risk level in Module 1</span>
+                            <span class="lang-zh">学习基础认知，完成数据风险定级</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-medium">2</span>
+                        <span>
+                            <span class="lang-en">Determine legal, ethics and consent requirements</span>
+                            <span class="lang-zh">确定法规、伦理与知情同意要求</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-medium">3</span>
+                        <span>
+                            <span class="lang-en">Apply controls across the full data lifecycle</span>
+                            <span class="lang-zh">落实全生命周期管理控制</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-medium">4</span>
+                        <span>
+                            <span class="lang-en">Verify compliance with the full checklist</span>
+                            <span class="lang-zh">使用合规自查清单完成最终核验</span>
+                        </span>
+                    </li>
+                </ol>
+
+                <a href="module1.html" class="block w-full text-center py-2.5 border border-gray-300 rounded-md text-gray-700 font-medium hover:border-primary hover:text-primary transition-colors text-sm">
+                    <span class="lang-en">Start with Foundations</span>
+                    <span class="lang-zh">从基础认知开始</span>
+                </a>
+            </div>
+
+            <!-- 路径二：进阶归档路径 -->
+            <div class="bg-white rounded-xl border border-primary/30 p-8 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-primary text-white text-xs px-3 py-1 rounded-bl-lg">
+                    <span class="lang-en">Recommended</span>
+                    <span class="lang-zh">推荐进阶</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <i data-lucide="briefcase" class="text-primary w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl">
+                        <span class="lang-en">Advanced Archiving Path</span>
+                        <span class="lang-zh">进阶归档路径</span>
+                    </h3>
+                </div>
+                <p class="text-gray-600 text-sm mb-6">
+                    <span class="lang-en">
+                        For researchers and data librarians preparing data for public sharing and long-term preservation.
+                    </span>
+                    <span class="lang-zh">
+                        适合有数据公开、长期留存、学术复用需求的研究者与数据馆员。
+                    </span>
+                </p>
+                
+                <ol class="space-y-3 mb-6">
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">1</span>
+                        <span>
+                            <span class="lang-en">Complete basic lifecycle compliance</span>
+                            <span class="lang-zh">完成全生命周期基础合规管理</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">2</span>
+                        <span>
+                            <span class="lang-en">Master three-tier de-identification methodology</span>
+                            <span class="lang-zh">深入学习三级去标识化方法论</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">3</span>
+                        <span>
+                            <span class="lang-en">Learn metadata standards and file organization</span>
+                            <span class="lang-zh">掌握元数据规范与文件组织标准</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm">
+                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">4</span>
+                        <span>
+                            <span class="lang-en">Submit to repository and configure controlled access</span>
+                            <span class="lang-zh">完成数据仓库提交与受控访问设置</span>
+                        </span>
+                    </li>
+                </ol>
+
+                <a href="module4.html" class="block w-full text-center py-2.5 bg-primary text-white rounded-md font-medium hover:bg-secondary transition-colors text-sm">
+                    <span class="lang-en">Go to Curation Module</span>
+                    <span class="lang-zh">进入策展进阶专题</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 适用人群 -->
+<section class="py-16 md:py-20">
+    <div class="container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                <span class="lang-en">Who This Guide Is For</span>
+                <span class="lang-zh">适合人群</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div class="w-14 h-14 mx-auto rounded-full bg-accent flex items-center justify-center mb-3">
+                    <i data-lucide="user" class="text-primary w-6 h-6"></i>
+                </div>
+                <h4 class="font-medium mb-1">
+                    <span class="lang-en">Graduate Students</span>
+                    <span class="lang-zh">人文社科研究生</span>
+                </h4>
+                <p class="text-xs text-gray-500">
+                    <span class="lang-en">Thesis data compliance</span>
+                    <span class="lang-zh">满足毕业论文数据合规要求</span>
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 mx-auto rounded-full bg-accent flex items-center justify-center mb-3">
+                    <i data-lucide="users" class="text-primary w-6 h-6"></i>
+                </div>
+                <h4 class="font-medium mb-1">
+                    <span class="lang-en">Field Researchers</span>
+                    <span class="lang-zh">田野访谈研究者</span>
+                </h4>
+                <p class="text-xs text-gray-500">
+                    <span class="lang-en">Interview & field data management</span>
+                    <span class="lang-zh">规范管理访谈与田野定性数据</span>
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 mx-auto rounded-full bg-accent flex items-center justify-center mb-3">
+                    <i data-lucide="library" class="text-primary w-6 h-6"></i>
+                </div>
+                <h4 class="font-medium mb-1">
+                    <span class="lang-en">Data Librarians</span>
+                    <span class="lang-zh">高校数据馆员</span>
+                </h4>
+                <p class="text-xs text-gray-500">
+                    <span class="lang-en">Support research data management</span>
+                    <span class="lang-zh">指导研究者开展数据管理与归档</span>
+                </p>
+            </div>
+            <div class="text-center">
+                <div class="w-14 h-14 mx-auto rounded-full bg-accent flex items-center justify-center mb-3">
+                    <i data-lucide="shield" class="text-primary w-6 h-6"></i>
+                </div>
+                <h4 class="font-medium mb-1">
+                    <span class="lang-en">Ethics Review Staff</span>
+                    <span class="lang-zh">伦理审查工作人员</span>
+                </h4>
+                <p class="text-xs text-gray-500">
+                    <span class="lang-en">Sensitive data review standards</span>
+                    <span class="lang-zh">参考敏感数据审查标准与要点</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="w-5 h-5 text-gray-200"></i>
+                    <span class="font-bold text-gray-100">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        Sensitive Qualitative Data Management & Curation Guide for qualitative researchers and data practitioners.
+                    </span>
+                    <span class="lang-zh">
+                        面向人文社科研究者与数据从业者的敏感定性数据管理与策展交互式指南。
+                    </span>
+                </p>
+            </div>
+            <div>
+                <h4 class="font-medium text-gray-100 mb-3">
+                    <span class="lang-en">Quick Links</span>
+                    <span class="lang-zh">快速链接</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="glossary.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Glossary</span>
+                        <span class="lang-zh">术语表</span>
+                    </a></li>
+                    <li><a href="references.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">References</span>
+                        <span class="lang-zh">参考文献</span>
+                    </a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">About</span>
+                        <span class="lang-zh">关于项目</span>
+                    </a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">
+                        <span class="lang-en">GitHub Repository</span>
+                        <span class="lang-zh">GitHub 仓库</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-medium text-gray-100 mb-3">
+                    <span class="lang-en">Disclaimer</span>
+                    <span class="lang-zh">免责声明</span>
+                </h4>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        This guide is for educational reference only and does not constitute legal or professional advice.
+                        Please consult your institution’s relevant departments for specific compliance and ethics matters.
+                    </span>
+                    <span class="lang-zh">
+                        本指南仅供学习参考，不构成法律与专业建议。具体合规与伦理问题请咨询所在机构相关部门。
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+            Sensitive Qualitative Data Management & Curation Guide | SQDMC Guide
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 语言切换逻辑
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    // 初始化语言偏好
+    const savedLang = localStorage.getItem('sqdmc_lang') || 'en';
+    if (savedLang === 'zh') {
+        body.classList.add('show-zh');
+        document.documentElement.lang = 'zh-CN';
+    }
+
+    // 切换事件
+    langToggle.addEventListener('click', () => {
+        body.classList.toggle('show-zh');
+        const currentLang = body.classList.contains('show-zh') ? 'zh' : 'en';
+        localStorage.setItem('sqdmc_lang', currentLang);
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    });
+
+    // 初始化 Lucide 图标
+    lucide.createIcons();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

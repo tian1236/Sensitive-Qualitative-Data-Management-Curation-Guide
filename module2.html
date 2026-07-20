@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Lifecycle Management | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f5132',
+                        secondary: '#2f6f4f',
+                        accent: '#e6f0ea',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 hover:border-primary/30;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+    </style>
+    <style>
+        /* 双语切换基础样式 */
+        .lang-zh { display: none; }
+        body.show-zh .lang-en { display: none; }
+        body.show-zh .lang-zh { display: inline; }
+        body.show-zh blockquote.lang-zh,
+        body.show-zh p.lang-zh,
+        body.show-zh div.lang-zh { display: block; }
+
+        /* 折叠面板样式 */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        /* 自定义复选框 */
+        .checklist-item input[type="checkbox"] {
+            accent-color: #0f5132;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- 顶部全局导航栏 -->
+<nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+            <i data-lucide="archive" class="text-primary w-6 h-6"></i>
+            <span class="font-bold text-lg text-primary">SQDMC Guide</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="module1.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Foundations</span>
+                <span class="lang-zh">基础认知</span>
+            </a>
+            <a href="module2.html" class="text-primary font-medium">
+                <span class="lang-en">Lifecycle Management</span>
+                <span class="lang-zh">全流程管理</span>
+            </a>
+            <a href="module3.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Legal & Ethics</span>
+                <span class="lang-zh">法规伦理</span>
+            </a>
+            <a href="module4.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Curation & Archiving</span>
+                <span class="lang-zh">策展进阶</span>
+            </a>
+            <a href="tools.html" class="hover:text-primary transition-colors">
+                <span class="lang-en">Toolkit</span>
+                <span class="lang-zh">工具中心</span>
+            </a>
+            <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+        </div>
+        <button class="md:hidden text-gray-600">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- 页面标题区 -->
+<section class="bg-gradient-to-b from-accent/30 to-white py-10 border-b border-gray-100">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-sm text-gray-500 mb-2">
+            <a href="index.html" class="hover:text-primary">
+                <span class="lang-en">Home</span>
+                <span class="lang-zh">首页</span>
+            </a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-700">
+                <span class="lang-en">Module 2: Full Lifecycle Management</span>
+                <span class="lang-zh">模块二：全生命周期管理</span>
+            </span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <span class="lang-en">Module 2: Full Lifecycle Data Management</span>
+            <span class="lang-zh">模块二：数据全生命周期管理</span>
+        </h1>
+        <p class="text-gray-600 max-w-3xl">
+            <span class="lang-en">
+                A structured operational guide across five stages — collection, processing, storage, sharing, and retention, archiving or destruction.
+                Use it to document controls across the qualitative research data lifecycle.
+            </span>
+            <span class="lang-zh">
+                以五个阶段组织操作指引：收集、处理、存储、共享，以及保留、归档或销毁，
+                用于记录定性研究数据全生命周期的控制措施。
+            </span>
+        </p>
+    </div>
+</section>
+
+<section class="bg-amber-50 border-b border-amber-200">
+    <div class="container mx-auto px-6 max-w-6xl py-4 text-sm text-amber-900 flex items-start gap-3">
+        <i data-lucide="route" class="w-5 h-5 mt-0.5 flex-shrink-0"></i>
+        <p>
+            <span class="lang-en">Recommended sequence: complete the <a href="module3.html#jurisdiction-check" class="font-semibold underline">jurisdiction, legal and ethics pre-check</a> before collecting data. This module translates that determination into lifecycle controls; it does not replace it.</span>
+            <span class="lang-zh">推荐顺序：在收集数据前先完成<a href="module3.html#jurisdiction-check" class="font-semibold underline">管辖、法律与伦理预检查</a>。本模块把认定结果转化为全生命周期控制措施，不能替代该认定。</span>
+        </p>
+    </div>
+</section>
+
+<!-- 阶段时间轴快速导航 -->
+<section class="py-6 border-b border-gray-100 bg-white sticky top-[73px] z-40">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="flex items-center justify-between overflow-x-auto gap-2 md:gap-4 pb-1">
+            <a href="#stage2-1" class="flex-shrink-0 text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium">1</span>
+                <span>
+                    <span class="lang-en">Collection</span>
+                    <span class="lang-zh">收集</span>
+                </span>
+            </a>
+            <div class="w-full h-px bg-gray-200 flex-shrink max-w-[40px]"></div>
+            <a href="#stage2-2" class="flex-shrink-0 text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium">2</span>
+                <span>
+                    <span class="lang-en">Processing</span>
+                    <span class="lang-zh">处理</span>
+                </span>
+            </a>
+            <div class="w-full h-px bg-gray-200 flex-shrink max-w-[40px]"></div>
+            <a href="#stage2-3" class="flex-shrink-0 text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium">3</span>
+                <span>
+                    <span class="lang-en">Storage</span>
+                    <span class="lang-zh">存储</span>
+                </span>
+            </a>
+            <div class="w-full h-px bg-gray-200 flex-shrink max-w-[40px]"></div>
+            <a href="#stage2-4" class="flex-shrink-0 text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium">4</span>
+                <span>
+                    <span class="lang-en">Sharing</span>
+                    <span class="lang-zh">共享</span>
+                </span>
+            </a>
+            <div class="w-full h-px bg-gray-200 flex-shrink max-w-[40px]"></div>
+            <a href="#stage2-5" class="flex-shrink-0 text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs font-medium">5</span>
+                <span>
+                    <span class="lang-en">Destruction</span>
+                    <span class="lang-zh">销毁</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容区 -->
+<section class="py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-4 gap-10">
+            <!-- 左侧固定目录 -->
+            <aside class="md:col-span-1 hidden md:block">
+                <div class="sticky top-[180px]">
+                    <h4 class="font-semibold text-gray-900 mb-4 text-sm">
+                        <span class="lang-en">Stages</span>
+                        <span class="lang-zh">阶段导航</span>
+                    </h4>
+                    <nav class="space-y-2 text-sm border-l-2 border-gray-100 pl-4">
+                        <a href="#stage2-1" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2.1 Data Collection</span>
+                            <span class="lang-zh">2.1 数据收集</span>
+                        </a>
+                        <a href="#stage2-2" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2.2 Data Processing</span>
+                            <span class="lang-zh">2.2 数据处理</span>
+                        </a>
+                        <a href="#stage2-3" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2.3 Data Storage</span>
+                            <span class="lang-zh">2.3 数据存储</span>
+                        </a>
+                        <a href="#stage2-4" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2.4 Data Sharing</span>
+                            <span class="lang-zh">2.4 数据共享</span>
+                        </a>
+                        <a href="#stage2-5" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">2.5 Data Destruction</span>
+                            <span class="lang-zh">2.5 数据销毁</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 右侧正文区 -->
+            <main class="md:col-span-3 space-y-20">
+
+                <!-- ============== 阶段1：数据收集 ============== -->
+                <section id="stage2-1" class="scroll-mt-[190px]">
+                    <!-- 引导层 -->
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Mistake</span>
+                                    <span class="lang-zh">Hazel 踩的坑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Hazel’s initial consent form only stated “for master’s thesis research” with no mention of future archiving or sharing.
+                                        When she later wanted to deposit the data, she found the original authorization was insufficient.
+                                    </span>
+                                    <span class="lang-zh">
+                                        Hazel 最初的知情同意书只写了「用于毕业论文研究」，完全没提后续归档共享。
+                                        等她想公开数据时，才发现原始授权范围不足。
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Compliance must be designed from the source.
+                                                        The scope of informed consent defines the upper limit of all future data use.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：合规要从源头设计。知情同意的边界，决定了后续所有数据使用的上限。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center">1</span>
+                        <span class="lang-en">2.1 Data Collection</span>
+                        <span class="lang-zh">2.1 数据收集阶段</span>
+                    </h2>
+
+                    <!-- 核心层 -->
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Tiered Informed Consent Design</span>
+                        <span class="lang-zh">分层知情同意设计</span>
+                    </h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="lang-en">
+                            Instead of a single blanket consent, split authorization into independent tiers
+                            to respect participant autonomy while preserving future data use options.
+                        </span>
+                        <span class="lang-zh">
+                            摒弃单一笼统的同意格式，将授权拆分为独立层级，既尊重受访者的自主选择权，
+                            也为后续的数据使用保留空间。
+                        </span>
+                    </p>
+
+                    <div class="space-y-2 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Level 1 — Project Use Only</span>
+                                <span class="lang-zh">一级：仅本项目使用</span>
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Data may only be used for the stated research project and thesis.</span>
+                                <span class="lang-zh">数据仅用于约定的研究项目与学位论文。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Level 2 — Team Collaborative Use</span>
+                                <span class="lang-zh">二级：团队合作使用</span>
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Data may be shared with approved collaborators within the research team.</span>
+                                <span class="lang-zh">数据可共享给研究团队内已授权的合作人员。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Level 3 — De-identified Archiving</span>
+                                <span class="lang-zh">三级：去标识化归档</span>
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">De-identified data may be deposited in a controlled-access repository for secondary research.</span>
+                                <span class="lang-zh">去标识化后的数据可存入受控访问数据仓库，用于二次研究。</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Level 4 — Quotation Permission</span>
+                                <span class="lang-zh">四级：引用授权</span>
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <span class="lang-en">Anonymized excerpts may be quoted directly in publications.</span>
+                                <span class="lang-zh">允许在出版物中直接引用去标识化后的原文片段。</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Collection Protocols & Standards</span>
+                        <span class="lang-zh">收集规范与标准</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="font-medium">File naming convention:</span>
+                            <span class="lang-en"> Use format <code>ProjectID_DataType_ParticipantID_Version</code>; never use real names in filenames.</span>
+                            <span class="lang-zh"> 统一使用 <code>项目编号_数据类型_受访者编号_版本号</code> 格式，禁止文件名出现真实姓名。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Minimum necessary principle:</span>
+                            <span class="lang-en"> Only collect information directly relevant to the research question; avoid unnecessary private details.</span>
+                            <span class="lang-zh"> 遵循最小必要原则，只收集与研究问题直接相关的信息，不追问无关隐私。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Field note standard:</span>
+                            <span class="lang-en"> Clearly separate objective observations from researcher inferences and subjective judgments.</span>
+                            <span class="lang-zh"> 田野笔记严格区分「客观观察事实」与「研究者主观推断」。</span>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mb-4"><span class="lang-en">Sources: </span><span class="lang-zh">来源：</span><a href="references.html#pdpo-crossborder" class="text-primary underline">PCPD cross-border guidance</a> · <a href="references.html#gdpr" class="text-primary underline">GDPR Chapter V</a></p>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Common Pitfalls</span>
+                        <span class="lang-zh">常见避坑指南</span>
+                    </h3>
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-4 mb-6">
+                        <ul class="text-sm text-red-800 space-y-2">
+                            <li>
+                                <span class="lang-en">⚠️ Vague consent language that limits future data sharing and archiving options</span>
+                                <span class="lang-zh">⚠️ 知情同意表述笼统，限制后续数据共享与归档空间</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">⚠️ Default recording filenames with timestamps and GPS locations that leak identity</span>
+                                <span class="lang-zh">⚠️ 录音设备默认文件名带时间、地点信息，间接泄露身份</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">⚠️ Collecting excessive personal information unrelated to the research question</span>
+                                <span class="lang-zh">⚠️ 收集与研究主题无关的过多个人隐私信息</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 阶段自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">Collection Stage Checklist</span>
+                            <span class="lang-zh">收集阶段自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Informed consent form clearly defines the scope of data use</span>
+                                    <span class="lang-zh">知情同意书明确界定了数据使用范围</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Tiered consent options are provided to participants</span>
+                                    <span class="lang-zh">向受访者提供了分层授权选项</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Unified file naming convention is applied to all raw data</span>
+                                    <span class="lang-zh">所有原始数据采用了统一的文件命名规范</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">No unnecessary personal information is collected</span>
+                                    <span class="lang-zh">未收集与研究无关的多余个人信息</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Participants are informed of their right to withdraw</span>
+                                    <span class="lang-zh">已告知受访者随时撤回数据的权利</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 深度层 -->
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Advanced Ethical & Legal Details</span>
+                                <span class="lang-zh">📚 深度拓展：进阶伦理与法律细节</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Verbal consent validity:</strong>
+                                    Under PDPO, verbal consent is acceptable in certain contexts, but written documentation is strongly recommended
+                                    for sensitive research to establish clear evidence of agreement.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>口头同意的有效性：</strong>
+                                    在PDPO框架下，部分场景可采用口头同意，但敏感研究强烈建议书面记录，
+                                    作为授权的明确证据。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Re-consent in longitudinal research:</strong>
+                                    For long-term follow-up studies, re-consent should be obtained at each major phase,
+                                    especially if data use plans change.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>纵向研究的二次同意：</strong>
+                                    长期追踪研究应在每个重要阶段重新获取同意，尤其是数据使用计划发生变化时。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Relational ethics in vulnerable communities:</strong>
+                                    Beyond formal consent, researchers must consider trust dynamics and avoid exploiting power imbalances
+                                    in field research with marginalized groups.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>弱势社群的关系伦理：</strong>
+                                    除了正式同意，研究者还需考虑信任关系，避免在边缘群体田野研究中利用权力不对等。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- ============== 阶段2：数据处理 ============== -->
+                <section id="stage2-2" class="scroll-mt-[190px]">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Mistake</span>
+                                    <span class="lang-zh">Hazel 踩的坑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        When transcribing, Hazel wrote down every detail — exact tree hole locations, daily schedules, personal conflicts —
+                                        believing more detail always equals higher research value.
+                                    </span>
+                                    <span class="lang-zh">
+                                        转录时 Hazel 把所有细节都记了下来：具体树洞位置、每日出行时间、居民间的私人矛盾，
+                                        觉得越详细研究价值越高。
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Processing is the core risk control checkpoint.
+                                                        Basic de-identification is a fundamental skill for all researchers.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：处理阶段是风险控制的核心关口，基础去标识化是所有研究者的必备技能。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center">2</span>
+                        <span class="lang-en">2.2 Data Processing</span>
+                        <span class="lang-zh">2.2 数据处理阶段</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">4-Step Basic De-identification</span>
+                        <span class="lang-zh">基础去标识化四步法</span>
+                    </h3>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">1</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Remove direct identifiers</span>
+                                    <span class="lang-zh">删除直接标识符</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Names, contact information, exact addresses, ID numbers, social media handles.</span>
+                                    <span class="lang-zh">姓名、联系方式、具体地址、证件号、社交账号。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">2</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Apply consistent pseudonyms</span>
+                                    <span class="lang-zh">统一伪名替换</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Use fixed IDs or pseudonyms for all individuals and locations; maintain a separate encrypted key file.</span>
+                                    <span class="lang-zh">所有人物、地点使用固定代号/伪名；单独保存密钥表并加密。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">3</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Generalize contextual details</span>
+                                    <span class="lang-zh">上下文模糊化</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Specific locations → regions; exact dates → time periods; specific institutions → sector categories.</span>
+                                    <span class="lang-zh">具体地点→区域；具体日期→时间段；具体机构→行业类别。</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-medium flex items-center justify-center flex-shrink-0 text-sm">4</div>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    <span class="lang-en">Remove unique identifying traits</span>
+                                    <span class="lang-zh">移除独特特征</span>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">Remove rare occupations, unique life events and other details that could enable re-identification.</span>
+                                    <span class="lang-zh">删除罕见职业、独特人生经历等可反向定位个人的信息。</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Transcription & Version Control</span>
+                        <span class="lang-zh">转录与版本管理</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="font-medium">Unified transcription rules:</span>
+                            <span class="lang-en"> Define consistent standards for dialect, pauses, non-verbal sounds and annotations.</span>
+                            <span class="lang-zh"> 制定统一的转录规范，对方言、停顿、非语言声音、标注方式做明确约定。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Dual version separation:</span>
+                            <span class="lang-en"> Maintain raw unprocessed data and de-identified data in separate folders with clear version labels.</span>
+                            <span class="lang-zh"> 原始版与去标识化版分文件夹存放，标注清晰的版本号。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Secure processing environment:</span>
+                            <span class="lang-en"> Never process raw sensitive data on public computers, shared devices or unencrypted cloud services.</span>
+                            <span class="lang-zh"> 禁止在公共电脑、共享设备、未加密云盘上处理原始敏感数据。</span>
+                        </li>
+                    </ul>
+
+                    <!-- 自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">Processing Stage Checklist</span>
+                            <span class="lang-zh">处理阶段自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">All direct identifiers have been removed from working files</span>
+                                    <span class="lang-zh">工作文件中已移除所有直接标识符</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Pseudonyms/IDs are applied consistently throughout all documents</span>
+                                    <span class="lang-zh">所有文档中伪名/代号使用统一</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Raw and de-identified data are stored in separate locations</span>
+                                    <span class="lang-zh">原始数据与去标识化数据分开存放</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Pseudonym key file is stored separately and encrypted</span>
+                                    <span class="lang-zh">伪名密钥表单独存放并加密</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">No processing performed on unsecured public devices</span>
+                                    <span class="lang-zh">未在不安全的公共设备上处理数据</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Advanced Processing Methods</span>
+                                <span class="lang-zh">📚 深度拓展：进阶处理方法</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Transcription staff management:</strong>
+                                    External transcriptionists must sign confidentiality agreements and should only receive de-identified materials when possible.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>转录人员管理：</strong>
+                                    外部转录人员必须签署保密协议，尽可能只提供去标识化后的材料。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Automated de-identification tools:</strong>
+                                    NLP tools can assist with removing named entities, but manual review is mandatory for qualitative data
+                                    due to contextual re-identification risks.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>自动去标识化工具：</strong>
+                                    NLP工具可辅助移除命名实体，但定性数据因存在语境重识别风险，人工复核必不可少。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Voice data risks:</strong>
+                                    Voiceprints are unique identifiers. Audio data intended for sharing requires voice alteration,
+                                    though this does not guarantee full de-identification.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>语音数据的特殊风险：</strong>
+                                    声纹属于独特标识符。用于共享的音频数据需做变声处理，但无法保证完全去标识化。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- ============== 阶段3：数据存储 ============== -->
+                <section id="stage2-3" class="scroll-mt-[190px]">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Mistake</span>
+                                    <span class="lang-zh">Hazel 踩的坑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        Hazel initially stored all data on her laptop desktop and backed up to a public consumer cloud drive
+                                        for easy access — creating significant leakage risk.
+                                    </span>
+                                    <span class="lang-zh">
+                                        Hazel 一开始把所有数据存在电脑桌面，还随手备份到公共消费级云盘图方便，
+                                        带来了极大的泄露风险。
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Higher risk data requires stronger isolation and encryption.
+                                                        Match storage security to the data’s risk level.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：风险等级越高，存储的隔离性与加密强度越高。安全级别与风险等级相匹配。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center">3</span>
+                        <span class="lang-en">2.3 Data Storage</span>
+                        <span class="lang-zh">2.3 数据存储阶段</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Tiered Storage Strategy</span>
+                        <span class="lang-zh">分级存储方案</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Risk Level</span>
+                                        <span class="lang-zh">风险等级</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Recommended Storage</span>
+                                        <span class="lang-zh">推荐存储方式</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Access Control</span>
+                                        <span class="lang-zh">权限要求</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Backup Requirement</span>
+                                        <span class="lang-zh">备份要求</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium text-green-700">
+                                        <span class="lang-en">Low</span>
+                                        <span class="lang-zh">低风险</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Local drive + institutional cloud storage</span>
+                                        <span class="lang-zh">本地硬盘 + 机构云存储</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Research team access</span>
+                                        <span class="lang-zh">研究团队可访问</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Dual copies</span>
+                                        <span class="lang-zh">双副本</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium text-yellow-700">
+                                        <span class="lang-en">Medium</span>
+                                        <span class="lang-zh">中风险</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Encrypted local drive + authorized institutional cloud</span>
+                                        <span class="lang-zh">加密本地硬盘 + 授权机构云盘</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Only core team accesses raw data</span>
+                                        <span class="lang-zh">仅核心成员可访问原始数据</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">3 copies, 1 offline</span>
+                                        <span class="lang-zh">三副本，一份离线</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium text-red-700">
+                                        <span class="lang-en">High</span>
+                                        <span class="lang-zh">高风险</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Offline encrypted media + physical isolation</span>
+                                        <span class="lang-zh">离线加密介质 + 物理隔离</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Only PI accesses raw data; access logs required</span>
+                                        <span class="lang-zh">仅负责人可访问原始数据，留访问记录</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">3 copies, 2 offline off-site</span>
+                                        <span class="lang-zh">三副本，两份离线异地</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">3-2-1 Backup Principle</span>
+                        <span class="lang-zh">3-2-1 备份原则</span>
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="border border-gray-200 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold text-primary mb-1">3</p>
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Copies of data</span>
+                                <span class="lang-zh">份数据副本</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en">Original + 2 independent backups</span>
+                                <span class="lang-zh">原始数据 + 两份独立备份</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold text-primary mb-1">2</p>
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Different media types</span>
+                                <span class="lang-zh">种不同存储介质</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en">e.g. internal hard drive + external drive</span>
+                                <span class="lang-zh">例如内置硬盘 + 移动硬盘</span>
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold text-primary mb-1">1</p>
+                            <p class="font-medium text-gray-800 mb-1">
+                                <span class="lang-en">Off-site offline copy</span>
+                                <span class="lang-zh">份异地离线备份</span>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-en">Geographically separate from the original</span>
+                                <span class="lang-zh">与原始数据物理地点分离</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Practical Security Rules</span>
+                        <span class="lang-zh">实操安全规范</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-6">
+                        <li>
+                            <span class="font-medium">Full-disk encryption:</span>
+                            <span class="lang-en"> Enable system-level encryption (BitLocker / FileVault) on all devices storing sensitive data.</span>
+                            <span class="lang-zh"> 开启系统级磁盘加密（BitLocker / FileVault）。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">File-level encryption:</span>
+                            <span class="lang-en"> Individually encrypt highly sensitive files with strong passwords; store keys separately.</span>
+                            <span class="lang-zh"> 高敏感文件单独加密，密钥分开存放。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Principle of least privilege:</span>
+                            <span class="lang-en"> Grant access only to those who need it; research assistants should only work with de-identified data.</span>
+                            <span class="lang-zh"> 最小权限原则，学生助理仅可接触去标识化数据。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Institutional cloud first:</span>
+                            <span class="lang-en"> Prioritize university-authorized cloud services; avoid consumer-grade public cloud drives for sensitive data.</span>
+                            <span class="lang-zh"> 优先使用学校授权云盘，慎用消费级公共云盘存敏感数据。</span>
+                        </li>
+                    </ul>
+
+                    <!-- 自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">Storage Stage Checklist</span>
+                            <span class="lang-zh">存储阶段自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Full-disk encryption is enabled on all devices storing sensitive data</span>
+                                    <span class="lang-zh">所有存敏感数据的设备已开启磁盘加密</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Data is stored by risk tier with appropriate access controls</span>
+                                    <span class="lang-zh">数据按风险等级分级存储并设置对应权限</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">3-2-1 backup strategy is fully implemented</span>
+                                    <span class="lang-zh">已完整执行 3-2-1 备份策略</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">No sensitive raw data stored on public consumer cloud services</span>
+                                    <span class="lang-zh">未在公共消费级云盘存储原始敏感数据</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Access permissions follow the principle of least privilege</span>
+                                    <span class="lang-zh">访问权限遵循最小必要原则</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Encryption keys and pseudonym keys are stored separately from data</span>
+                                    <span class="lang-zh">加密密钥与伪名密钥与数据分开存放</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Professional Storage Solutions</span>
+                                <span class="lang-zh">📚 深度拓展：专业存储方案</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>End-to-end encryption tools:</strong>
+                                    For high-risk data, use zero-knowledge encryption tools to ensure even service providers cannot access content.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>端到端加密工具：</strong>
+                                    高风险数据推荐使用零知识加密工具，确保服务商也无法读取内容。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Format migration for long-term preservation:</strong>
+                                    Proprietary file formats may become unreadable over time.
+                                    Plan periodic format migration to open, sustainable formats for long-term retention.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>长期存储的格式迁移：</strong>
+                                    专有文件格式可能随软件淘汰而无法读取，长期留存需定期迁移至开放可持续格式。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Physical media security:</strong>
+                                    Offline hard drives and paper records should be stored in locked, fire-resistant cabinets
+                                    with controlled access and inventory logs.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>物理介质安全：</strong>
+                                    离线硬盘、纸质资料应存放于上锁的防火柜中，控制访问权限并保留出入记录。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- ============== 阶段4：数据共享 ============== -->
+                <section id="stage2-4" class="scroll-mt-[190px]">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Mistake</span>
+                                    <span class="lang-zh">Hazel 踩的坑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        A fellow researcher from another university asked for a copy of the transcripts for a comparative study.
+                                        Hazel almost sent the full raw files directly by email.
+                                    </span>
+                                    <span class="lang-zh">
+                                        邻校的一位研究者来信索要转录稿做对比研究，Hazel 差点直接把原始文件发邮件过去。
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: The wider the sharing, the higher the de-identification standard
+                                                        and the stricter the contractual constraints.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：共享范围越大，脱敏标准越高，协议约束越严。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center">4</span>
+                        <span class="lang-en">2.4 Data Sharing</span>
+                        <span class="lang-zh">2.4 数据共享阶段</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Three Sharing Scenarios & Requirements</span>
+                        <span class="lang-zh">三类共享场景与对应要求</span>
+                    </h3>
+                    <div class="space-y-4 mb-6">
+                        <!-- 场景1 -->
+                        <div class="border border-gray-200 rounded-lg p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded font-medium">
+                                    <span class="lang-en">Scenario 1</span>
+                                    <span class="lang-zh">场景一</span>
+                                </span>
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="lang-en">Intra-team / Internal Sharing</span>
+                                    <span class="lang-zh">团队内 / 校内共享</span>
+                                </h4>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                                <li>
+                                    <span class="lang-en">Implement role-based access control</span>
+                                    <span class="lang-zh">实行基于角色的权限控制</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">All personnel sign confidentiality commitments</span>
+                                    <span class="lang-zh">所有人员签署保密承诺</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Share only the minimum necessary data version</span>
+                                    <span class="lang-zh">仅共享必要级别的数据版本</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Prohibit forwarding or secondary distribution without authorization</span>
+                                    <span class="lang-zh">禁止擅自转发与二次传播</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 场景2 -->
+                        <div class="border border-gray-200 rounded-lg p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs rounded font-medium">
+                                    <span class="lang-en">Scenario 2</span>
+                                    <span class="lang-zh">场景二</span>
+                                </span>
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="lang-en">Cross-institutional Collaborative Sharing</span>
+                                    <span class="lang-zh">跨机构合作共享</span>
+                                </h4>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                                <li>
+                                    <span class="lang-en">Share de-identified data only; never send raw identifiable data</span>
+                                    <span class="lang-zh">仅共享去标识化版本，绝不发送原始可识别数据</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Sign a formal Data Use Agreement (DUA) before sharing</span>
+                                    <span class="lang-zh">共享前签署正式的数据使用协议（DUA）</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Clearly define purpose, scope and duration of use</span>
+                                    <span class="lang-zh">明确约定使用目的、范围与期限</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Verify the recipient’s data security capabilities</span>
+                                    <span class="lang-zh">核实接收方的数据安全保障条件</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 场景3 -->
+                        <div class="border border-gray-200 rounded-lg p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs rounded font-medium">
+                                    <span class="lang-en">Scenario 3</span>
+                                    <span class="lang-zh">场景三</span>
+                                </span>
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="lang-en">Public Archiving & Open Sharing</span>
+                                    <span class="lang-zh">公开归档与开放共享</span>
+                                </h4>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1 list-disc pl-5">
+                                <li>
+                                    <span class="lang-en">Must have explicit informed consent authorization from participants</span>
+                                    <span class="lang-zh">必须获得受访者明确的知情同意授权</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Complete corresponding tier of de-identification</span>
+                                    <span class="lang-zh">完成对应级别的去标识化处理</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Prepare complete standardized metadata documentation</span>
+                                    <span class="lang-zh">准备完整的标准化元数据文档</span>
+                                </li>
+                                <li>
+                                    <span class="lang-en">Select appropriate access mode (open / registered / application-based)</span>
+                                    <span class="lang-zh">选择合适的访问模式（公开/注册/申请制）</span>
+                                </li>
+                            </ul>
+                            <div class="mt-3 text-sm text-primary font-medium">
+                                <span class="lang-en">→ For full archiving workflows, see Module 4: Curation & Archiving</span>
+                                <span class="lang-zh">→ 完整归档操作流程见模块四：策展与归档专题</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Cross-Border Data Transfer Considerations</span>
+                        <span class="lang-zh">跨境数据共享注意事项</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                        <li>
+                            <span class="lang-en">
+                                Hong Kong's current Data Protection Principles remain relevant to an overseas transfer.
+                                PDPO section 33 is not yet in force; document recipient due diligence and contractual safeguards in line with PCPD guidance.
+                            </span>
+                            <span class="lang-zh">
+                                香港现行资料保障原则在跨境转移中仍然相关；PDPO第33条尚未生效，应依私隐专员指引记录接收方尽职调查及合同保障。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                Where GDPR applies and Chapter V is engaged, use an appropriate mechanism such as an adequacy decision,
+                                standard contractual clauses or another valid route, with supplementary measures where required.
+                            </span>
+                            <span class="lang-zh">
+                                在GDPR适用且触发第五章时，应采用充分性决定、标准合同条款或其他有效机制，并在需要时落实补充措施。
+                            </span>
+                        </li>
+                        <li>
+                            <span class="lang-en">
+                                As a general principle, avoid transferring raw sensitive data across borders.
+                                Transfer only de-identified versions when necessary.
+                            </span>
+                            <span class="lang-zh">
+                                通用原则：敏感原始数据尽量不跨境传输，确需传输优先使用去标识化版本。
+                            </span>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
+                        <span class="lang-en">Common Pitfalls</span>
+                        <span class="lang-zh">常见避坑指南</span>
+                    </h3>
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-4 mb-6">
+                        <ul class="text-sm text-red-800 space-y-2">
+                            <li>
+                                <span class="lang-en">⚠️ Sharing raw data directly for convenience, ignoring de-identification requirements</span>
+                                <span class="lang-zh">⚠️ 图方便直接共享原始数据，忽略脱敏要求</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">⚠️ Sharing without a written agreement, leading to uncontrolled secondary dissemination</span>
+                                <span class="lang-zh">⚠️ 不签协议就共享，导致二次传播失控</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">⚠️ Sharing beyond the scope of original informed consent</span>
+                                <span class="lang-zh">⚠️ 共享范围超出原始知情同意的授权边界</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">⚠️ Transferring sensitive raw data across borders without compliance review</span>
+                                <span class="lang-zh">⚠️ 未经合规审查就跨境传输原始敏感数据</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">Sharing Stage Checklist</span>
+                            <span class="lang-zh">共享阶段自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Sharing scope is within the bounds of informed consent</span>
+                                    <span class="lang-zh">共享范围在知情同意授权边界内</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Only the appropriate de-identified version is shared</span>
+                                    <span class="lang-zh">仅共享了对应级别的去标识化版本</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Data Use Agreement is signed for cross-institutional sharing</span>
+                                    <span class="lang-zh">跨机构共享已签署数据使用协议</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Recipient data security conditions have been verified</span>
+                                    <span class="lang-zh">已核实接收方的数据安全条件</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Cross-border transfers comply with applicable regulatory requirements</span>
+                                    <span class="lang-zh">跨境传输符合对应法规要求</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">No raw sensitive data is shared via unsecure channels (email, public chat)</span>
+                                    <span class="lang-zh">未通过不安全渠道（邮件、公共聊天）传输原始敏感数据</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Secondary redistribution is explicitly prohibited</span>
+                                    <span class="lang-zh">已明确禁止接收方二次传播数据</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Advanced Sharing Governance</span>
+                                <span class="lang-zh">📚 深度拓展：进阶共享治理</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Data Use Agreement (DUA) core clauses:</strong>
+                                    Purpose limitation, prohibition of re-identification, no secondary transfer,
+                                    security requirements, citation obligations, termination and destruction clauses.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数据使用协议核心条款：</strong>
+                                    用途限制、禁止重识别、禁止二次转发、安全要求、引用义务、终止与销毁条款。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>GDPR cross-border mechanisms:</strong>
+                                    Standard Contractual Clauses (SCCs), adequacy decisions, Binding Corporate Rules,
+                                    and derogations for research purposes.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>GDPR跨境传输机制：</strong>
+                                    标准合同条款（SCC）、充分性认定、约束性公司规则，以及研究目的的豁免条款。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Data ownership and responsibility:</strong>
+                                    Clarify ownership rights, intellectual property and liability for breaches
+                                    in collaborative research agreements.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数据所有权与责任划分：</strong>
+                                    合作研究中应在协议中明确数据归属、知识产权与违规责任。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- ============== 阶段5：数据销毁 ============== -->
+                <section id="stage2-5" class="scroll-mt-[190px]">
+                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                                <span>🐿️</span>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium text-gray-900 mb-1">
+                                    <span class="lang-en">Hazel’s Mistake</span>
+                                    <span class="lang-zh">Hazel 踩的坑</span>
+                                </p>
+                                <p>
+                                    <span class="lang-en">
+                                        When cleaning up files, Hazel almost deleted draft transcripts in the recycle bin
+                                        and threw old paper notes straight into the trash.
+                                    </span>
+                                    <span class="lang-zh">
+                                        整理文件时，Hazel 差点把转录草稿直接丢进回收站，作废的纸质笔记直接扔进垃圾桶。
+                                    </span>
+                                </p>
+                                <p class="mt-2 font-medium text-primary">
+                                    <span class="lang-en">
+                                        Principle: Retain data only for the minimum period required by law and ethics;
+                                                        destroy it securely and completely when the retention period ends.
+                                    </span>
+                                    <span class="lang-zh">
+                                        原则：仅留存法规与伦理要求的最短期限，到期彻底、安全地销毁。
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center">5</span>
+                        <span class="lang-en">2.5 Retain, Archive or Destroy</span>
+                        <span class="lang-zh">2.5 留存、归档或销毁决策</span>
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Determining Destruction Timing</span>
+                        <span class="lang-zh">销毁时机判断</span>
+                    </h3>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-6">
+                        <li>
+                            <span class="font-medium">Legal requirement:</span>
+                            <span class="lang-en"> PDPO mandates that personal data shall not be kept longer than is necessary for the purpose it was collected.</span>
+                            <span class="lang-zh"> PDPO 规定个人数据留存不得超过收集目的所需的期限。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Ethics requirement:</span>
+                            <span class="lang-en"> No universal period applies. Follow the approved protocol, law, institutional and funder rules; record the trigger date and review date.</span>
+                            <span class="lang-zh"> 不存在通用年限。应遵循获批方案、法律、机构及资助方规则，并记录起算日与复核日。</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Extensions:</span>
+                            <span class="lang-en"> Retention may be extended for pending litigation, audit requirements or ongoing research.</span>
+                            <span class="lang-zh"> 未结诉讼、审计要求、持续研究等情形可延长留存。</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Secure Destruction Methods by Media Type</span>
+                        <span class="lang-zh">不同介质的安全销毁方法</span>
+                    </h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800 w-1/4">
+                                        <span class="lang-en">Media Type</span>
+                                        <span class="lang-zh">介质类型</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Acceptable Method</span>
+                                        <span class="lang-zh">合规销毁方式</span>
+                                    </th>
+                                    <th class="border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-800">
+                                        <span class="lang-en">Do NOT</span>
+                                        <span class="lang-zh">禁止操作</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Electronic files</span>
+                                        <span class="lang-zh">电子文件</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Use an organisation-approved method appropriate to the medium: secure erase, cryptographic erase, vendor-verified cloud deletion or physical destruction, with validation</span>
+                                        <span class="lang-zh">按介质采用机构批准的方法：安全擦除、加密擦除、经验证的云端删除或物理销毁，并验证结果</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Simple delete / recycle bin only</span>
+                                        <span class="lang-zh">仅删除/放入回收站</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">
+                                        <span class="lang-en">Paper documents</span>
+                                        <span class="lang-zh">纸质资料</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Cross-cut shredding to unreadable particles</span>
+                                        <span class="lang-zh">使用段状碎纸机粉碎至无法复原</span>
+                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Throw directly into trash / recycling</span>
+                                        <span class="lang-zh">直接丢入垃圾桶/回收箱</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">
+                                        <span class="lang-en">Audio / video recordings</span>
+                                        <span class="lang-zh">音视频资料</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Sanitise all copies within the documented system boundary, account for backup expiry, and physically destroy media when the risk assessment requires it</span>
+                                        <span class="lang-zh">清理书面系统边界内的全部副本，核对备份到期机制，并在风险评估要求时物理销毁介质</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-600">
+                                        <span class="lang-en">Keep unused copies in forgotten folders</span>
+                                        <span class="lang-zh">闲置副本遗留在文件夹中</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-6"><a href="references.html#nist-sanitization" class="text-primary underline"><span class="lang-en">Source: NIST SP 800-88 Rev. 2 — Guidelines for Media Sanitization</span><span class="lang-zh">来源：NIST SP 800-88 Rev.2《介质清理指南》</span></a></p>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                        <span class="lang-en">Destruction Record Keeping</span>
+                        <span class="lang-zh">销毁记录留存</span>
+                    </h3>
+                    <p class="text-gray-700 mb-3">
+                        <span class="lang-en">
+                            Maintain a formal destruction record as evidence of compliance, including the following information:
+                        </span>
+                        <span class="lang-zh">
+                            保留正式的销毁记录作为合规凭证，应包含以下信息：
+                        </span>
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1 mb-6">
+                        <li>
+                            <span class="lang-en">Date and time of destruction</span>
+                            <span class="lang-zh">销毁执行日期与时间</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Description and volume of data destroyed</span>
+                            <span class="lang-zh">销毁数据的内容与数量</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Destruction method used</span>
+                            <span class="lang-zh">采用的销毁方式</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Person executing and supervising the destruction</span>
+                            <span class="lang-zh">执行人和监督人</span>
+                        </li>
+                        <li>
+                            <span class="lang-en">Confirmation that all backups have been destroyed</span>
+                            <span class="lang-zh">所有备份均已销毁的确认</span>
+                        </li>
+                    </ul>
+
+                    <!-- 自查清单 -->
+                    <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                            <i data-lucide="check-square" class="w-4 h-4 text-primary"></i>
+                            <span class="lang-en">Destruction Stage Checklist</span>
+                            <span class="lang-zh">销毁阶段自查清单</span>
+                        </h4>
+                        <div class="space-y-2 text-sm checklist-item">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Retention period meets legal and ethical requirements</span>
+                                    <span class="lang-zh">留存期限满足法规与伦理要求</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Secure destruction methods are used for all media types</span>
+                                    <span class="lang-zh">所有介质均采用了安全销毁方式</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">All copies and backups have been destroyed, not just the primary copy</span>
+                                    <span class="lang-zh">已销毁所有副本与备份，而非仅主文件</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" class="mt-0.5">
+                                <span>
+                                    <span class="lang-en">Formal destruction record is documented and filed</span>
+                                    <span class="lang-zh">已形成正式销毁记录并存档</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                            <span>
+                                <span class="lang-en">📚 Deep Dive: Boundaries & Exceptions</span>
+                                <span class="lang-zh">📚 深度拓展：边界与例外情形</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
+                        </summary>
+                        <div class="p-4 text-sm text-gray-600 space-y-3">
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Exceptions to destruction:</strong>
+                                    Data may be retained beyond the normal period for legal holds,
+                                    judicial requests, public interest exemptions or archival preservation with ethical approval.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>销毁的例外情形：</strong>
+                                    司法冻结、法律调取、公共利益豁免、经伦理批准的档案留存等，可超期留存。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Digital residue problem:</strong>
+                                    Cloud backups, cached copies, chat history and temporary files are often overlooked.
+                                    Conduct a full sweep across all storage locations before finalizing destruction.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>数字残留问题：</strong>
+                                    云备份、缓存副本、聊天记录、临时文件常被遗漏，销毁前需全面排查所有存储位置。
+                                </span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    <strong>Archival preservation conflict:</strong>
+                                    Data with long-term scholarly value may be preserved under controlled access
+                                    instead of being destroyed, provided ethical and consent requirements are met.
+                                </span>
+                                <span class="lang-zh">
+                                    <strong>档案留存的冲突：</strong>
+                                    具有长期学术价值的数据，在满足伦理与同意要求的前提下，可受控留存而非销毁。
+                                </span>
+                            </p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- 底部下一步引导 -->
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="bg-accent/20 border border-primary/10 rounded-lg p-6">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">
+                                    <span class="lang-en">Next: curate for reuse or complete secure destruction</span>
+                                    <span class="lang-zh">下一步：进入策展复用，或完成安全销毁</span>
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    <span class="lang-en">
+                                        If long-term reuse is authorised, continue to curation and controlled archiving. Otherwise complete the documented destruction process.
+                                    </span>
+                                    <span class="lang-zh">
+                                        如已获授权长期复用，请进入策展与受控归档；否则完成有记录的安全销毁流程。
+                                    </span>
+                                </p>
+                                <p class="text-sm text-gray-600 mt-2">
+                                    <span class="lang-en">
+                                        Or if you plan to archive your data for long-term reuse, go directly to the advanced curation module.
+                                    </span>
+                                    <span class="lang-zh">
+                                        如果你计划归档数据实现长期复用，也可直接进入进阶策展模块。
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="flex flex-col gap-2 flex-shrink-0">
+                                <a href="module4.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Go to Curation & Archiving</span>
+                                    <span class="lang-zh">前往策展与归档</span>
+                                </a>
+                                <a href="module3.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                    <span class="lang-en">Review Legal & Ethics</span>
+                                    <span class="lang-zh">复核法规与伦理</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="w-5 h-5 text-gray-200"></i>
+                    <span class="font-bold text-gray-100">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        Sensitive Qualitative Data Management & Curation Guide for qualitative researchers and data practitioners.
+                    </span>
+                    <span class="lang-zh">
+                        面向人文社科研究者与数据从业者的敏感定性数据管理与策展交互式指南。
+                    </span>
+                </p>
+            </div>
+            <div>
+                <h4 class="font-medium text-gray-100 mb-3">
+                    <span class="lang-en">Quick Links</span>
+                    <span class="lang-zh">快速链接</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="glossary.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">Glossary</span>
+                        <span class="lang-zh">术语表</span>
+                    </a></li>
+                    <li><a href="references.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">References</span>
+                        <span class="lang-zh">参考文献</span>
+                    </a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">
+                        <span class="lang-en">About</span>
+                        <span class="lang-zh">关于项目</span>
+                    </a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">
+                        <span class="lang-en">GitHub Repository</span>
+                        <span class="lang-zh">GitHub 仓库</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-medium text-gray-100 mb-3">
+                    <span class="lang-en">Disclaimer</span>
+                    <span class="lang-zh">免责声明</span>
+                </h4>
+                <p class="text-sm text-gray-400">
+                    <span class="lang-en">
+                        This guide is for educational reference only and does not constitute legal or professional advice.
+                        Please consult your institution’s relevant departments for specific compliance and ethics matters.
+                    </span>
+                    <span class="lang-zh">
+                        本指南仅供学习参考，不构成法律与专业建议。具体合规与伦理问题请咨询所在机构相关部门。
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+            Sensitive Qualitative Data Management & Curation Guide | SQDMC Guide
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 语言切换逻辑（与首页完全一致，全站通用）
+    const langToggle = document.getElementById('langToggle');
+    const body = document.body;
+
+    // 初始化语言偏好
+    const savedLang = localStorage.getItem('sqdmc_lang') || 'en';
+    if (savedLang === 'zh') {
+        body.classList.add('show-zh');
+        document.documentElement.lang = 'zh-CN';
+    }
+
+    // 切换事件
+    langToggle.addEventListener('click', () => {
+        body.classList.toggle('show-zh');
+        const currentLang = body.classList.contains('show-zh') ? 'zh' : 'en';
+        localStorage.setItem('sqdmc_lang', currentLang);
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    });
+
+    // 初始化 Lucide 图标
+    lucide.createIcons();
+
+    // 误区卡片翻转逻辑
+    document.querySelectorAll('.myth-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const fact = card.querySelector('.myth-fact');
+            if (fact) fact.classList.toggle('hidden');
+        });
+    });
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

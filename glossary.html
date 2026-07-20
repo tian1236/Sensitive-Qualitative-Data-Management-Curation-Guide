@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0f5132',secondary:'#2f6f4f',accent:'#e6f0ea'}}}}</script>
+    <style>.lang-zh{display:none}body.show-zh .lang-en{display:none}body.show-zh .lang-zh{display:inline}body.show-zh p.lang-zh{display:block}</style>
+</head>
+<body class="text-gray-800 font-sans">
+<nav class="border-b sticky top-0 bg-white z-50"><div class="container mx-auto max-w-5xl px-6 py-4 flex justify-between items-center"><a href="index.html" class="font-bold text-primary">SQDMC Guide</a><div class="hidden md:flex gap-6 text-sm"><a href="module1.html">Foundations</a><a href="module3.html">Legal & Ethics</a><a href="module2.html">Lifecycle</a><a href="module4.html">Curation</a><a href="tools.html">Toolkit</a><button id="langToggle" class="border rounded px-3"><span class="lang-en">中文</span><span class="lang-zh">English</span></button></div><button class="md:hidden"><i data-lucide="menu"></i></button></div></nav>
+<main class="container mx-auto max-w-4xl px-6 py-14"><h1 class="text-3xl font-bold"><span class="lang-en">Glossary</span><span class="lang-zh">术语表</span></h1><p class="text-gray-600 mt-3"><span class="lang-en">Terms are simplified for navigation; legal meaning depends on the governing instrument.</span><span class="lang-zh">下列解释用于导航；法律含义以适用法律文本为准。</span></p>
+<dl class="mt-10 space-y-6">
+<div><dt class="font-semibold">Anonymisation / 匿名化</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">Processing that renders a person no longer identifiable under the applicable legal test. It is stronger than merely removing names.</span><span class="lang-zh">依适用法律判断，使个人不再可被识别的处理；强度高于单纯删除姓名。</span></dd></div>
+<div><dt class="font-semibold">Pseudonymisation / 假名化</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">Replacing identifiers while keeping separate additional information that can restore the link. Pseudonymised data generally remains personal data.</span><span class="lang-zh">替换标识符，同时分离保存能够恢复关联的附加信息；假名化资料通常仍属于个人资料。</span></dd></div>
+<div><dt class="font-semibold">De-identification / 去标识化</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">A broad operational term for reducing identification risk; it does not by itself prove legal anonymisation.</span><span class="lang-zh">降低识别风险的广义操作术语；本身并不能证明已达到法律上的匿名化。</span></dd></div>
+<div><dt class="font-semibold">Residual risk / 剩余风险</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">Disclosure or harm risk remaining after controls have been applied.</span><span class="lang-zh">实施控制措施后仍然存在的泄露或伤害风险。</span></dd></div>
+<div><dt class="font-semibold">Controlled access / 受控访问</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">Access granted only after eligibility, purpose and safeguards are reviewed, usually with enforceable terms and monitoring.</span><span class="lang-zh">经资格、目的与保障审查后才授权的访问，通常配有可执行条款和监督。</span></dd></div>
+<div><dt class="font-semibold">DPIA / 数据保护影响评估</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">A structured assessment of high-risk personal-data processing, required under GDPR in specified circumstances.</span><span class="lang-zh">对高风险个人数据处理开展的结构化评估；GDPR在特定情形下要求进行。</span></dd></div>
+<div><dt class="font-semibold">DUA / 数据使用协议</dt><dd class="text-sm text-gray-600 mt-1"><span class="lang-en">An agreement defining permitted use, security, confidentiality, publication, incident and termination obligations.</span><span class="lang-zh">规定允许用途、安全、保密、发表、事件及终止义务的协议。</span></dd></div>
+</dl><p class="mt-10 text-sm"><a class="text-primary underline" href="references.html"><span class="lang-en">See authoritative references</span><span class="lang-zh">查看权威参考来源</span></a></p></main>
+<script>const b=document.getElementById('langToggle'),d=document.body,s=localStorage.getItem('sqdmc_lang')||'en';if(s==='zh'){d.classList.add('show-zh');document.documentElement.lang='zh-CN'}b.addEventListener('click',()=>{d.classList.toggle('show-zh');const l=d.classList.contains('show-zh')?'zh':'en';localStorage.setItem('sqdmc_lang',l);document.documentElement.lang=l==='zh'?'zh-CN':'en'});if(window.lucide)lucide.createIcons();</script><script src="site.js"></script>
+</body></html>
