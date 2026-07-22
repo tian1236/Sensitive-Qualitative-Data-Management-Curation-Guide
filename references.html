@@ -11,6 +11,15 @@
         .lang-zh{display:none} body.show-zh .lang-en{display:none} body.show-zh .lang-zh{display:inline}
         body.show-zh p.lang-zh,body.show-zh div.lang-zh{display:block}
         .reference-card:target{outline:3px solid rgba(15,81,50,.18);background:#f6faf7}
+        #module2-5-retention strong{display:none}
+        #module2-5-retention > div > div > p:first-child .lang-en{font-weight:700}
+        .reference-groups > .module-heading{order:var(--module-order);margin-top:1.5rem}
+        .reference-groups > .module-heading:first-child{margin-top:0}
+        #risk-assessment{order:11}#sensitivity-assessment{order:21}#module1-3-risk-triage{order:31}
+        #consent-resources{order:41}#module2-2-processing{order:51}#module2-3-storage-security{order:61}#module2-4-sharing{order:71}#pdpo-crossborder{order:72}#module2-web-sources{order:73}#module2-5-retention{order:81}#nist-sanitization{order:82}
+        #module3-1-web{order:91}#pdpo{order:101}#gdpr{order:111}#common-rule{order:121}
+        #module4-web-sources{order:141}#ddi{order:151}#fair{order:152}#datacite{order:153}
+        #module5-case-practice{order:161}
     </style>
 </head>
 <body class="bg-white text-gray-800 font-sans">
@@ -22,7 +31,7 @@
             <a href="module3.html" class="hover:text-primary"><span class="lang-en">Legal & Ethics</span><span class="lang-zh">法规伦理</span></a>
             <a href="module2.html" class="hover:text-primary"><span class="lang-en">Lifecycle</span><span class="lang-zh">全周期</span></a>
             <a href="module4.html" class="hover:text-primary"><span class="lang-en">Curation</span><span class="lang-zh">策展归档</span></a>
-            <a href="tools.html" class="hover:text-primary"><span class="lang-en">Toolkit</span><span class="lang-zh">工具中心</span></a>
+            <a href="tools.html" class="hover:text-primary"><span class="lang-en">Tools &amp; Learning Resources</span><span class="lang-zh">工具与学习资源</span></a>
             <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary"><span class="lang-en">中文</span><span class="lang-zh">English</span></button>
         </div>
         <button class="md:hidden text-gray-600"><i data-lucide="menu" class="w-6 h-6"></i></button>
@@ -38,12 +47,7 @@
 </header>
 
 <main class="container mx-auto px-6 max-w-5xl pb-20">
-    <div class="rounded-lg border border-amber-200 bg-amber-50 p-4 mb-8 text-sm text-amber-900">
-        <p class="lang-en"><strong>Scope:</strong> This site is educational guidance, not legal advice or an automated ethics determination. Laws and institutional policies may change; verify the current text and obtain qualified advice for a real project.</p>
-        <p class="lang-zh"><strong>适用范围：</strong>本站仅作教育参考，不构成法律意见，也不能自动决定伦理审查结果。法律与机构政策可能更新；实际项目应核对最新文本并取得合格专业意见。</p>
-    </div>
-
-    <div class="space-y-5">
+    <div class="reference-groups flex flex-col gap-5">
         <section id="pdpo" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
             <h2 class="font-semibold text-lg text-gray-900">Hong Kong PDPO and Six Data Protection Principles</h2>
             <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Authoritative regulator summary of the six DPPs; the Ordinance prevails if there is any discrepancy.</span><span class="lang-zh">香港监管机构对六项资料保障原则的权威摘要；如有差异，以条例原文为准。</span></p>
@@ -52,7 +56,7 @@
 
         <section id="pdpo-crossborder" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
             <h2 class="font-semibold text-lg text-gray-900">PDPO Cross-Border Transfer Guidance</h2>
-            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">PCPD guidance states that section 33 is not yet in operation and presents comparable protection, due diligence and model clauses as recommended preparation and good practice.</span><span class="lang-zh">私隐专员指引说明第33条尚未实施，并把相若保护、尽职调查及示范条款作为实施准备与良好实践。</span></p>
+            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">PCPD guidance states that section 33 is not yet in operation and presents comparable protection, due diligence and model clauses as recommended preparation and good practice.</span><span class="lang-zh">PCPD指导指出，第33条尚未生效，并提供了类似的保护、尽职调查和示范条款作为推荐的准备和良好实践。</span></p>
             <a class="text-primary underline text-sm mt-3 inline-block" href="https://www.pcpd.org.hk/english/resources_centre/publications/files/GN_crossborder_e.pdf">PCPD — Guidance on Personal Data Protection in Cross-border Data Transfer</a>
         </section>
 
@@ -72,19 +76,100 @@
             </div>
         </section>
 
-        <section id="risk-assessment" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
-            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Risk-triage limitation</span><span class="lang-zh">风险初筛的局限</span></h2>
-            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">The guide's low/medium/high quiz is an educational synthesis. It is not a validated legal or psychometric instrument. Escalation rules reflect risk minimisation and qualitative disclosure guidance.</span><span class="lang-zh">本站低/中/高风险问卷是教育性归纳，并非经验证的法律或心理测量工具。升级规则参考风险最小化与定性数据泄露风险指引。</span></p>
+        <section id="consent-resources" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
             <div class="flex flex-col gap-2 mt-3 text-sm">
-                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html">HHS — 45 CFR 46</a>
-                <a class="text-primary underline" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/">UK Data Service — Anonymising qualitative data</a>
+                <a class="text-primary underline" href="https://doi.org/10.1177/14687941211014366" target="_blank" rel="noopener">Klykken, F. H. (2022). <em>Implementing continuous consent in qualitative research.</em> <em>Qualitative Research, 22</em>(5), 795–810. https://doi.org/10.1177/14687941211014366</a>
+                <a class="text-primary underline" href="https://doi.org/10.1007/s11019-022-10074-3" target="_blank" rel="noopener">Wiertz, S., &amp; Boldt, J. (2022). <em>Evaluating models of consent in changing health research environments.</em> <em>Medicine, Health Care and Philosophy, 25</em>(2), 269–280. https://doi.org/10.1007/s11019-022-10074-3</a>
+                <a class="text-primary underline" href="https://doi.org/10.1136/bmjgh-2020-004193" target="_blank" rel="noopener">Reñosa, M. D. C., Mwamba, C., Meghani, A., West, N. S., Hariyani, S., Ddaaki, W., Sharma, A., Beres, L. K., &amp; McMahon, S. (2021). <em>Selfie consents, remote rapport, and Zoom debriefings: Collecting qualitative data amid a pandemic in four resource-constrained settings.</em> <em>BMJ Global Health, 6</em>(1), e004193. https://doi.org/10.1136/bmjgh-2020-004193</a>
+                <a class="text-primary underline" href="https://doi.org/10.1080/2159676X.2021.1901138" target="_blank" rel="noopener">Tamminen, K. A., Bundon, A., Smith, B., McDonough, M. H., Poucher, Z. A., &amp; Atkinson, M. (2021). <em>Considerations for making informed choices about engaging in open qualitative research.</em> <em>Qualitative Research in Sport, Exercise and Health, 13</em>(5), 864–886. https://doi.org/10.1080/2159676X.2021.1901138</a>
+                <a class="text-primary underline" href="https://doi.org/10.1007/s10805-024-09536-5" target="_blank" rel="noopener">Glasdam, S., Ó Cathaoir, K., &amp; Stjernswärd, S. (2025). <em>Balancing different legal and ethical requirements in the construction of informed consents in qualitative international collaborative research across continents: Reflections from a Scandinavian perspective.</em> <em>Journal of Academic Ethics, 23</em>, 349–362. https://doi.org/10.1007/s10805-024-09536-5</a>
             </div>
         </section>
 
-        <section id="ukds-anonymisation" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
-            <h2 class="font-semibold text-lg text-gray-900">Qualitative-data anonymisation</h2>
-            <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Practical authority for planning anonymisation early, handling contextual identifiers, balancing disclosure risk with data utility and assessing external tools.</span><span class="lang-zh">支持前置匿名化规划、处理语境标识符、平衡泄露风险与数据效用，以及评估外部工具的实务来源。</span></p>
-            <a class="text-primary underline text-sm mt-3 inline-block" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/">UK Data Service — Anonymising qualitative data</a>
+        <section id="module2-2-processing" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://doi.org/10.1177/10778004211048379" target="_blank" rel="noopener">Heaton, J. (2022). <em>“Pseudonyms are used throughout”: A footnote, unpacked.</em> <em>Qualitative Inquiry, 28</em>(1), 3–12. https://doi.org/10.1177/10778004211048379</a>
+                <a class="text-primary underline" href="https://doi.org/10.1177/25152459231205832" target="_blank" rel="noopener">Campbell, R., Javorka, M., Engleton, J., Fishwick, K., Gregory, K., &amp; Goodman-Williams, R. (2023). <em>Open-science guidance for qualitative research: An empirically validated approach for de-identifying sensitive narrative data.</em> <em>Advances in Methods and Practices in Psychological Science, 6</em>(4), 1–17. https://doi.org/10.1177/25152459231205832</a>
+                <a class="text-primary underline" href="https://doi.org/10.1177/1525822X02239573" target="_blank" rel="noopener">McLellan, E., MacQueen, K. M., &amp; Neidig, J. L. (2003). <em>Beyond the qualitative interview: Data preparation and transcription.</em> <em>Field Methods, 15</em>(1), 63–84. https://doi.org/10.1177/1525822X02239573</a>
+                <a class="text-primary underline" href="https://doi.org/10.51594/ijarss.v6i6.1210" target="_blank" rel="noopener">Layode, O., Naiho, H. N. N., Adeleke, G. S., Udeh, E. O., &amp; Labake, T. T. (2024). <em>Data privacy and security challenges in environmental research: Approaches to safeguarding sensitive information.</em> <em>International Journal of Applied Research in Social Sciences, 6</em>(6), 1193–1214. https://doi.org/10.51594/ijarss.v6i6.1210</a>
+            </div>
+        </section>
+
+        <section id="module2-3-storage-security" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://doi.org/10.55041/IJSREM41975" target="_blank" rel="noopener">Mehra, T. (2025). <em>Building a resilient backup infrastructure: Combining data redundancy, encryption, and RBAC for maximum protection.</em> <em>International Journal of Scientific Research in Engineering and Management, 9</em>(3), 1–9. https://doi.org/10.55041/IJSREM41975</a>
+                <a class="text-primary underline" href="https://doi.org/10.1109/TDSC.2020.3011525" target="_blank" rel="noopener">Ning, J., Huang, X., Susilo, W., Liang, K., Liu, X., &amp; Zhang, Y. (2022). <em>Dual access control for cloud-based data storage and sharing.</em> <em>IEEE Transactions on Dependable and Secure Computing, 19</em>(2), 1036–1048. https://doi.org/10.1109/TDSC.2020.3011525</a>
+                <a class="text-primary underline" href="https://doi.org/10.3390/s22031109" target="_blank" rel="noopener">Adee, R., &amp; Mouratidis, H. (2022). <em>A dynamic four-step data security model for data in cloud computing based on cryptography and steganography.</em> <em>Sensors, 22</em>(3), 1109. https://doi.org/10.3390/s22031109</a>
+            </div>
+        </section>
+
+        <section id="module2-4-sharing" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://doi.org/10.1002/hbm.25120" target="_blank" rel="noopener">White, T., Blok, E., &amp; Calhoun, V. D. (2022). <em>Data sharing and privacy issues in neuroimaging research: Opportunities, obstacles, challenges, and monsters under the bed.</em> <em>Human Brain Mapping, 43</em>(1), 278–291. https://doi.org/10.1002/hbm.25120</a>
+                <a class="text-primary underline" href="https://doi.org/10.1136/bmjgh-2023-013092" target="_blank" rel="noopener">Tamuhla, T., Lulamba, E. T., Mutemaringa, T., &amp; Tiffin, N. (2023). <em>Multiple modes of data sharing can facilitate secondary use of sensitive health data for research.</em> <em>BMJ Global Health, 8</em>(10), e013092. https://doi.org/10.1136/bmjgh-2023-013092</a>
+                <a class="text-primary underline" href="https://doi.org/10.2196/33591" target="_blank" rel="noopener">Gudi, N., Kamath, P., Chakraborty, T., Jacob, A. G., Parsekar, S. S., Sarbadhikari, S. N., &amp; John, O. (2022). <em>Regulatory frameworks for clinical trial data sharing: Scoping review.</em> <em>Journal of Medical Internet Research, 24</em>(5), e33591. https://doi.org/10.2196/33591</a>
+            </div>
+        </section>
+
+        <section id="module2-5-retention" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Policy Resources</span><span class="lang-zh">相关政策资源</span></h2>
+            <div class="mt-3 space-y-4 text-sm text-gray-600">
+                <div>
+                    <p><strong><span class="lang-en">Title: </span><span class="lang-zh">标题：</span></strong><span class="lang-en">PCPD. <em>The Personal Data (Privacy) Ordinance</em></span><span class="lang-zh">香港个人资料私隐专员公署：《个人资料（私隐）条例》</span></p>
+                    <p class="mt-1"><strong><span class="lang-en">Main content: </span><span class="lang-zh">主要内容：</span></strong><span class="lang-en">Data Protection Principle 2 requires personal data to be kept no longer than is necessary for the purpose for which it is used.</span><span class="lang-zh">数据保障原则二要求个人资料保存时间不得超过使用该资料所需的期限。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://www.pcpd.org.hk/chinese/data_privacy_law/ordinance_at_a_Glance/ordinance.html#2" target="_blank" rel="noopener">https://www.pcpd.org.hk/chinese/data_privacy_law/ordinance_at_a_Glance/ordinance.html#2</a>
+                </div>
+                <div>
+                    <p><strong><span class="lang-en">Title: </span><span class="lang-zh">标题：</span></strong><span class="lang-en">ICO. <em>Principle (e): Storage limitation</em></span><span class="lang-zh">英国信息专员办公室：《原则（e）：存储限制》</span></p>
+                    <p class="mt-1"><strong><span class="lang-en">Main content: </span><span class="lang-zh">主要内容：</span></strong><span class="lang-en">Organisations should set and justify retention periods, review personal data regularly, and erase or anonymise it when it is no longer needed; specified research and archiving purposes may justify longer retention with safeguards.</span><span class="lang-zh">机构应制定并说明留存期限，定期复核个人资料，并在不再需要时删除或匿名化；在具备保障措施的前提下，特定研究和归档目的可支持较长留存。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/" target="_blank" rel="noopener">https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/</a>
+                </div>
+                <div>
+                    <p><strong><span class="lang-en">Title: </span><span class="lang-zh">标题：</span></strong><span class="lang-en">CMA. <em>Data retention policy</em></span><span class="lang-zh">英国竞争与市场管理局：《数据留存政策》</span></p>
+                    <p class="mt-1"><strong><span class="lang-en">Main content: </span><span class="lang-zh">主要内容：</span></strong><span class="lang-en">CMA data is retained only for administrative, audit, or legislative need; the policy sets retention and review periods, permits documented exceptions, and requires personal data no longer needed to be securely deleted, redacted, or anonymised as appropriate.</span><span class="lang-zh">CMA 数据仅在行政、审计或法律需要期间留存；政策规定留存和复核期限，允许有记录的例外，并要求对不再需要的个人资料视情况安全删除、遮盖或匿名化。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://www.gov.uk/government/publications/cma-data-retention-policy/data-retention-policy" target="_blank" rel="noopener">https://www.gov.uk/government/publications/cma-data-retention-policy/data-retention-policy</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="risk-assessment" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <span id="ukds-anonymisation" class="scroll-mt-24"></span>
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Qualitative data and anonymisation</span><span class="lang-zh">定性数据与匿名化</span></h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html" target="_blank" rel="noopener">U.S. Department of Health and Human Services, Office for Human Research Protections. (n.d.). <em>45 CFR 46: Protection of human subjects.</em> https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html</a>
+                <a class="text-primary underline" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/" target="_blank" rel="noopener">UK Data Service. (n.d.). <em>Anonymising qualitative data.</em> https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/</a>
+            </div>
+        </section>
+
+        <section id="sensitivity-assessment" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
+            <div class="mt-4 space-y-4 text-sm text-gray-600">
+                <div>
+                    <p><span class="lang-en">Campbell, R., Javorka, M., Engleton, J., et al. (2023). <em>Open-Science Guidance for Qualitative Research: An Empirically Validated Approach for De-Identifying Sensitive Narrative Data.</em></span><span class="lang-zh">Campbell、Javorka、Engleton 等（2023）。《面向定性研究的开放科学指引：一种经实证验证的敏感叙事数据去识别方法》。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://journals.sagepub.com/doi/10.1177/25152459231205832" target="_blank" rel="noopener">https://doi.org/10.1177/25152459231205832</a>
+                </div>
+                <div>
+                    <p><span class="lang-en">Gore-Gorszewska, G. (2024). <em>“I’m telling you my story, not publishing a blog”: Considerations and suggestions on data sharing in qualitative health psychology research on sensitive topics.</em> <em>Journal of Health Psychology</em>, 29(7), 665–673.</span><span class="lang-zh">Gore-Gorszewska（2024）。《“我是在讲述自己的故事，而不是发表博客”：敏感议题健康心理学定性研究的数据共享思考与建议》。<em>Journal of Health Psychology</em>，29(7)，665–673。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://journals.sagepub.com/doi/10.1177/13591053241239109" target="_blank" rel="noopener">https://doi.org/10.1177/13591053241239109</a>
+                </div>
+                <div>
+                    <p><span class="lang-en">Mozersky, J., Parsons, M., Walsh, H., Baldwin, K., McIntosh, T., &amp; DuBois, J. M. (2020). <em>Research Participant Views regarding Qualitative Data Sharing.</em> <em>Ethics &amp; Human Research</em>, 42(2), 13–27.</span><span class="lang-zh">Mozersky、Parsons、Walsh、Baldwin、McIntosh 与 DuBois（2020）。《研究参与者对定性数据共享的看法》。<em>Ethics &amp; Human Research</em>，42(2)，13–27。</span></p>
+                    <a class="text-primary underline mt-1 inline-block" href="https://onlinelibrary.wiley.com/doi/10.1002/eahr.500044" target="_blank" rel="noopener">https://doi.org/10.1002/eahr.500044</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="module1-3-risk-triage" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900"><span class="lang-en">Related Literature</span><span class="lang-zh">相关文献</span></h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://www.mdpi.com/1999-5903/17/9/384" target="_blank" rel="noopener">Li, Y., Wu, Z., Li, J., &amp; Xie, L. (2025). <em>A multi-scene automatic classification and grading method for structured sensitive data based on privacy preferences.</em> <em>Future Internet, 17</em>(9), 384. https://doi.org/10.3390/fi17090384</a>
+                <a class="text-primary underline" href="https://doi.org/10.1016/j.deveng.2020.100054" target="_blank" rel="noopener">Katarahweire, M., Bainomugisha, E., &amp; Mughal, K. A. (2020). <em>Data classification for secure mobile health data collection systems.</em> <em>Development Engineering, 5</em>, 100054. https://doi.org/10.1016/j.deveng.2020.100054</a>
+                <a class="text-primary underline" href="https://www.scirp.org/journal/paperinformation?paperid=127605" target="_blank" rel="noopener">Yan, Y. (2023). <em>The risk-based approach to personal data protection and the response of the international trade law.</em> <em>Beijing Law Review, 14</em>, 1250–1270. https://doi.org/10.4236/blr.2023.143067</a>
+            </div>
         </section>
 
         <section id="nist-sanitization" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
@@ -110,17 +195,114 @@
             <p class="text-sm text-gray-600 mt-2"><span class="lang-en">Current schema documentation for consistent resource identification, discovery and citation metadata.</span><span class="lang-zh">用于一致的资源识别、发现与引用元数据的现行模式文档。</span></p>
             <a class="text-primary underline text-sm mt-3 inline-block" href="https://schema.datacite.org/">DataCite — Metadata Schema</a>
         </section>
+        <section id="module5-case-practice" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h2 class="font-semibold text-lg text-gray-900">Case references</h2>
+            <div class="flex flex-col gap-2 mt-3 text-sm">
+                <a class="text-primary underline" href="https://doi.org/10.1177/1468794114550439" target="_blank" rel="noopener">Saunders, B., Kitzinger, J., &amp; Kitzinger, C. (2015). <em>Anonymising interview data: Challenges and compromise in practice.</em> <em>Qualitative Research, 15</em>(5), 616–632. https://doi.org/10.1177/1468794114550439</a>
+                <a class="text-primary underline" href="https://doi.org/10.1177/25152459231205832" target="_blank" rel="noopener">Campbell, R., Javorka, M., Engleton, J., Fishwick, K., Gregory, K., &amp; Goodman-Williams, R. (2023). <em>Open-science guidance for qualitative research: An empirically validated approach for de-identifying sensitive narrative data.</em> <em>Advances in Methods and Practices in Psychological Science, 6</em>(4), 1–17. https://doi.org/10.1177/25152459231205832</a>
+                <a class="text-primary underline" href="https://doi.org/10.1007/s10676-010-9227-5" target="_blank" rel="noopener">Zimmer, M. (2010). <em>“But the data is already public”: On the ethics of research in Facebook.</em> <em>Ethics and Information Technology, 12</em>(4), 313–325. https://doi.org/10.1007/s10676-010-9227-5</a>
+            </div>
+        </section>
+
+        <div class="module-heading" style="--module-order:10">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">1.1 · Definition &amp; Scope</span><span class="lang-zh">1.1 · 概念与界定</span></h2>
+        </div>
+
+        <div class="module-heading" style="--module-order:20">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">1.2 · Sensitivity Assessment</span><span class="lang-zh">1.2 · 敏感性评估</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:30">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">1.3 · Risk Triage &amp; Action Guide</span><span class="lang-zh">1.3 · 风险初筛与行动指引</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:40">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">2.1 · Data Collection</span><span class="lang-zh">2.1 · 数据收集</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:50">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">2.2 · Data Processing</span><span class="lang-zh">2.2 · 数据处理</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:60">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">2.3 · Data Storage</span><span class="lang-zh">2.3 · 数据存储</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:70">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">2.4 · Data Sharing</span><span class="lang-zh">2.4 · 数据共享</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:80">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">2.5 · Data Destruction</span><span class="lang-zh">2.5 · 数据销毁</span></h2>
+        </div>
+        <section id="module2-web-sources" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-lg text-gray-900"><span class="lang-en">Regulatory web sources for 2.4</span><span class="lang-zh">2.4 的法规网页来源</span></h3>
+            <div class="mt-3 space-y-3 text-sm text-gray-600">
+                <div>
+                    <a class="font-medium text-primary underline" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=en" target="_blank" rel="noopener">EUR-Lex — Regulation (EU) 2016/679 (GDPR)</a>
+                    <p class="mt-1"><span class="lang-en">Official GDPR text for lawful bases, research safeguards, data-subject rights and transfers.</span><span class="lang-zh">GDPR 官方文本，涵盖合法依据、研究保障、数据主体权利与跨境传输。</span></p>
+                </div>
+                <div>
+                    <a class="font-medium text-primary underline" href="https://gdpr-info.eu/chapter-5/" target="_blank" rel="noopener">GDPR-info — Chapter V</a>
+                    <p class="mt-1"><span class="lang-en">Plain-language guide to the GDPR rules on international data transfers.</span><span class="lang-zh">GDPR 国际数据传输规则的易读指引。</span></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="module-heading" style="--module-order:90">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">3.1 · Overview &amp; Jurisdiction</span><span class="lang-zh">3.1 · 总览与管辖权</span></h2>
+        </div>
+        <section id="module3-1-web" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-lg text-gray-900"><span class="lang-en">Jurisdictional &amp; regulatory foundations</span><span class="lang-zh">管辖与法规基础来源</span></h3>
+            <div class="mt-3 space-y-3 text-sm text-gray-600">
+                <div><a class="font-medium text-primary underline" href="https://www.pcpd.org.hk/english/data_privacy_law/6_data_protection_principles/principles.html" target="_blank" rel="noopener">PCPD — Six Data Protection Principles</a><p class="mt-1"><span class="lang-en">Hong Kong regulator summary of the six data-protection principles.</span><span class="lang-zh">香港监管机构对六项数据保障原则的说明。</span></p></div>
+                <div><a class="font-medium text-primary underline" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=en" target="_blank" rel="noopener">EUR-Lex — Regulation (EU) 2016/679 (GDPR)</a><p class="mt-1"><span class="lang-en">Official GDPR text for jurisdiction, lawful bases and research safeguards.</span><span class="lang-zh">用于管辖、合法依据和研究保障的 GDPR 官方文本。</span></p></div>
+                <div><a class="font-medium text-primary underline" href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html" target="_blank" rel="noopener">HHS — 45 CFR 46</a><p class="mt-1"><span class="lang-en">US Common Rule requirements for the protection of human research participants.</span><span class="lang-zh">美国保护人类研究参与者的 Common Rule 要求。</span></p></div>
+            </div>
+        </section>
+        <div class="module-heading" style="--module-order:100">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">3.2 · Personal Data (Privacy) Ordinance</span><span class="lang-zh">3.2 · 个人资料（私隐）条例</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:110">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">3.3 · General Data Protection Regulation</span><span class="lang-zh">3.3 · 通用数据保护条例</span></h2>
+        </div>
+        <div class="module-heading" style="--module-order:120">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">3.4 · IRB Human Research Ethics Framework</span><span class="lang-zh">3.4 · IRB 人类研究伦理框架</span></h2>
+        </div>
+
+        <div class="module-heading" style="--module-order:140">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">4.2 · De-identification Methodology</span><span class="lang-zh">4.2 · 去标识化方法论</span></h2>
+        </div>
+        <section id="module4-web-sources" class="reference-card scroll-mt-24 border border-gray-200 rounded-xl p-6">
+            <h3 class="font-semibold text-lg text-gray-900"><span class="lang-en">De-identification &amp; disclosure-risk resources</span><span class="lang-zh">去标识化与披露风险资源</span></h3>
+            <div class="mt-3 space-y-3 text-sm text-gray-600">
+                <div>
+                    <a class="font-medium text-primary underline" href="https://ukdataservice.ac.uk/learning-hub/research-data-management/anonymisation/anonymising-qualitative-data/" target="_blank" rel="noopener">UK Data Service — Anonymising qualitative data</a>
+                    <p class="mt-1"><span class="lang-en">Practical guidance for planning and carrying out risk-based qualitative anonymisation.</span><span class="lang-zh">用于规划和实施风险导向定性资料匿名化的实务指引。</span></p>
+                </div>
+                <div>
+                    <a class="font-medium text-primary underline" href="https://arx.deidentifier.org/" target="_blank" rel="noopener">ARX — Data Anonymization Tool</a>
+                    <p class="mt-1"><span class="lang-en">Open-source anonymisation software supporting formal privacy models and utility trade-offs.</span><span class="lang-zh">支持正式隐私模型及数据可用性权衡的开源匿名化软件。</span></p>
+                </div>
+                <div>
+                    <a class="font-medium text-primary underline" href="https://centre.humdata.org/learning-path/disclosure-risk-assessment-overview/prepare-the-disclosure-risk-assessment/" target="_blank" rel="noopener">Disclosure Risk Assessment learning path</a>
+                    <p class="mt-1"><span class="lang-en">Step-by-step learning resource for preparing a disclosure-risk assessment.</span><span class="lang-zh">用于准备披露风险评估的分步学习资源。</span></p>
+                </div>
+            </div>
+        </section>
+        <div class="module-heading" style="--module-order:150">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">4.3 · Metadata Standards</span><span class="lang-zh">4.3 · 元数据标准</span></h2>
+        </div>
+
+        <div class="module-heading" style="--module-order:160">
+            <h2 class="border-b border-gray-200 pb-3 text-xl font-bold text-gray-900"><span class="lang-en">5 · Case Practice</span><span class="lang-zh">5 · 案例练习</span></h2>
+        </div>
+
     </div>
 
     <section class="mt-10 border-t border-gray-200 pt-6 text-xs text-gray-500">
-        <p class="lang-en"><strong>AI-assisted revision disclosure:</strong> AI tools were used to inspect the local HTML, identify internal inconsistencies, locate authoritative sources and draft revisions. Claims were checked against the linked issuing bodies. Users remain responsible for obtaining current professional and institutional advice.</p>
-        <p class="lang-zh"><strong>AI辅助修订披露：</strong>本次使用AI工具检查本地HTML、识别内部矛盾、查找权威来源并起草修订。相关主张已对照上述发布机构核验；使用者仍需自行取得最新的专业与机构意见。</p>
+        <p class="lang-en">Claims were checked against the linked issuing bodies. Users remain responsible for obtaining current professional and institutional advice.</p>
+        <p class="lang-zh">相关主张已对照上述发布机构核验；使用者仍需自行取得最新的专业与机构意见。</p>
     </section>
 </main>
 
 <script>
 const button=document.getElementById('langToggle');const body=document.body;const saved=localStorage.getItem('sqdmc_lang')||'en';if(saved==='zh'){body.classList.add('show-zh');document.documentElement.lang='zh-CN'}button.addEventListener('click',()=>{body.classList.toggle('show-zh');const lang=body.classList.contains('show-zh')?'zh':'en';localStorage.setItem('sqdmc_lang',lang);document.documentElement.lang=lang==='zh'?'zh-CN':'en'});if(window.lucide)lucide.createIcons();
 </script>
-<script src="site.js"></script>
+<script src="site.js?v=references-by-module-20260723"></script>
 </body>
 </html>

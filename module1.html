@@ -58,7 +58,7 @@
 
         /* 自测题选项样式 */
         .quiz-option {
-            @apply border border-gray-200 rounded-md p-3 cursor-pointer transition-all text-sm;
+            @apply flex items-center gap-2 border border-gray-200 rounded-md p-3 cursor-pointer transition-all text-sm;
         }
         .quiz-option:hover {
             @apply border-primary/40 bg-primary/5;
@@ -67,6 +67,7 @@
             @apply border-primary bg-primary/10 text-primary;
         }
     </style>
+    <style>img[src="assets/deepdive.png"]{width:1.75rem!important;height:1.75rem!important}</style>
 </head>
 <body class="bg-white text-gray-800 font-sans">
 
@@ -95,8 +96,8 @@
                 <span class="lang-zh">策展进阶</span>
             </a>
             <a href="tools.html" class="hover:text-primary transition-colors">
-                <span class="lang-en">Toolkit</span>
-                <span class="lang-zh">工具中心</span>
+                <span class="lang-en">Tools &amp; Learning Resources</span>
+                <span class="lang-zh">工具与学习资源</span>
             </a>
             <!-- 语言切换按钮 -->
             <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
@@ -157,12 +158,12 @@
                             <span class="lang-zh">1.1 概念与界定</span>
                         </a>
                         <a href="#section1-2" class="block text-gray-600 hover:text-primary py-1 transition-colors">
-                            <span class="lang-en">1.2 Four Dimensions of Assessment</span>
-                            <span class="lang-zh">1.2 四维度判定标准</span>
+                            <span class="lang-en">1.2 Dimensions of Sensitivity Assessment</span>
+                            <span class="lang-zh">1.2 定性研究数据敏感程度的主要评估维度</span>
                         </a>
                         <a href="#section1-3" class="block text-gray-600 hover:text-primary py-1 transition-colors">
-                            <span class="lang-en">1.3 Three-Tier Risk Classification</span>
-                            <span class="lang-zh">1.3 三级风险分级体系</span>
+                            <span class="lang-en">1.3 Three-Tier Risk Triage &amp; Action Guide</span>
+                            <span class="lang-zh">1.3 三级风险分级与行动指南</span>
                         </a>
                     </nav>
                 </div>
@@ -170,6 +171,37 @@
 
             <!-- 右侧正文区 -->
             <main class="md:col-span-3 space-y-16">
+
+                <!-- 场景化向导：Hazel 介绍 -->
+                <section class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm scroll-mt-24">
+                    <div class="flex items-start gap-4">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 -ml-1 -mt-1">
+                            <img src="assets/hazel-squirrel-greeting.png" alt="" class="w-full h-full object-contain" />
+                        </div>
+                        <div class="text-sm text-gray-700">
+                            <p class="font-medium text-gray-900 mb-1">
+                                <span class="lang-en">Meet your learning companion ~</span>
+                                <span class="lang-zh">认识你的学习伙伴~</span>
+                            </p>
+                            <p class="text-xs text-primary mb-3">
+                                <span class="lang-en">Scenario guide</span>
+                                <span class="lang-zh">场景化向导</span>
+                            </p>
+                            <p>
+                                <span class="lang-en">
+                                    Throughout your learning, You'll meet Hazel — a master's student in Social Sciences who is working through her own sensitive qualitative research data. She's here as your learning companion, translating abstract concepts into real scenarios, and showing you how she stumbles, reflects and corrects along the way.
+                                </span>
+                                <span class="lang-zh">
+                                    接下来的学习中，你会认识一位叫 Hazel 的社科硕士生，她正在学习处理自己的敏感定性研究数据，在研究中遇到了和你类似的困惑。她会以“陪学向导”的身份出现——替你把抽象概念转化为具体场景，同时看看她是如何踩坑、如何修正的。
+                                </span>
+                            </p>
+                            <p class="mt-3 text-primary font-medium">
+                                <span class="lang-en">Follow her story as you progress through the content!</span>
+                                <span class="lang-zh">顺着她的故事，边读边思考吧！</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- 1.1 概念与界定 -->
                 <section id="section1-1" class="scroll-mt-24">
@@ -209,27 +241,43 @@
                     </div>
 
                     <!-- 核心层 -->
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">
-                        <span class="lang-en">1.1 Definition & Scope</span>
-                        <span class="lang-zh">1.1 概念与界定</span>
-                    </h2>
+                    <div class="mb-4 flex items-center justify-between gap-4">
+                        <h2 class="text-xl font-bold text-gray-900">
+                            <span class="lang-en">1.1 Definition & Scope</span>
+                            <span class="lang-zh">1.1 概念与界定</span>
+                        </h2>
+                        <a href="references.html#risk-assessment" class="shrink-0 rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-semibold text-primary hover:bg-accent"><span class="lang-en">Related Materials</span><span class="lang-zh">相关资料</span></a>
+                    </div>
 
                     <h3 class="text-lg font-semibold text-gray-800 mb-2">
-                        <span class="lang-en">Core Definition</span>
-                        <span class="lang-zh">核心定义</span>
+                        <span class="lang-en">Core Definition: Sensitive qualitative data</span>
+                        <span class="lang-zh">核心定义：敏感定性数据</span>
                     </h3>
                     <p class="text-gray-700 mb-4">
                         <span class="lang-en">
                             Sensitive qualitative data refers to unstructured research materials — interviews, field notes, personal narratives —
                             that, if disclosed, could cause identifiable harm to participants, including reputational, economic, social, or legal harm.
-                            <sup><a href="references.html#risk-assessment" class="text-primary underline">[source]</a></sup>
                         </span>
                         <span class="lang-zh">
                             敏感定性数据指访谈、田野笔记、个人叙事等非结构化研究资料，
                             一旦泄露可能对受访者造成名誉、经济、社会或法律层面的可识别伤害。
-                            <sup><a href="references.html#risk-assessment" class="text-primary underline">[来源]</a></sup>
                         </span>
                     </p>
+
+                    <div class="my-8 rounded-xl border border-primary/15 bg-white p-5 shadow-sm">
+                        <div class="mb-4 flex items-center gap-3">
+                            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-primary">
+                                <i data-lucide="play-circle" class="h-5 w-5"></i>
+                            </span>
+                            <h3 class="text-lg font-semibold text-gray-800">
+                                <span class="lang-en">Watch to Understand 📺</span>
+                                <span class="lang-zh">看个视频，更好理解</span>
+                            </h3>
+                        </div>
+                        <div class="mx-auto aspect-video max-w-3xl overflow-hidden rounded-lg bg-gray-100">
+                            <iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/UjxQDHJFjsk?rel=0" title="Open sharing of sensitive qualitative data" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
 
                     <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
                         <span class="lang-en">Unique Risks of Qualitative Data</span>
@@ -280,50 +328,26 @@
                         <li>Archival personal narratives & letters</li>
                     </ul>
 
-                    <!-- 认知误区交互卡片 -->
+                    <!-- 认知误区判断题 -->
                     <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
                         <span class="lang-en">3 Common Misconceptions</span>
                         <span class="lang-zh">三个常见认知误区</span>
                     </h3>
                     <div class="space-y-3 mb-6">
-                        <div class="myth-card border border-gray-200 rounded-lg p-4 cursor-pointer card-hover" onclick="this.classList.toggle('flipped')">
-                            <div class="flex items-center justify-between">
-                                <span class="text-red-600 font-medium text-sm">
-                                    <span class="lang-en">❌ Myth: Removing names makes data anonymous</span>
-                                    <span class="lang-zh">❌ 误区：删掉名字数据就是匿名的了</span>
-                                </span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 chevron"></i>
-                            </div>
-                            <div class="mt-2 text-sm text-green-700 hidden myth-fact">
-                                <span class="lang-en">✅ Fact: Indirect identifiers + contextual details can still re-identify individuals with high accuracy.</span>
-                                <span class="lang-zh">✅ 真相：间接标识符 + 语境细节依然可以高准确率地识别到个人。</span>
-                            </div>
+                        <div class="myth-quiz border border-gray-200 rounded-lg p-4" data-correct="false">
+                            <p class="font-medium text-sm text-gray-800"><span class="lang-en">1. True or false: Removing names makes data anonymous.</span><span class="lang-zh">1. 判断：删掉名字，数据就是匿名的了。</span></p>
+                            <div class="mt-3 flex gap-2" role="group"><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary"><span class="lang-en">✔️ True</span><span class="lang-zh">✔️ 对</span></button><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary" data-answer="false"><span class="lang-en">❌ False</span><span class="lang-zh">❌ 错</span></button></div>
+                            <p class="myth-feedback mt-3 hidden text-sm"><span class="lang-en">Answer: False. Indirect identifiers and contextual details can still re-identify individuals.</span><span class="lang-zh">答案：错。间接标识符与语境细节仍可能重新识别个人。</span></p>
                         </div>
-                        <div class="myth-card border border-gray-200 rounded-lg p-4 cursor-pointer card-hover" onclick="this.classList.toggle('flipped')">
-                            <div class="flex items-center justify-between">
-                                <span class="text-red-600 font-medium text-sm">
-                                    <span class="lang-en">❌ Myth: If participants consent, data can be shared freely</span>
-                                    <span class="lang-zh">❌ 误区：受访者同意了就可以随便共享数据</span>
-                                </span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 chevron"></i>
-                            </div>
-                            <div class="mt-2 text-sm text-green-700 hidden myth-fact">
-                                <span class="lang-en">✅ Fact: Consent has clear boundaries. Researchers have an ongoing duty to protect participants beyond consent.</span>
-                                <span class="lang-zh">✅ 真相：知情同意有明确边界，研究者负有超越同意的持续保护责任。</span>
-                            </div>
+                        <div class="myth-quiz border border-gray-200 rounded-lg p-4" data-correct="false">
+                            <p class="font-medium text-sm text-gray-800"><span class="lang-en">2. True or false: If participants consent, data can be shared freely.</span><span class="lang-zh">2. 判断：受访者同意后，数据就可以随意共享。</span></p>
+                            <div class="mt-3 flex gap-2" role="group"><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary"><span class="lang-en">✔️ True</span><span class="lang-zh">✔️ 对</span></button><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary" data-answer="false"><span class="lang-en">❌ False</span><span class="lang-zh">❌ 错</span></button></div>
+                            <p class="myth-feedback mt-3 hidden text-sm"><span class="lang-en">Answer: False. Consent has boundaries, and researchers retain an ongoing duty to protect participants.</span><span class="lang-zh">答案：错。知情同意有边界，研究者仍负有持续保护受访者的责任。</span></p>
                         </div>
-                        <div class="myth-card border border-gray-200 rounded-lg p-4 cursor-pointer card-hover" onclick="this.classList.toggle('flipped')">
-                            <div class="flex items-center justify-between">
-                                <span class="text-red-600 font-medium text-sm">
-                                    <span class="lang-en">❌ Myth: Publicly available data has no sensitivity issues</span>
-                                    <span class="lang-zh">❌ 误区：公开获取的数据就没有敏感问题</span>
-                                </span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 chevron"></i>
-                            </div>
-                            <div class="mt-2 text-sm text-green-700 hidden myth-fact">
-                                <span class="lang-en">✅ Fact: Secondary use of public personal narratives still carries ethical risks and potential harm.</span>
-                                <span class="lang-zh">✅ 真相：公开个人叙事的二次使用依然存在伦理风险与潜在伤害。</span>
-                            </div>
+                        <div class="myth-quiz border border-gray-200 rounded-lg p-4" data-correct="false">
+                            <p class="font-medium text-sm text-gray-800"><span class="lang-en">3. True or false: Publicly available data has no sensitivity issues.</span><span class="lang-zh">3. 判断：公开获取的数据不存在敏感性问题。</span></p>
+                            <div class="mt-3 flex gap-2" role="group"><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary"><span class="lang-en">✔️ True</span><span class="lang-zh">✔️ 对</span></button><button type="button" class="myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary" data-answer="false"><span class="lang-en">❌ False</span><span class="lang-zh">❌ 错</span></button></div>
+                            <p class="myth-feedback mt-3 hidden text-sm"><span class="lang-en">Answer: False. Secondary use of public personal narratives can still create ethical risks and harm.</span><span class="lang-zh">答案：错。公开个人叙事的二次使用仍可能带来伦理风险与伤害。</span></p>
                         </div>
                     </div>
 
@@ -331,8 +355,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Academic Origins & Debates</span>
-                                <span class="lang-zh">📚 深度拓展：学术溯源与争议讨论</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Academic Origins & Debates</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：学术溯源与争议讨论</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -342,12 +366,10 @@
                                     <strong>Definitions across institutions:</strong>
                                     Repository and institutional guidance varies. Before deposit, compare the selected repository's current
                                     disclosure-risk, consent and access requirements rather than relying on a universal definition.
-                                    <sup><a href="references.html#ukds-anonymisation" class="text-primary underline">[source]</a></sup>
                                 </span>
                                 <span class="lang-zh">
                                     <strong>国际机构定义差异：</strong>
                                     不同仓库与机构的指南并不完全相同。提交前应核对所选仓库当前的泄露风险、同意范围与访问要求，而不是依赖一个通用定义。
-                                    <sup><a href="references.html#ukds-anonymisation" class="text-primary underline">[来源]</a></sup>
                                 </span>
                             </p>
                             <p>
@@ -355,12 +377,10 @@
                                     <strong>Contextual re-identification research:</strong>
                                     Direct identifiers may disclose identity alone, while combinations of occupation, place, rare events and other
                                     contextual details can create indirect disclosure risk in qualitative narratives.
-                                    <sup><a href="references.html#ukds-anonymisation" class="text-primary underline">[source]</a></sup>
                                 </span>
                                 <span class="lang-zh">
                                     <strong>语境重识别研究：</strong>
                                     直接标识符本身可能揭示身份；职业、地点、罕见事件及其他语境细节的组合，也可能在定性叙事中形成间接泄露风险。
-                                    <sup><a href="references.html#ukds-anonymisation" class="text-primary underline">[来源]</a></sup>
                                 </span>
                             </p>
                             <p>
@@ -382,9 +402,9 @@
                 <section id="section1-2" class="scroll-mt-24">
                     <!-- 引导层 -->
                     <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
-                        <div class="flex items-start gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                                <span>🐿️</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 -ml-1 -mt-1">
+                                <img src="assets/hazel-squirrel-challenge.png" alt="" class="w-full h-full object-contain" />
                             </div>
                             <div class="text-sm text-gray-700">
                                 <p class="font-medium text-gray-900 mb-1">
@@ -414,10 +434,13 @@
                         </div>
                     </div>
 
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">
-                        <span class="lang-en">1.2 Four Dimensions of Sensitivity Assessment</span>
-                        <span class="lang-zh">1.2 四维度判定标准</span>
-                    </h2>
+                    <div class="mb-4 flex items-center justify-between gap-4">
+                        <h2 class="text-xl font-bold text-gray-900">
+                            <span class="lang-en">1.2 Dimensions of Sensitivity Assessment</span>
+                            <span class="lang-zh">1.2 定性研究数据敏感程度的主要评估维度</span>
+                        </h2>
+                        <a href="references.html#sensitivity-assessment" class="shrink-0 rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-semibold text-primary hover:bg-accent"><span class="lang-en">Related Materials</span><span class="lang-zh">相关资料</span></a>
+                    </div>
 
                     <!-- 四维判定表 -->
                     <div class="overflow-x-auto mb-6">
@@ -444,64 +467,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">Identifiability</td>
-                                    <td class="border-b border-gray-200 px-4 py-3">
-                                        <span class="lang-en">Can individuals be directly or indirectly identified?</span>
-                                        <span class="lang-zh">能否直接/间接定位到具体个体？</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Names, contact info, unique traits, specific locations</span>
-                                        <span class="lang-zh">姓名、联系方式、独特特征、具体地点</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Specific foraging areas & unique life events → indirect identification possible</span>
-                                        <span class="lang-zh">含具体觅食区域与独特经历 → 可间接识别</span>
-                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium"><span class="lang-en">Identifiability</span><span class="lang-zh">可识别性</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3"><span class="lang-en">Can individuals be directly or indirectly identified?</span><span class="lang-zh">能否定位到具体个体？</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">Names, addresses, postal codes, rare traits, specific events, relational networks</span><span class="lang-zh">姓名、地址、邮编、罕见特征、具体事件、关系网络</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">She recorded foraging locations and internal community networks. Even with pseudonyms, an outsider could re-identify individuals through a combination of habitat details and relational ties.</span><span class="lang-zh">她记录了居民的觅食地点和内部社群关系网络，虽然用了化名，但外人仍可能通过栖息地＋社群网络链条反向定位到具体个体。</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">Harm Risk</td>
-                                    <td class="border-b border-gray-200 px-4 py-3">
-                                        <span class="lang-en">How much harm would disclosure cause?</span>
-                                        <span class="lang-zh">泄露后对受访对象有多大伤害？</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Legal risk, stigma, health privacy, employment risk</span>
-                                        <span class="lang-zh">法律风险、污名化、健康隐私、就业风险</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Habitat disclosure would disrupt lives; private experiences could harm community relations</span>
-                                        <span class="lang-zh">栖息地泄露会打扰生活；隐秘经历可能破坏社群关系</span>
-                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium"><span class="lang-en">Harm Risk</span><span class="lang-zh">伤害风险</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3"><span class="lang-en">What harm could disclosure cause?</span><span class="lang-zh">泄露后对受访对象伤害有多大？</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">Stigma, legal consequences, health privacy, trust erosion, group harm</span><span class="lang-zh">污名、法律后果、健康隐私、信任破坏、群体伤害</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">Disclosure could expose residents' privacy, causing community distress or outside interference. Some interviews touch on conflicts with mainstream society, which could invite stigma if made public.</span><span class="lang-zh">泄露可能使居民隐私暴露，引发社群不安或被外界打扰；部分访谈涉及与主流社会的冲突经历，一旦公开可能招致污名化。</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="border-b border-gray-200 px-4 py-3 font-medium">Content Sensitivity</td>
-                                    <td class="border-b border-gray-200 px-4 py-3">
-                                        <span class="lang-en">Is the content legally/ethically sensitive?</span>
-                                        <span class="lang-zh">内容本身是否属于敏感范畴？</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Health, religion, sexuality, politics, illegal activities</span>
-                                        <span class="lang-zh">健康、宗教、性取向、政治观点、违法经历</span>
-                                    </td>
-                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Rare group identities, private survival struggles, internal community matters</span>
-                                        <span class="lang-zh">涉及稀有族群身份、私人生存困境、社群内部事务</span>
-                                    </td>
+                                    <td class="border-b border-gray-200 px-4 py-3 font-medium"><span class="lang-en">Content Sensitivity</span><span class="lang-zh">内容敏感度</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3"><span class="lang-en">Is the content legally/ethically sensitive?</span><span class="lang-zh">内容本身是否属于敏感范畴？</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">Trauma, violence, mental health, sex, abortion, politics, crime, religious/cultural taboos</span><span class="lang-zh">创伤、暴力、心理健康、性、堕胎、政治、犯罪、宗教文化禁忌</span></td>
+                                    <td class="border-b border-gray-200 px-4 py-3 text-gray-600"><span class="lang-en">Her field notes document residents' non-mainstream ways of life, grievances about government policies, and experiences of conflict with outsiders — all socially and culturally sensitive in nature.</span><span class="lang-zh">她的田野笔记记录了居民的非主流生存方式、对政府政策的不满情绪，以及与外界冲突的经历，这些内容本身已属社会文化敏感。</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-3 font-medium">Usage Context</td>
-                                    <td class="px-4 py-3">
-                                        <span class="lang-en">How widely will the data be accessed?</span>
-                                        <span class="lang-zh">数据会被多少人接触、是否公开？</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Cross-institutional sharing, public archiving, open publication</span>
-                                        <span class="lang-zh">跨机构共享、公开归档、公开发布</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-gray-600">
-                                        <span class="lang-en">Planned deposit in university repository for future researcher access</span>
-                                        <span class="lang-zh">计划存入学校数据仓库，供后续研究者查阅</span>
-                                    </td>
+                                    <td class="px-4 py-3 font-medium"><span class="lang-en">Usage Context</span><span class="lang-zh">使用场景</span></td>
+                                    <td class="px-4 py-3"><span class="lang-en">Who will access the data and how will it flow?</span><span class="lang-zh">数据会被哪些人接触、如何流转？</span></td>
+                                    <td class="px-4 py-3 text-gray-600"><span class="lang-en">Intra-team sharing, restricted access, cross-institutional archiving, open release, unknown future secondary use</span><span class="lang-zh">研究者间共享、受限访问、跨机构归档、公开开放、未来未知二次使用</span></td>
+                                    <td class="px-4 py-3 text-gray-600"><span class="lang-en">She plans to deposit transcripts into her university's open data platform after graduation — once archived, the flow and future use of data will move beyond her control, amplifying risk.</span><span class="lang-zh">她计划毕业后将访谈数据存入学校开放数据平台供同行查阅——一旦入库，数据流转范围和使用方式将脱离她的控制，风险随之放大。</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -511,90 +498,79 @@
                         <p class="text-sm text-gray-700">
                             <span class="lang-en">
                                 <strong>Assessment approach:</strong>
-                                Do not use a fixed count as a legal threshold. Consider identifiability, severity and likelihood of harm,
+                                Consider identifiability, severity and likelihood of harm,
                                 participant vulnerability and the planned access environment together. One severe factor can justify escalation.
                             </span>
                             <span class="lang-zh">
                                 <strong>评估方法：</strong>
-                                不要把固定项数当作法律阈值。应综合可识别性、伤害的严重度与可能性、参与者脆弱性和计划访问环境；单个严重因素也可触发升级。
+                                应综合可识别性、伤害的严重度与可能性、参与者脆弱性和计划访问环境；单个严重因素也可触发升级。
                             </span>
                         </p>
                     </div>
 
                     <!-- 交互式自测 -->
                     <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">
-                        <span class="lang-en">Interactive Self-Assessment</span>
-                        <span class="lang-zh">交互式快速自测</span>
+                        <span class="lang-en">Quick Risk Self-Assessment</span>
+                        <span class="lang-zh">风险快速自测</span>
                     </h3>
                     <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
                         <div id="quiz-container">
+                            <p class="text-sm text-gray-600 mb-5"><span class="lang-en">Choose the option that best matches your current dataset. This exercise considers both data characteristics and the safeguards already in place.</span><span class="lang-zh">请选择最符合你当前数据集的选项。本练习同时考察数据特征和已采取的保护措施。</span></p>
                             <div class="space-y-4" id="quiz-questions">
                                 <!-- Q1 -->
                                 <div>
                                     <p class="text-sm font-medium text-gray-800 mb-2">
-                                        <span class="lang-en">Q1: Can your data be used to identify specific individuals (directly or indirectly)?</span>
-                                        <span class="lang-zh">Q1：你的数据能否（直接或间接）定位到具体个人？</span>
+                                        <span class="lang-en">How readily could someone identify a participant from this dataset?</span>
+                                        <span class="lang-zh">他人能多容易地通过这份数据定位到受访者？</span>
                                     </p>
-                                    <div class="grid grid-cols-2 gap-2 quiz-options" data-question="q1">
-                                        <div class="quiz-option" data-value="1">
-                                            <span class="lang-en">Yes, clearly</span>
-                                            <span class="lang-zh">是，很明显</span>
-                                        </div>
-                                        <div class="quiz-option" data-value="0">
-                                            <span class="lang-en">No, basically not</span>
-                                            <span class="lang-zh">否，基本不能</span>
-                                        </div>
+                                    <div class="grid md:grid-cols-3 gap-2 quiz-options" data-question="q1">
+                                        <div class="quiz-option" data-value="0"><span class="lang-en">No plausible identification route</span><span class="lang-zh">没有合理的识别路径</span></div>
+                                        <div class="quiz-option" data-value="1"><span class="lang-en">Indirect clues may combine</span><span class="lang-zh">间接线索可能被组合</span></div>
+                                        <div class="quiz-option" data-value="2"><span class="lang-en">Direct identifiers or unique combinations</span><span class="lang-zh">含直接标识符或独特组合</span></div>
                                     </div>
                                 </div>
                                 <!-- Q2 -->
                                 <div>
                                     <p class="text-sm font-medium text-gray-800 mb-2">
-                                        <span class="lang-en">Q2: Would data disclosure cause tangible harm to participants?</span>
-                                        <span class="lang-zh">Q2：数据泄露是否会对受访者造成实质性伤害？</span>
+                                        <span class="lang-en">If disclosed, what impact could this dataset have on participants or their community?</span>
+                                        <span class="lang-zh">一旦泄露，这份数据可能给受访者或其社群带来怎样的影响？</span>
                                     </p>
-                                    <div class="grid grid-cols-2 gap-2 quiz-options" data-question="q2">
-                                        <div class="quiz-option" data-value="1">
-                                            <span class="lang-en">Yes, significant harm</span>
-                                            <span class="lang-zh">是，会有明显伤害</span>
-                                        </div>
-                                        <div class="quiz-option" data-value="0">
-                                            <span class="lang-en">No, minimal harm</span>
-                                            <span class="lang-zh">否，几乎没有伤害</span>
-                                        </div>
+                                    <div class="grid md:grid-cols-3 gap-2 quiz-options" data-question="q2">
+                                        <div class="quiz-option" data-value="0"><span class="lang-en">Minimal or reversible inconvenience</span><span class="lang-zh">轻微且可逆的不便</span></div>
+                                        <div class="quiz-option" data-value="1"><span class="lang-en">Meaningful social or personal harm</span><span class="lang-zh">明显的个人或社会伤害</span></div>
+                                        <div class="quiz-option" data-value="2"><span class="lang-en">Serious, lasting or group-level harm</span><span class="lang-zh">严重、长期或群体层面的伤害</span></div>
                                     </div>
                                 </div>
                                 <!-- Q3 -->
                                 <div>
                                     <p class="text-sm font-medium text-gray-800 mb-2">
-                                        <span class="lang-en">Q3: Does the content involve sensitive topics (health, identity, illegal acts, etc.)?</span>
-                                        <span class="lang-zh">Q3：内容是否涉及敏感议题（健康、身份、违法行为等）？</span>
+                                        <span class="lang-en">How sensitive is the subject matter discussed in the data?</span>
+                                        <span class="lang-zh">数据中讨论的议题本身有多敏感？</span>
                                     </p>
-                                    <div class="grid grid-cols-2 gap-2 quiz-options" data-question="q3">
-                                        <div class="quiz-option" data-value="1">
-                                            <span class="lang-en">Yes, highly sensitive</span>
-                                            <span class="lang-zh">是，高度敏感</span>
-                                        </div>
-                                        <div class="quiz-option" data-value="0">
-                                            <span class="lang-en">No, general topics</span>
-                                            <span class="lang-zh">否，属于普通议题</span>
-                                        </div>
+                                    <div class="grid md:grid-cols-3 gap-2 quiz-options" data-question="q3">
+                                        <div class="quiz-option" data-value="0"><span class="lang-en">General, non-sensitive experiences</span><span class="lang-zh">一般、非敏感经历</span></div>
+                                        <div class="quiz-option" data-value="1"><span class="lang-en">Personal or potentially stigmatising topics</span><span class="lang-zh">私密或可能被污名化的议题</span></div>
+                                        <div class="quiz-option" data-value="2"><span class="lang-en">Trauma, health, crime, politics or taboo</span><span class="lang-zh">创伤、健康、犯罪、政治或禁忌</span></div>
                                     </div>
                                 </div>
                                 <!-- Q4 -->
                                 <div>
                                     <p class="text-sm font-medium text-gray-800 mb-2">
-                                        <span class="lang-en">Q4: Do you plan public or broad external access rather than controlled access?</span>
-                                        <span class="lang-zh">Q4：你是否计划公开或广泛外部访问，而不是受控访问？</span>
+                                        <span class="lang-en">How widely will the data be accessed or shared?</span>
+                                        <span class="lang-zh">数据将被多大范围地访问或共享？</span>
                                     </p>
-                                    <div class="grid grid-cols-2 gap-2 quiz-options" data-question="q4">
-                                        <div class="quiz-option" data-value="1">
-                                            <span class="lang-en">Yes, public or broad external access</span>
-                                            <span class="lang-zh">是，公开或广泛外部访问</span>
-                                        </div>
-                                        <div class="quiz-option" data-value="0">
-                                            <span class="lang-en">No, internal or controlled access</span>
-                                            <span class="lang-zh">否，仅内部或受控访问</span>
-                                        </div>
+                                    <div class="grid md:grid-cols-3 gap-2 quiz-options" data-question="q4">
+                                        <div class="quiz-option" data-value="0"><span class="lang-en">Named team only, controlled storage</span><span class="lang-zh">仅具名团队、受控存储</span></div>
+                                        <div class="quiz-option" data-value="1"><span class="lang-en">Restricted sharing or institutional archive</span><span class="lang-zh">受限共享或机构归档</span></div>
+                                        <div class="quiz-option" data-value="2"><span class="lang-en">Open release or unknown future reuse</span><span class="lang-zh">公开发布或未知的未来二次使用</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800 mb-2"><span class="lang-en">How are identifiers and raw files protected today?</span><span class="lang-zh">当前如何保护标识符和原始文件？</span></p>
+                                    <div class="grid md:grid-cols-3 gap-2 quiz-options" data-question="q5">
+                                        <div class="quiz-option" data-value="0"><span class="lang-en">Separated, access-controlled and documented</span><span class="lang-zh">已分离、受访问控制且有记录</span></div>
+                                        <div class="quiz-option" data-value="1"><span class="lang-en">Some controls, but gaps remain</span><span class="lang-zh">已有部分控制，但仍有缺口</span></div>
+                                        <div class="quiz-option" data-value="2"><span class="lang-en">No clear separation or access control</span><span class="lang-zh">没有明确的分离或访问控制</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -607,47 +583,11 @@
                             <div id="quiz-result" class="hidden mt-5 p-4 rounded-lg border">
                                 <p class="font-medium text-sm mb-1" id="quiz-result-title"></p>
                                 <p class="text-sm text-gray-600" id="quiz-result-desc"></p>
+                                <p class="mt-3 text-sm font-medium text-gray-700" id="quiz-result-focus"></p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 深度层 -->
-                    <details class="border border-gray-200 rounded-lg">
-                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
-                            <span>
-                                <span class="lang-en">📚 Deep Dive: Theoretical Basis & Boundaries</span>
-                                <span class="lang-zh">📚 深度拓展：理论依据与边界界定</span>
-                            </span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
-                        </summary>
-                        <div class="p-4 text-sm text-gray-600 space-y-3">
-                            <p>
-                                <span class="lang-en">
-                                    <strong>Legal definition of identifiability:</strong>
-                                    PDPO and GDPR differ slightly in their interpretation of "personal data",
-                                    but both adopt a broad standard including indirect identifiability.
-                                </span>
-                                <span class="lang-zh">
-                                    <strong>可识别性的法律界定：</strong>
-                                    PDPO 与 GDPR 对「个人数据」的解释略有差异，但均采用包含间接识别的宽泛标准。
-                                </span>
-                            </p>
-                            <p>
-                                <span class="lang-en">
-                                    <strong>Five dimensions of harm:</strong>
-                                    Physical harm, reputational harm, economic harm, social harm, legal harm.
-                                    Assessment should consider both individual and group-level harm.
-                                    <sup><a href="references.html#risk-assessment" class="text-primary underline">[guide note]</a></sup>
-                                </span>
-                                <span class="lang-zh">
-                                    <strong>伤害的五个维度：</strong>
-                                    身体伤害、名誉伤害、经济伤害、社会伤害、法律伤害。
-                                    评估时需同时考虑个体层面与群体层面的伤害。
-                                    <sup><a href="references.html#risk-assessment" class="text-primary underline">[指南说明]</a></sup>
-                                </span>
-                            </p>
-                        </div>
-                    </details>
                 </section>
 
                 <!-- 1.3 三级风险分级体系 -->
@@ -675,11 +615,11 @@
                                 </p>
                                 <p class="mt-2 font-medium text-primary">
                                     <span class="lang-en">
-                                        Principle: Match management intensity to risk level —
+                                        Match management intensity to risk level —
                                                         neither relax requirements nor over-protect.
                                     </span>
                                     <span class="lang-zh">
-                                        原则：风险等级与管理强度相匹配 ——
+                                        风险等级与管理强度相匹配 ——
                                                         既不放松要求，也不过度防护。
                                     </span>
                                 </p>
@@ -687,83 +627,80 @@
                         </div>
                     </div>
 
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">
-                        <span class="lang-en">1.3 Three-Tier Risk Classification</span>
-                        <span class="lang-zh">1.3 三级风险分级体系</span>
-                    </h2>
+                    <div class="mb-4 flex items-center justify-between gap-4">
+                        <h2 class="text-xl font-bold text-gray-900">
+                            <span class="lang-en">1.3 Three-Tier Risk Triage &amp; Action Guide</span>
+                            <span class="lang-zh">1.3 三级风险分级与行动指南</span>
+                        </h2>
+                        <a href="references.html#module1-3-risk-triage" class="shrink-0 rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-semibold text-primary hover:bg-accent"><span class="lang-en">Related Materials</span><span class="lang-zh">相关资料</span></a>
+                    </div>
 
-                    <div class="space-y-4 mb-6">
+                    <div class="grid gap-5 md:grid-cols-3 mb-6">
                         <!-- 低风险 -->
-                        <div class="border border-gray-200 rounded-xl p-5 card-hover">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold">
-                                    <span class="lang-en">Low</span>
-                                    <span class="lang-zh">低</span>
-                                </div>
-                                <h3 class="font-semibold text-lg text-gray-900">
+                        <article class="overflow-hidden rounded-xl border border-green-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+                            <div class="flex items-center gap-3 bg-green-50 px-5 py-4 border-b border-green-100">
+                                <div class="w-9 h-9 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">1</div>
+                                <h3 class="font-semibold text-lg text-green-950">
                                     <span class="lang-en">Low Risk</span>
                                     <span class="lang-zh">低风险</span>
                                 </h3>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="space-y-4 p-5 text-sm">
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Criteria</span>
-                                        <span class="lang-zh">判定标准</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Typical Profile</span>
+                                        <span class="lang-zh">典型画像</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">No identifiable information; non-sensitive content; internal team use only</span>
-                                        <span class="lang-zh">无可识别信息；内容不涉及敏感议题；仅内部团队使用</span>
+                                        <span class="lang-en">De-identified, non-sensitive content, internal use only, no plausible re-identification route</span>
+                                        <span class="lang-zh">已去标识化、不含敏感议题、仅内部使用、无合理识别路径</span>
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
+                                    <p class="font-bold text-gray-800 mb-1">
                                         <span class="lang-en">Typical Scenario</span>
                                         <span class="lang-zh">典型场景</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Fully anonymized collective analysis summaries</span>
+                                        <span class="lang-en">Fully anonymised collective analysis summaries</span>
                                         <span class="lang-zh">完全脱敏的集体观点汇总分析</span>
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Core Requirements</span>
-                                        <span class="lang-zh">核心要求</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Core Actions</span>
+                                        <span class="lang-zh">核心行动</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Basic file management; routine backup</span>
-                                        <span class="lang-zh">基础文件管理；常规备份</span>
+                                        <span class="lang-en">Apply baseline security and institutional policies; routine file management and backup</span>
+                                        <span class="lang-zh">执行基础安全措施与机构政策；常规文件管理与备份</span>
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- 中风险 -->
-                        <div class="border border-yellow-200 bg-yellow-50/30 rounded-xl p-5 card-hover">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center font-bold">
-                                    <span class="lang-en">Medium</span>
-                                    <span class="lang-zh">中</span>
-                                </div>
-                                <h3 class="font-semibold text-lg text-gray-900">
+                        <article class="overflow-hidden rounded-xl border border-amber-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+                            <div class="flex items-center gap-3 bg-amber-50 px-5 py-4 border-b border-amber-100">
+                                <div class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">2</div>
+                                <h3 class="font-semibold text-lg text-amber-950">
                                     <span class="lang-en">Medium Risk</span>
                                     <span class="lang-zh">中风险</span>
                                 </h3>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="space-y-4 p-5 text-sm">
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Criteria</span>
-                                        <span class="lang-zh">判定标准</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Typical Profile</span>
+                                        <span class="lang-zh">典型画像</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Indirect identifiers present; moderately sensitive content; limited sharing</span>
-                                        <span class="lang-zh">含间接可识别信息；内容涉及一般敏感议题；小范围共享</span>
+                                        <span class="lang-en">Indirect identifiers present, moderately sensitive topics, limited sharing, partial safeguards in place</span>
+                                        <span class="lang-zh">含间接可识别信息、涉及一般敏感议题、小范围共享、有部分保护措施</span>
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
+                                    <p class="font-bold text-gray-800 mb-1">
                                         <span class="lang-en">Typical Scenario</span>
                                         <span class="lang-zh">典型场景</span>
                                     </p>
@@ -773,43 +710,40 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Core Requirements</span>
-                                        <span class="lang-zh">核心要求</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Core Actions</span>
+                                        <span class="lang-zh">核心行动</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Standard de-identification; encrypted storage; access control</span>
-                                        <span class="lang-zh">标准化去标识化；加密存储；访问权限控制</span>
+                                        <span class="lang-en">Standard de-identification; encrypted storage; access control; review residual risk before sharing</span>
+                                        <span class="lang-zh">标准化去标识化；加密存储；访问权限控制；共享前复核剩余风险</span>
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                         <!-- 高风险 -->
-                        <div class="border border-red-200 bg-red-50/30 rounded-xl p-5 card-hover">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold">
-                                    <span class="lang-en">High</span>
-                                    <span class="lang-zh">高</span>
-                                </div>
-                                <h3 class="font-semibold text-lg text-gray-900">
+                        <article class="overflow-hidden rounded-xl border border-red-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+                            <div class="flex items-center gap-3 bg-red-50 px-5 py-4 border-b border-red-100">
+                                <div class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold">3</div>
+                                <h3 class="font-semibold text-lg text-red-950">
                                     <span class="lang-en">High Risk</span>
                                     <span class="lang-zh">高风险</span>
                                 </h3>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="space-y-4 p-5 text-sm">
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Criteria</span>
-                                        <span class="lang-zh">判定标准</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Typical Profile</span>
+                                        <span class="lang-zh">典型画像</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Direct/highly identifiable information; highly sensitive content; public sharing planned</span>
-                                        <span class="lang-zh">含直接/高度可识别信息；高度敏感议题；计划公开共享</span>
+                                        <span class="lang-en">Direct or highly identifiable information, highly sensitive content, public/broad sharing planned, safeguards inadequate</span>
+                                        <span class="lang-zh">含直接/高度可识别信息、高度敏感议题、计划公开或广泛共享、保护措施不足</span>
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
+                                    <p class="font-bold text-gray-800 mb-1">
                                         <span class="lang-en">Typical Scenario</span>
                                         <span class="lang-zh">典型场景</span>
                                     </p>
@@ -819,31 +753,31 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-gray-700 mb-1">
-                                        <span class="lang-en">Core Requirements</span>
-                                        <span class="lang-zh">核心要求</span>
+                                    <p class="font-bold text-gray-800 mb-1">
+                                        <span class="lang-en">Core Actions</span>
+                                        <span class="lang-zh">核心行动</span>
                                     </p>
                                     <p class="text-gray-600">
-                                        <span class="lang-en">Formal ethics review; strict access control; documented residual-risk review; controlled sharing only</span>
-                                        <span class="lang-zh">正式伦理审查；严格权限控制；记录剩余风险评估；仅限受控共享</span>
+                                        <span class="lang-en">Formal ethics review; strict access control; document residual risk; consult IRB or legal counsel before sharing or archiving</span>
+                                        <span class="lang-zh">正式伦理审查；严格权限控制；书面记录剩余风险；共享/归档前咨询 IRB 或法律顾问</span>
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     </div>
 
-                    <div class="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-                        <p class="lang-en"><strong>Important:</strong> This three-tier result is an educational triage, not a legal or IRB determination. Direct identifiers, vulnerable populations, or a credible risk of serious harm should trigger specialist review even when the total score is low. <a href="references.html#risk-assessment" class="underline font-medium">Source note</a></p>
-                        <p class="lang-zh"><strong>重要说明：</strong>三级结果仅用于教育性初筛，不代替法律判断或伦理委员会决定。只要涉及直接标识符、弱势群体或可信的严重伤害风险，即使总分较低也应升级为专业审查。<a href="references.html#risk-assessment" class="underline font-medium">来源说明</a></p>
+                    <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-950">
+                        <p class="lang-en"><strong>⚠️ Important:</strong> This three-tier result is a learning tool — not a legal opinion, and not an ethics review. If your data contains direct identifiers, involves vulnerable populations (children, prisoners, trauma survivors), or could cause serious harm if disclosed, careful consideration is warrented — <strong>regardless of what this guide tells you</strong>.</p>
+                        <p class="lang-zh"><strong>⚠️ 重要说明：</strong>三级结果仅用于初步筛选，不代替专业判断或伦理委员会决定。只要涉及直接标识符、弱势群体或可信的严重伤害风险，即使综合判断为低风险，也应慎重考虑。</p>
                     </div>
 
                     <div class="border-t border-gray-200 pt-8 mt-10">
                         <div class="bg-accent/20 border border-primary/10 rounded-lg p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
-                                <h3 class="font-semibold text-gray-900"><span class="lang-en">Next: determine the legal and ethical framework</span><span class="lang-zh">下一步：确定法规与伦理框架</span></h3>
-                                <p class="text-sm text-gray-600 mt-1"><span class="lang-en">Confirm jurisdiction, ethics review and consent requirements before collection begins.</span><span class="lang-zh">在开始收集前确认管辖范围、伦理审查与知情同意要求。</span></p>
+                                <h3 class="font-semibold text-gray-900"><span class="lang-en">Next: turn your risk profile into lifecycle controls</span><span class="lang-zh">下一步：把风险判断转化为全流程控制</span></h3>
+                                <p class="text-sm text-gray-600 mt-1"><span class="lang-en">Use your risk profile to plan practical controls for collection, processing, storage, sharing and project closure.</span><span class="lang-zh">以风险初筛结果为起点，规划收集、处理、存储、共享到结项的具体控制措施。</span></p>
                             </div>
-                            <a href="module3.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors"><span class="lang-en">Open Legal & Ethics</span><span class="lang-zh">进入法规与伦理</span></a>
+                            <a href="module2.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors"><span class="lang-en">Open Lifecycle Management</span><span class="lang-zh">进入全生命周期管理</span></a>
                         </div>
                     </div>
                 </section>
@@ -874,21 +808,37 @@
         document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
     });
 
-    document.querySelectorAll('.myth-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.querySelector('.myth-fact')?.classList.toggle('hidden');
-            card.querySelector('.chevron')?.classList.toggle('rotate-180');
+    document.querySelectorAll('.myth-quiz').forEach(question => {
+        question.querySelectorAll('.myth-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const correct = (option.dataset.answer || 'true') === question.dataset.correct;
+                question.querySelectorAll('.myth-option').forEach(item => item.className = 'myth-option border border-gray-300 rounded-md px-3 py-1.5 text-sm hover:border-primary');
+                option.classList.add(correct ? 'border-green-500' : 'border-red-500', correct ? 'bg-green-50' : 'bg-red-50', correct ? 'text-green-700' : 'text-red-700');
+                const feedback = question.querySelector('.myth-feedback');
+                feedback.classList.remove('hidden', 'text-green-700', 'text-red-700');
+                feedback.classList.add(correct ? 'text-green-700' : 'text-red-700');
+            });
         });
     });
 
     const answers = {};
     document.querySelectorAll('.quiz-options').forEach(group => {
         group.querySelectorAll('.quiz-option').forEach(option => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'w-4 h-4 accent-primary pointer-events-none flex-shrink-0';
+            checkbox.tabIndex = -1;
+            checkbox.setAttribute('aria-hidden', 'true');
+            option.prepend(checkbox);
             option.setAttribute('role', 'button');
             option.setAttribute('tabindex', '0');
             const select = () => {
-                group.querySelectorAll('.quiz-option').forEach(item => item.classList.remove('selected'));
+                group.querySelectorAll('.quiz-option').forEach(item => {
+                    item.classList.remove('selected');
+                    item.querySelector('input[type="checkbox"]').checked = false;
+                });
                 option.classList.add('selected');
+                checkbox.checked = true;
                 answers[group.dataset.question] = Number(option.dataset.value);
             };
             option.addEventListener('click', select);
@@ -902,21 +852,26 @@
         const result = document.getElementById('quiz-result');
         const title = document.getElementById('quiz-result-title');
         const desc = document.getElementById('quiz-result-desc');
-        if (Object.keys(answers).length !== 4) {
+        const focus = document.getElementById('quiz-result-focus');
+        if (Object.keys(answers).length !== 5) {
             result.className = 'mt-5 p-4 rounded-lg border border-amber-200 bg-amber-50';
-            title.textContent = body.classList.contains('show-zh') ? '请完成全部四个问题' : 'Please answer all four questions';
-            desc.textContent = body.classList.contains('show-zh') ? '结果只有在完整回答后才会保存。' : 'The result is saved only after all questions are answered.';
+            title.textContent = body.classList.contains('show-zh') ? '请完成全部五个问题' : 'Please answer all five questions';
+            desc.textContent = body.classList.contains('show-zh') ? '完成后将获得风险等级和优先处理事项。' : 'Complete every item to receive a risk tier and priority actions.';
+            focus.textContent = '';
             return;
         }
         const score = Object.values(answers).reduce((sum, value) => sum + value, 0);
-        const override = answers.q1 === 1 || answers.q2 === 1;
-        const tier = override || score >= 3 ? 'high' : score >= 1 ? 'medium' : 'low';
+        const override = answers.q1 === 2 || answers.q2 === 2;
+        const tier = override || score >= 7 ? 'high' : score >= 3 ? 'medium' : 'low';
         const zh = body.classList.contains('show-zh');
         const labels = {low: zh ? '初筛结果：低风险' : 'Triage result: Low risk', medium: zh ? '初筛结果：中风险' : 'Triage result: Medium risk', high: zh ? '初筛结果：高风险' : 'Triage result: High risk'};
-        const descriptions = {low: zh ? '仍需执行基础安全、最小化与机构政策要求。' : 'Baseline security, minimisation and institutional rules still apply.', medium: zh ? '建议书面记录控制措施，并在共享前完成剩余风险复核。' : 'Document controls and review residual risk before sharing.', high: zh ? '应在收集或共享前咨询伦理委员会、数据保护或法律专业人员。' : 'Consult ethics, data protection or legal specialists before collection or sharing.'};
+        const descriptions = {low: zh ? '当前特征与控制措施显示风险较低；仍需落实基础安全、数据最小化与机构要求。' : 'Your current profile suggests lower risk; baseline security, minimisation and institutional requirements still apply.', medium: zh ? '存在需要主动管理的风险因素。请记录控制措施，并在共享或归档前复核剩余风险。' : 'There are risk factors requiring active management. Document controls and review residual risk before sharing or archiving.', high: zh ? '存在高影响因素或多项风险叠加。请在收集、共享或开放前咨询伦理、数据保护或法律专业人员。' : 'A high-impact factor or multiple risks are present. Consult ethics, data protection or legal specialists before collection, sharing or release.'};
+        const factorLabels = zh ? ['可识别性', '伤害风险', '内容敏感度', '使用场景', '保护措施缺口'] : ['identifiability', 'harm risk', 'content sensitivity', 'usage context', 'safeguard gaps'];
+        const priority = Object.entries(answers).filter(([, value]) => value >= 1).map(([key]) => factorLabels[Number(key.slice(1)) - 1]);
         result.className = `mt-5 p-4 rounded-lg border ${tier === 'high' ? 'border-red-200 bg-red-50' : tier === 'medium' ? 'border-amber-200 bg-amber-50' : 'border-green-200 bg-green-50'}`;
         title.textContent = labels[tier];
         desc.textContent = descriptions[tier];
+        focus.textContent = zh ? `风险得分：${score}/10。优先关注：${priority.length ? priority.join('、') : '继续保持现有控制措施'}。` : `Risk score: ${score}/10. Priority focus: ${priority.length ? priority.join(', ') : 'maintain current controls'}.`;
         let project = {};
         try { project = JSON.parse(localStorage.getItem('sqdmc_project') || '{}'); } catch { project = {}; }
         project.riskTier = tier;
@@ -927,6 +882,6 @@
 
     if (window.lucide) lucide.createIcons();
 </script>
-<script src="site.js"></script>
+<script src="site.js?v=direct-source-links-20260723"></script>
 </body>
 </html>

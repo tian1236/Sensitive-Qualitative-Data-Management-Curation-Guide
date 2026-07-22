@@ -67,9 +67,10 @@
             line-height: 1.8;
         }
         .deid-redact {
-            background-color: #1f2937;
-            color: #1f2937;
-            user-select: none;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            text-decoration: line-through;
+            text-decoration-color: #9ca3af;
             border-radius: 2px;
         }
         .deid-btn.active {
@@ -78,6 +79,7 @@
             border-color: #0f5132;
         }
     </style>
+    <style>img[src="assets/deepdive.png"]{width:1.75rem!important;height:1.75rem!important}</style>
 </head>
 <body class="bg-white text-gray-800 font-sans">
 
@@ -106,8 +108,8 @@
                 <span class="lang-zh">策展进阶</span>
             </a>
             <a href="tools.html" class="hover:text-primary transition-colors">
-                <span class="lang-en">Toolkit</span>
-                <span class="lang-zh">工具中心</span>
+                <span class="lang-en">Tools &amp; Learning Resources</span>
+                <span class="lang-zh">工具与学习资源</span>
             </a>
             <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
                 <span class="lang-en">中文</span>
@@ -241,13 +243,11 @@
                             Data curation is the active, ongoing management of data throughout its entire lifecycle,
                             to ensure its long-term availability, authenticity, understandability and reusability
                             while maintaining ethical and privacy compliance.
-                            <sup><a href="references.html#ddi" class="text-primary underline">[source]</a></sup>
                         </span>
                         <span class="lang-zh">
                             数据策展是在数据整个生命周期中进行的主动、持续管理，
                             确保其长期可用性、真实性、可理解性与可复用性，
                             同时保持伦理与隐私合规。
-                            <sup><a href="references.html#ddi" class="text-primary underline">[来源]</a></sup>
                         </span>
                     </p>
 
@@ -334,6 +334,21 @@
                         </table>
                     </div>
 
+                    <div class="my-8 rounded-xl border border-primary/15 bg-white p-5 shadow-sm">
+                        <div class="mb-4 flex items-center gap-3">
+                            <span class="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-primary">
+                                <i data-lucide="play-circle" class="h-5 w-5"></i>
+                            </span>
+                            <h3 class="text-lg font-semibold text-gray-800">
+                                <span class="lang-en">Watch to Understand &#128250;</span>
+                                <span class="lang-zh">看个视频，更好理解</span>
+                            </h3>
+                        </div>
+                        <div class="mx-auto aspect-video max-w-3xl overflow-hidden rounded-lg bg-gray-100">
+                            <iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/ZEkqF8cL2qQ?rel=0" title="Video on qualitative data curation" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
                     <h3 class="text-lg font-semibold text-gray-800 mb-3">
                         <span class="lang-en">Three Core Challenges for Sensitive Qualitative Curation</span>
                         <span class="lang-zh">敏感定性数据策展的三大核心挑战</span>
@@ -391,8 +406,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Academic Origins & Frontiers</span>
-                                <span class="lang-zh">📚 深度拓展：学术溯源与前沿方向</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Academic Origins & Frontiers</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：学术溯源与前沿方向</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -439,9 +454,9 @@
                 <section id="section4-2" class="scroll-mt-24">
                     <!-- 引导层 -->
                     <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
-                        <div class="flex items-start gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                                <span>🐿️</span>
+                        <div class="flex items-start gap-4">
+                            <div class="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 -ml-1 -mt-1">
+                                <img src="assets/hazel-squirrel-challenge.png" alt="" class="w-full h-full object-contain" />
                             </div>
                             <div class="text-sm text-gray-700">
                                 <p class="font-medium text-gray-900 mb-1">
@@ -461,11 +476,10 @@
                                 </p>
                                 <p class="mt-2 font-medium text-primary">
                                     <span class="lang-en">
-                                        Method: Use this guide's scenario-based three-tier model as a planning aid, then follow repository and institutional requirements.
-                                        Match the de-identification tier to your archiving scenario.
+                                        Answer: There is no fully anonymous dataset that fully preserves research value. De-identification is a privacy–utility trade-off. The goal is a defensible balance for your research purpose, data and sharing context.
                                     </span>
                                     <span class="lang-zh">
-                                        方法：把本指南的场景化三级模型作为规划工具，并进一步遵循仓库与机构的具体要求。
+                                        回答：不存在“既完全匿名又完整保留研究价值”的数据集：去标识化是隐私与效用之间的权衡。目标是为你的研究目的、数据和共享情境找到可辩护的平衡。
                                     </span>
                                 </p>
                             </div>
@@ -477,7 +491,16 @@
                         <span class="lang-zh">4.2 去标识化方法论</span>
                     </h2>
 
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                    <div class="space-y-7">
+                        <section><h3 class="mb-4 text-lg font-bold text-gray-900"><span class="lang-en">Practical Principles</span><span class="lang-zh">实操原则</span></h3><div class="grid gap-4 md:grid-cols-3"><article class="rounded-xl border border-gray-200 p-5"><p class="text-xs font-bold text-primary">01</p><h4 class="mt-2 font-bold text-gray-800"><span class="lang-en">Start from intended use</span><span class="lang-zh">从用途倒推</span></h4><p class="mt-2 text-sm leading-6 text-gray-600"><span class="lang-en">Protect the analytical capabilities needed after sharing, then configure privacy controls. Value means answering intended questions—not retaining the most details.</span><span class="lang-zh">先保住共享后要回答研究问题所需的分析能力，再配置隐私保护。价值不等于保留最多细节。</span></p></article><article class="rounded-xl border border-gray-200 p-5"><p class="text-xs font-bold text-primary">02</p><h4 class="mt-2 font-bold text-gray-800"><span class="lang-en">Find quasi-identifiers</span><span class="lang-zh">识别准标识符</span></h4><p class="mt-2 text-sm leading-6 text-gray-600"><span class="lang-en">Names are only the start. Postal codes, dates, places, rare traits and relationship clues can combine to identify someone—especially to insiders.</span><span class="lang-zh">姓名只是开始。邮编、日期、地点、罕见特征和关系线索可被组合识别，尤其对熟悉社区的“内人”。</span></p></article><article class="rounded-xl border border-gray-200 p-5"><p class="text-xs font-bold text-primary">03</p><h4 class="mt-2 font-bold text-gray-800"><span class="lang-en">Transform step by step</span><span class="lang-zh">分步变换</span></h4><p class="mt-2 text-sm leading-6 text-gray-600"><span class="lang-en">Generalise first, then suppress locally. Focus changes on secondary or high-risk variables rather than making one large cut.</span><span class="lang-zh">先泛化，再局部抑制。把变换集中于次要或高风险变量，而非一次大删减。</span></p></article></div></section>
+                        <section class="rounded-xl border border-gray-200 p-6"><h3 class="text-lg font-bold text-gray-900"><span class="lang-en">Judgment Framework</span><span class="lang-zh">判断框架</span></h3><div class="mt-4 grid gap-3 md:grid-cols-4 text-sm"><div class="rounded-lg bg-gray-50 p-4"><strong><span class="lang-en">Research utility</span><span class="lang-zh">研究效用</span></strong><p class="mt-2 text-gray-600"><span class="lang-en">Can key analyses still run?</span><span class="lang-zh">关键分析还能不能做？</span></p></div><div class="rounded-lg bg-gray-50 p-4"><strong><span class="lang-en">Re-identification risk</span><span class="lang-zh">重识别风险</span></strong><p class="mt-2 text-gray-600"><span class="lang-en">Are records still unique or linkable?</span><span class="lang-zh">记录是否仍过于独特或可链接？</span></p></div><div class="rounded-lg bg-gray-50 p-4"><strong><span class="lang-en">Contextual risk</span><span class="lang-zh">情境风险</span></strong><p class="mt-2 text-gray-600"><span class="lang-en">Who has access and what can they link?</span><span class="lang-zh">谁会接触？可关联哪些外部资料？</span></p></div><div class="rounded-lg bg-gray-50 p-4"><strong><span class="lang-en">Sharing mode</span><span class="lang-zh">共享方式</span></strong><p class="mt-2 text-gray-600"><span class="lang-en">Open or restricted access?</span><span class="lang-zh">公开还是受限访问？</span></p></div></div><p class="mt-4 text-sm leading-7 text-primary"><span class="lang-en">The right point is where protection is sufficient but utility has not begun to collapse—not where risk is absolutely minimal.</span><span class="lang-zh">合适的平衡点是“够安全”且研究效用尚未明显塌陷的位置，而不是把风险降到绝对最低。</span></p></section>
+                        <section class="rounded-xl border border-gray-200 p-6"><h3 class="text-lg font-bold text-gray-900"><span class="lang-en">How to Verify</span><span class="lang-zh">验证方法</span></h3><p class="mt-2 text-sm text-gray-600"><span class="lang-en">Assess your approach from two perspectives.</span><span class="lang-zh">验证应从两个方面考虑。</span></p><div class="mt-5"><div class="flex gap-4"><div class="flex flex-col items-center"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">1</span><span class="my-2 h-12 border-l-2 border-dashed border-primary/40"></span></div><div class="pb-4 text-sm text-gray-600"><p class="font-bold text-gray-800"><span class="lang-en">Attack Assessment</span><span class="lang-zh">攻击评估</span></p><p class="mt-1"><span class="lang-en">Assess linkage attacks, attribute disclosure and identity disclosure.</span><span class="lang-zh">评估链接攻击、属性披露与身份披露风险。</span></p><p class="mt-3"><span class="lang-en">Tools you can use: </span><span class="lang-zh">可使用工具协助：</span><a href="https://arx.deidentifier.org/" target="_blank" rel="noopener" class="font-semibold text-primary hover:underline">ARX ↗</a><span> · </span><a href="https://centre.humdata.org/learning-path/disclosure-risk-assessment-overview/prepare-the-disclosure-risk-assessment/" target="_blank" rel="noopener" class="font-semibold text-primary hover:underline">sdcMicro ↗</a></p></div></div><div class="flex gap-4"><div class="flex flex-col items-center"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">2</span></div><div class="text-sm text-gray-600"><p class="font-bold text-gray-800"><span class="lang-en">Analytical Assessment</span><span class="lang-zh">分析评估</span></p><p class="mt-1"><span class="lang-en">Re-run the intended analysis on de-identified data and compare it with the original results. If conclusions change materially, revisit the transformations.</span><span class="lang-zh">在去标识化数据上重新运行预定分析，并与原始结果比较；若分析结论发生实质变化，应重新审视变换方案。</span></p></div></div></div></section>
+                        <section class="hidden rounded-xl border border-primary/20 bg-gray-50 p-6"><h3 class="text-lg font-bold text-gray-900"><span class="lang-en">De-identification Effect Demo</span><span class="lang-zh">脱敏效果演示</span></h3></section>
+                    </div>
+
+                    <div class="hidden">
+
+                    <h3 class="text-base font-medium text-gray-600 mb-3">
                         <span class="lang-en">Three-Tier De-identification System</span>
                         <span class="lang-zh">三级去标识化体系</span>
                     </h3>
@@ -644,8 +667,9 @@
 
                     <p class="text-xs text-gray-500 mb-6"><a href="references.html#ukds-anonymisation" class="text-primary underline"><span class="lang-en">Source and limitation note: UK Data Service guidance supports planned, risk-based qualitative anonymisation. The tier labels and five steps here are this guide's operational synthesis, not a named external standard.</span><span class="lang-zh">来源与局限说明：英国数据服务指南支持预先规划、按风险实施定性资料匿名化；本页的三级名称与五步流程是本指南的操作性归纳，并非具名外部标准。</span></a></p>
 
+                    </div>
                     <!-- 交互式脱敏演示 -->
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                    <h3 class="text-base font-medium text-gray-600 mb-3">
                         <span class="lang-en">Interactive De-identification Demo</span>
                         <span class="lang-zh">交互式脱敏效果演示</span>
                     </h3>
@@ -668,14 +692,14 @@
                             <span class="lang-en">
                                 “I’m <span class="deid-name">Maple Squirrel</span>, I work at <span class="deid-org">the Oak Forest Research Institute</span>
                                 as a <span class="deid-role">senior health policy researcher</span>.
-                                Last <span class="deid-date">March 15th</span>, I was diagnosed with <span class="deid-health">type 2 diabetes</span>
+                                Last <span class="deid-date">March 29th</span>, I was diagnosed with <span class="deid-health">type 2 diabetes</span>
                                 at <span class="deid-loc">Pinewood Central Hospital</span>.
                                 It’s been really hard to adjust, especially since my mother also had the same condition.”
                             </span>
                             <span class="lang-zh">
                                 “我叫<span class="deid-name">松鼠小枫</span>，在<span class="deid-org">橡树林研究院</span>
                                 做<span class="deid-role">高级卫生政策研究员</span>。
-                                今年<span class="deid-date">3月15日</span>，我在<span class="deid-loc">松木中心医院</span>
+                                今年<span class="deid-date">3月29日</span>，我在<span class="deid-loc">松木中心医院</span>
                                 确诊了<span class="deid-health">2型糖尿病</span>。
                                 适应起来挺难的，尤其是我妈妈也有同样的病。”
                             </span>
@@ -692,6 +716,7 @@
                         </p>
                     </div>
 
+                    <div class="hidden">
                     <h3 class="text-lg font-semibold text-gray-800 mb-3">
                         <span class="lang-en">Fidelity Judgment Principles</span>
                         <span class="lang-zh">保真度判断原则</span>
@@ -726,8 +751,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Theoretical Framework & Limitations</span>
-                                <span class="lang-zh">📚 深度拓展：理论框架与局限性</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Theoretical Framework & Limitations</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：理论框架与局限性</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -757,6 +782,7 @@
                             </p>
                         </div>
                     </details>
+                    </div>
                 </section>
 
                 <!-- 4.3 元数据标准 -->
@@ -866,26 +892,11 @@
                         </div>
                     </div>
 
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3">
-                        <span class="lang-en">README File Best Practices</span>
-                        <span class="lang-zh">README 文件撰写规范</span>
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        <span class="lang-en">
-                            A plain-text README is a strong human-readable companion, but it does not replace repository-required structured metadata.
-                            Use open, durable formats (plain .txt or .md) to ensure long-term readability.
-                        </span>
-                        <span class="lang-zh">
-                            纯文本README是重要的人类可读说明，但不能替代仓库要求的结构化元数据。
-                            使用开放、持久的格式（纯文本 .txt 或 .md）以保障长期可读性。
-                        </span>
-                    </p>
-
                     <details class="border border-gray-200 rounded-lg">
-                        <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
+                        <summary class="deep-dive-standards px-4 py-3 flex items-center justify-between text-sm font-medium">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Standard Specifications & Community Norms</span>
-                                <span class="lang-zh">📚 深度拓展：标准规范与社群惯例</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Standard Specifications & Community Norms</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：标准规范与社群惯例</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -1071,8 +1082,8 @@
                                     <span class="lang-zh">准备完整元数据文档</span>
                                 </p>
                                 <p class="text-sm text-gray-600">
-                                    <span class="lang-en">Write README file; complete all required metadata fields according to repository specifications.</span>
-                                    <span class="lang-zh">撰写 README 文件，按仓库规范填写所有必填元数据字段。</span>
+                                    <span class="lang-en">Complete all required metadata fields according to repository specifications.</span>
+                                    <span class="lang-zh">按仓库规范填写所有必填元数据字段。</span>
                                 </p>
                             </div>
                         </div>
@@ -1151,8 +1162,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Repository Curation & Peer Review</span>
-                                <span class="lang-zh">📚 深度拓展：仓库策展与同行评审</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Repository Curation & Peer Review</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：仓库策展与同行评审</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -1372,8 +1383,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Governance Models & Data Justice</span>
-                                <span class="lang-zh">📚 深度拓展：治理模式与数据正义</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Governance Models & Data Justice</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：治理模式与数据正义</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -1468,17 +1479,10 @@
 
                     <div class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
                         <h3 class="font-semibold text-gray-800 mb-3">
-                            <span class="lang-en">B. Metadata & Documentation</span>
+                            <span class="lang-en">B. Metadata & Documents</span>
                             <span class="lang-zh">B. 元数据与文档</span>
                         </h3>
                         <div class="space-y-2 text-sm checklist-item">
-                            <label class="flex items-start gap-2 cursor-pointer">
-                                <input type="checkbox" class="mt-0.5">
-                                <span>
-                                    <span class="lang-en">README file is complete and follows standard structure</span>
-                                    <span class="lang-zh">README 文件完整并遵循标准结构</span>
-                                </span>
-                            </label>
                             <label class="flex items-start gap-2 cursor-pointer">
                                 <input type="checkbox" class="mt-0.5">
                                 <span>
@@ -1547,22 +1551,22 @@
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">
-                                    <span class="lang-en">Next: Use Practical Tools & Templates</span>
-                                    <span class="lang-zh">下一步：使用实用工具与模板</span>
+                                    <span class="lang-en">Next: apply your judgment to real cases</span>
+                                    <span class="lang-zh">下一步：把你的判断应用到真实案例</span>
                                 </h3>
                                 <p class="text-sm text-gray-600">
                                     <span class="lang-en">
-                                        Go to the Toolkit page to get ready-to-use checklists, README templates and de-identification worksheets.
+                                        Test how you would balance privacy, participant voice and research value in three realistic dilemmas involving deductive disclosure, dyadic risk and searchable digital traces.
                                     </span>
                                     <span class="lang-zh">
-                                        前往工具中心页面，获取可直接使用的核查清单、README 模板与去标识化工单。
+                                        通过三个涉及演绎披露、二元关系风险与可检索数字足迹的真实两难案例，检验你如何平衡隐私、参与者声音与研究价值。
                                     </span>
                                 </p>
                             </div>
                             <div class="flex flex-col gap-2 flex-shrink-0">
-                                <a href="tools.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
-                                    <span class="lang-en">Go to Toolkit</span>
-                                    <span class="lang-zh">前往工具中心</span>
+                                <a href="module5.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Start Case Practice</span>
+                                    <span class="lang-zh">开始案例演练</span>
                                 </a>
                                 <a href="index.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
                                     <span class="lang-en">Back to Home</span>
@@ -1726,6 +1730,6 @@
     setDeidTier('basic');
 </script>
 
-<script src="site.js"></script>
+<script src="site.js?v=direct-source-links-20260723"></script>
 </body>
 </html>

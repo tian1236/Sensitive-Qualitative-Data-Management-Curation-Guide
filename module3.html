@@ -59,12 +59,13 @@
             transition: transform 0.2s ease;
         }
 
-        /* Tab 内容切换 */
+        /* 连续章节内容 */
         .tab-panel {
-            display: none;
-        }
-        .tab-panel.active {
             display: block;
+            scroll-margin-top: 6rem;
+        }
+        .tab-panel + .tab-panel {
+            margin-top: 5rem;
         }
 
         /* 自定义复选框 */
@@ -72,6 +73,7 @@
             accent-color: #0f5132;
         }
     </style>
+    <style>img[src="assets/deepdive.png"]{width:1.75rem!important;height:1.75rem!important}</style>
 </head>
 <body class="bg-white text-gray-800 font-sans">
 
@@ -100,8 +102,8 @@
                 <span class="lang-zh">策展进阶</span>
             </a>
             <a href="tools.html" class="hover:text-primary transition-colors">
-                <span class="lang-en">Toolkit</span>
-                <span class="lang-zh">工具中心</span>
+                <span class="lang-en">Tools &amp; Learning Resources</span>
+                <span class="lang-zh">工具与学习资源</span>
             </a>
             <button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors">
                 <span class="lang-en">中文</span>
@@ -145,53 +147,31 @@
     </div>
 </section>
 
-<!-- Tab 导航栏 -->
-<section class="py-6 border-b border-gray-100 bg-white sticky top-[73px] z-40 overflow-x-auto">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <div class="flex gap-1 md:gap-4 min-w-max">
-            <button class="tab-btn tab-active px-4 py-2 text-sm font-medium border-b-2 border-transparent transition-colors" data-tab="overview">
-                <span class="lang-en">Overview & Jurisdiction</span>
-                <span class="lang-zh">总览与管辖权</span>
-            </button>
-            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="pdpo">
-                PDPO
-            </button>
-            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="gdpr">
-                GDPR
-            </button>
-            <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-primary transition-colors" data-tab="irb">
-                <span class="lang-en">IRB Ethics</span>
-                <span class="lang-zh">IRB 伦理</span>
-            </button>
-        </div>
-    </div>
-</section>
-
 <!-- 主内容区 -->
 <section class="py-12">
     <div class="container mx-auto px-6 max-w-6xl">
         <div class="grid md:grid-cols-4 gap-10">
             <!-- 左侧固定目录 -->
             <aside class="md:col-span-1 hidden md:block">
-                <div class="sticky top-[180px]">
+                <div class="sticky top-24">
                     <h4 class="font-semibold text-gray-900 mb-4 text-sm">
                         <span class="lang-en">Sections</span>
                         <span class="lang-zh">章节导航</span>
                     </h4>
                     <nav class="space-y-2 text-sm border-l-2 border-gray-100 pl-4">
-                        <a href="#" class="tab-nav block text-primary font-medium py-1 transition-colors" data-tab="overview">
-                            <span class="lang-en">Overview & Jurisdiction</span>
-                            <span class="lang-zh">总览与管辖权</span>
+                        <a href="#tab-overview" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">3.1 Overview & Jurisdiction</span>
+                            <span class="lang-zh">3.1 总览与管辖权</span>
                         </a>
-                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="pdpo">
-                            PDPO
+                        <a href="#tab-pdpo" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            3.2 PDPO
                         </a>
-                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="gdpr">
-                            GDPR
+                        <a href="#tab-gdpr" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            3.3 GDPR
                         </a>
-                        <a href="#" class="tab-nav block text-gray-600 hover:text-primary py-1 transition-colors" data-tab="irb">
-                            <span class="lang-en">IRB Ethics</span>
-                            <span class="lang-zh">IRB 伦理</span>
+                        <a href="#tab-irb" class="block text-gray-600 hover:text-primary py-1 transition-colors">
+                            <span class="lang-en">3.4 IRB Ethics</span>
+                            <span class="lang-zh">3.4 IRB 伦理</span>
                         </a>
                     </nav>
                 </div>
@@ -201,7 +181,8 @@
             <main class="md:col-span-3">
 
                 <!-- ========== Tab 1: 总览与管辖权 ========== -->
-                <div class="tab-panel active" id="tab-overview">
+                <div class="tab-panel" id="tab-overview">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4"><span class="lang-en">3.1 Overview &amp; Jurisdiction</span><span class="lang-zh">3.1 总览与管辖权</span></h2>
                     <!-- 引导层 -->
                     <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
                         <div class="flex items-start gap-3">
@@ -416,50 +397,11 @@
 
                     <p class="text-xs text-gray-500 mb-6"><span class="lang-en">Sources: </span><span class="lang-zh">来源：</span><a href="references.html#pdpo" class="text-primary underline">PDPO / PCPD</a> · <a href="references.html#gdpr" class="text-primary underline">GDPR Arts. 3, 6, 9, 44–49, 89</a> · <a href="references.html#common-rule" class="text-primary underline">45 CFR 46 / OHRP</a></p>
 
-                    <!-- 管辖权自测 -->
-                    <div id="jurisdiction-check" class="border border-gray-200 rounded-lg p-5 bg-gray-50 mb-6">
-                        <h3 class="font-semibold text-gray-800 mb-3">
-                            <span class="lang-en">Quick Jurisdiction Check</span>
-                            <span class="lang-zh">快速管辖权自测</span>
-                        </h3>
-                        <div class="space-y-3 text-sm">
-                            <label class="flex items-start gap-2 cursor-pointer">
-                                <input type="checkbox" class="mt-0.5" data-label="PDPO/Hong Kong">
-                                <span>
-                                    <span class="lang-en">My institution is based in the PDPO jurisdiction</span>
-                                    <span class="lang-zh">我的机构位于 PDPO 辖区内</span>
-                                </span>
-                            </label>
-                            <label class="flex items-start gap-2 cursor-pointer">
-                                <input type="checkbox" class="mt-0.5" data-label="GDPR/EU-EEA scope to verify">
-                                <span>
-                                    <span class="lang-en">Some participants are located in GDPR jurisdictions</span>
-                                    <span class="lang-zh">部分受访者位于 GDPR 辖区内</span>
-                                </span>
-                            </label>
-                            <label class="flex items-start gap-2 cursor-pointer">
-                                <input type="checkbox" class="mt-0.5" data-label="International transfer/collaboration">
-                                <span>
-                                    <span class="lang-en">I plan to share data with international collaborators</span>
-                                    <span class="lang-zh">我计划与国际合作者共享数据</span>
-                                </span>
-                            </label>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-3">
-                            <span class="lang-en">
-                                Tip: Check whether institutional, sponsor or national human-subject rules apply, then assess each data-protection law using its own territorial-scope test.
-                            </span>
-                            <span class="lang-zh">
-                                提示：先核查机构、资助方或国家层面的人类受试者规则，再按各数据保护法自身的属地范围条款逐一判断。
-                            </span>
-                        </p>
-                    </div>
-
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Legislative Logic Differences</span>
-                                <span class="lang-zh">📚 深度拓展：立法逻辑差异</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Legislative Logic Differences</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：立法逻辑差异</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -507,26 +449,8 @@
 
                 <!-- ========== Tab 2: PDPO ========== -->
                 <div class="tab-panel" id="tab-pdpo">
-                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
-                        <div class="flex items-start gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="landmark" class="text-primary w-5 h-5"></i>
-                            </div>
-                            <div class="text-sm text-gray-700">
-                                <p class="font-medium text-gray-900 mb-1">
-                                    Personal Data (Privacy) Ordinance (PDPO)
-                                </p>
-                                <p>
-                                    <span class="lang-en">
-                                        Hong Kong's principal legislation governing the collection, holding, processing and use of personal data.
-                                    </span>
-                                    <span class="lang-zh">
-                                        香港规管个人资料收集、持有、处理与使用的主要法律。
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">3.2 Personal Data (Privacy) Ordinance (PDPO)</h2>
+                    <p class="text-gray-600 mb-6"><span class="lang-en">Hong Kong's principal legislation governing the collection, holding, processing and use of personal data.</span><span class="lang-zh">香港规管个人资料收集、持有、处理与使用的主要法律。</span></p>
 
                     <h2 class="text-xl font-bold text-gray-900 mb-4">
                         <span class="lang-en">Core Scope of Application</span>
@@ -756,8 +680,8 @@
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
                             <span>
-                                <span class="lang-en">📚 Deep Dive: Research Exemption & Enforcement</span>
-                                <span class="lang-zh">📚 深度拓展：研究豁免与执法处罚</span>
+                                <span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Research Exemption & Enforcement</span>
+                                <span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：研究豁免与执法处罚</span>
                             </span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
@@ -792,27 +716,8 @@
 
                 <!-- ========== Tab 3: GDPR ========== -->
                 <div class="tab-panel" id="tab-gdpr">
-                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
-                        <div class="flex items-start gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="globe" class="text-primary w-5 h-5"></i>
-                            </div>
-                            <div class="text-sm text-gray-700">
-                                <p class="font-medium text-gray-900 mb-1">
-                                    General Data Protection Regulation (GDPR)
-                                </p>
-                                <p>
-                                    <span class="lang-en">
-                                        The European Union's rights-based data protection regulation. Its territorial scope is determined by Article 3,
-                                        not simply by a participant's nationality or location.
-                                    </span>
-                                    <span class="lang-zh">
-                                        欧盟以权利为核心的数据保护法规；其属地范围由第3条判断，不能只看受访者国籍或所在地。
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">3.3 General Data Protection Regulation (GDPR)</h2>
+                    <p class="text-gray-600 mb-6"><span class="lang-en">The European Union's rights-based data protection regulation. Its territorial scope is determined by Article 3, not simply by a participant's nationality or location.</span><span class="lang-zh">欧盟以权利为核心的数据保护法规；其属地范围由第3条判断，不能只看受访者国籍或所在地。</span></p>
 
                     <h2 class="text-xl font-bold text-gray-900 mb-4">
                         <span class="lang-en">Scope of Application</span>
@@ -1000,7 +905,7 @@
 
                     <details class="border border-gray-200 rounded-lg">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
-                            <span><span class="lang-en">📚 Deep Dive: Art.89 Scientific Research Safeguards</span><span class="lang-zh">📚 深度拓展：第89条科研专项保护措施</span></span>
+                            <span><span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Art.89 Scientific Research Safeguards</span><span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：第89条科研专项保护措施</span></span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
                         <div class="p-4 text-sm text-gray-600 space-y-3">
@@ -1026,23 +931,8 @@
 
                 <!-- ========== Tab4: IRB Research Ethics ========== -->
                 <div class="tab-panel" id="tab-irb">
-                    <div class="bg-accent/30 border border-primary/10 rounded-lg p-5 mb-6">
-                        <div class="flex items-start gap-3">
-                            <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="shield-check" class="text-primary w-5 h-5"></i>
-                            </div>
-                            <div class="text-sm text-gray-700">
-                                <p class="font-medium text-gray-900 mb-1">
-                                    <span class="lang-en">Institutional Review Board (IRB) Human Research Ethics Framework</span>
-                                    <span class="lang-zh">机构伦理审查委员会（IRB）人类研究伦理框架</span>
-                                </p>
-                                <p>
-                                    <span class="lang-en">Ethics oversight complements data-protection law. Before collection, obtain the required determination—such as not-human-subjects, exempt, expedited or convened review—under the rules that govern the institution and project.</span>
-                                    <span class="lang-zh">伦理监督是数据保护法的补充。采集前应依机构与项目适用规则取得相应认定，例如不属于人类受试者研究、豁免、快速审查或全体会议审查。</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-2"><span class="lang-en">3.4 Institutional Review Board (IRB) Human Research Ethics Framework</span><span class="lang-zh">3.4 机构伦理审查委员会（IRB）人类研究伦理框架</span></h2>
+                    <p class="text-gray-600 mb-6"><span class="lang-en">Ethics oversight complements data-protection law. Before collection, obtain the required determination—such as not-human-subjects, exempt, expedited or convened review—under the rules that govern the institution and project.</span><span class="lang-zh">伦理监督是数据保护法的补充。采集前应依机构与项目适用规则取得相应认定，例如不属于人类受试者研究、豁免、快速审查或全体会议审查。</span></p>
 
                     <h2 class="text-xl font-bold text-gray-900 mb-4">
                         <span class="lang-en">Four Core Ethical Principles</span>
@@ -1231,7 +1121,7 @@
 
                     <details class="border border-gray-200 rounded-lg mb-8">
                         <summary class="px-4 py-3 bg-gray-50 flex items-center justify-between text-sm font-medium text-gray-700">
-                            <span><span class="lang-en">📚 Deep Dive: Consequences of IRB Non-Compliance</span><span class="lang-zh">📚 深度拓展：违反IRB伦理审查的后果</span></span>
+                            <span><span class="lang-en"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">Deep Dive: Consequences of IRB Non-Compliance</span><span class="lang-zh"><img src="assets/deepdive.png" alt="" aria-hidden="true" class="inline-block h-5 w-5 mr-1 align-middle object-contain">深度拓展：违反IRB伦理审查的后果</span></span>
                             <i data-lucide="chevron-down" class="w-4 h-4 chevron"></i>
                         </summary>
                         <div class="p-4 text-sm text-gray-600 space-y-3">
@@ -1261,18 +1151,18 @@
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">
-                                    <span class="lang-en">Next: apply the requirements across the lifecycle</span>
-                                    <span class="lang-zh">下一步：把要求落实到数据全生命周期</span>
+                                    <span class="lang-en">Next: design curation and access for responsible reuse</span>
+                                    <span class="lang-zh">下一步：为负责任的复用设计策展与访问方案</span>
                                 </h3>
                                 <p class="text-sm text-gray-600">
-                                    <span class="lang-en">Move to the lifecycle module for collection, processing, storage, sharing and end-of-project decisions.</span>
-                                    <span class="lang-zh">前往全生命周期模块，落实收集、处理、存储、共享与结项决策。</span>
+                                    <span class="lang-en">With legal and ethics boundaries clarified, learn how de-identification, metadata and access design can support safe, meaningful long-term reuse.</span>
+                                    <span class="lang-zh">在厘清法规与伦理边界后，进一步学习如何通过去标识化、元数据与访问设计，实现安全且有价值的长期复用。</span>
                                 </p>
                             </div>
                             <div class="flex flex-col gap-2 flex-shrink-0">
-                                <a href="module2.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
-                                    <span class="lang-en">Open Lifecycle Module</span>
-                                    <span class="lang-zh">进入全生命周期模块</span>
+                                <a href="module4.html" class="px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium text-center hover:bg-secondary transition-colors">
+                                    <span class="lang-en">Open Curation &amp; Archiving</span>
+                                    <span class="lang-zh">进入策展与归档</span>
                                 </a>
                                 <a href="index.html" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium text-center hover:border-primary hover:text-primary transition-colors">
                                     <span class="lang-en">Back to Homepage</span>
@@ -1291,7 +1181,7 @@
 <!-- 全局页脚 -->
 <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
     <div class="container mx-auto px-6 max-w-6xl">
-        <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-8 hidden">
             <div>
                 <div class="flex items-center gap-2 mb-3">
                     <i data-lucide="archive" class="text-white w-5 h-5"></i>
@@ -1326,10 +1216,44 @@
                 </ul>
             </div>
         </div>
-        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="archive" class="text-white w-5 h-5"></i>
+                    <span class="font-bold text-white text-lg">SQDMC Guide</span>
+                </div>
+                <p class="text-sm text-gray-400">Sensitive Qualitative Data Management &amp; Curation Guide for researchers and data practitioners.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">Modules</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="module1.html" class="hover:text-white transition-colors">1 · Foundations</a></li>
+                    <li><a href="module2.html" class="hover:text-white transition-colors">2 · Full Lifecycle Management</a></li>
+                    <li><a href="module3.html" class="hover:text-white transition-colors">3 · Legal &amp; Ethical Frameworks</a></li>
+                    <li><a href="module4.html" class="hover:text-white transition-colors">4 · Curation &amp; Archiving</a></li>
+                    <li><a href="module5.html" class="hover:text-white transition-colors">5 · Case Practice</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-3 text-sm">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tools.html" class="hover:text-white transition-colors">Learning Materials</a></li>
+                    <li><a href="references.html" class="hover:text-white transition-colors">References</a></li>
+                    <li><a href="glossary.html" class="hover:text-white transition-colors">Glossary</a></li>
+                </ul>
+            </div>
+            <div class="pt-7">
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center hidden">
             <span class="lang-en">All content for educational reference only, not legal counsel.</span>
             <span class="lang-zh">全部内容仅作教学参考，不构成专业法律意见。</span>
         </div>
+        <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center">For educational reference only. Not legal or professional advice.</div>
     </div>
 </footer>
 
@@ -1350,60 +1274,10 @@
         document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
     });
 
-    // Tab切换逻辑
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    const tabNavLinks = document.querySelectorAll('.tab-nav');
-
-    function switchTab(tabId) {
-        // 重置所有tab按钮样式
-        tabButtons.forEach(btn => {
-            btn.classList.remove('tab-active');
-            btn.classList.add('text-gray-600');
-        });
-        // 激活当前tab按钮
-        const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-        activeBtn.classList.add('tab-active');
-        activeBtn.classList.remove('text-gray-600');
-
-        // 隐藏所有面板，显示目标面板
-        tabPanels.forEach(panel => panel.classList.remove('active'));
-        document.getElementById(`tab-${tabId}`).classList.add('active');
-
-        // 同步左侧目录高亮
-        tabNavLinks.forEach(link => {
-            if(link.dataset.tab === tabId) {
-                link.classList.add('text-primary','font-medium');
-            } else {
-                link.classList.remove('text-primary','font-medium');
-            }
-        });
-    }
-
-    // 顶部Tab按钮点击事件
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.dataset.tab;
-            switchTab(targetTab);
-        });
-    });
-
-    // 左侧目录点击跳转Tab
-    tabNavLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetTab = link.dataset.tab;
-            switchTab(targetTab);
-        });
-    });
-
-    // 初始化默认tab
-    switchTab('overview');
-
     // 初始化图标渲染
     lucide.createIcons();
 </script>
 
-<script src="site.js"></script>
+<script src="site.js?v=direct-source-links-20260723"></script>
 </body>
 </html>

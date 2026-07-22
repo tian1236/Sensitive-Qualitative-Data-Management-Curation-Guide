@@ -1,11 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About | SQDMC Guide</title><script src="https://cdn.tailwindcss.com"></script><script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script><script>tailwind.config={theme:{extend:{colors:{primary:'#0f5132',secondary:'#2f6f4f',accent:'#e6f0ea'}}}}</script><style>.lang-zh{display:none}body.show-zh .lang-en{display:none}body.show-zh .lang-zh{display:inline}body.show-zh p.lang-zh{display:block}</style></head>
-<body class="text-gray-800 font-sans"><nav class="border-b sticky top-0 bg-white z-50"><div class="container mx-auto max-w-5xl px-6 py-4 flex justify-between items-center"><a href="index.html" class="font-bold text-primary">SQDMC Guide</a><div class="hidden md:flex gap-6 text-sm"><a href="module1.html">Foundations</a><a href="module3.html">Legal & Ethics</a><a href="module2.html">Lifecycle</a><a href="module4.html">Curation</a><a href="tools.html">Toolkit</a><button id="langToggle" class="border rounded px-3"><span class="lang-en">中文</span><span class="lang-zh">English</span></button></div><button class="md:hidden"><i data-lucide="menu"></i></button></div></nav>
-<main class="container mx-auto max-w-4xl px-6 py-14"><h1 class="text-3xl font-bold"><span class="lang-en">About this guide</span><span class="lang-zh">关于本指南</span></h1><div class="mt-8 space-y-7 text-gray-700">
-<section><h2 class="font-semibold text-lg"><span class="lang-en">Purpose</span><span class="lang-zh">目的</span></h2><p class="mt-2 lang-en">An educational workflow for planning the management, ethical review, curation and controlled reuse of sensitive qualitative research data.</p><p class="mt-2 lang-zh">为敏感定性研究数据的管理、伦理审查、策展与受控复用提供教育性工作流程。</p></section>
-<section><h2 class="font-semibold text-lg"><span class="lang-en">Recommended sequence</span><span class="lang-zh">推荐顺序</span></h2><p class="mt-2 lang-en">Risk triage → legal and ethics determination → lifecycle controls → archive-or-destroy decision → evidence and templates.</p><p class="mt-2 lang-zh">风险初筛 → 法规与伦理认定 → 全生命周期控制 → 归档或销毁决策 → 证据与模板。</p></section>
-<section><h2 class="font-semibold text-lg"><span class="lang-en">Limitations</span><span class="lang-zh">局限</span></h2><p class="mt-2 lang-en">The guide does not determine jurisdiction, legal basis, anonymisation status or IRB outcome. Local law, institutional policy, sponsor conditions and repository requirements prevail.</p><p class="mt-2 lang-zh">本指南不能自动决定管辖范围、法律依据、匿名化状态或伦理审查结果；当地法律、机构政策、资助条件与仓库要求优先。</p></section>
-<section><h2 class="font-semibold text-lg"><span class="lang-en">Revision record</span><span class="lang-zh">修订记录</span></h2><p class="mt-2 lang-en">Substantive legal, ethics, workflow and interaction review completed 19 July 2026. Source links and AI-assisted revision disclosure are recorded on the references page.</p><p class="mt-2 lang-zh">2026年7月19日完成法规、伦理、流程与交互的实质性修订；来源链接与AI辅助修订披露见参考来源页。</p></section>
-</div><div class="mt-10 flex gap-4"><a href="index.html" class="px-4 py-2 rounded bg-primary text-white"><span class="lang-en">Return home</span><span class="lang-zh">返回首页</span></a><a href="references.html" class="px-4 py-2 rounded border"><span class="lang-en">References</span><span class="lang-zh">参考来源</span></a></div></main>
-<script>const b=document.getElementById('langToggle'),d=document.body,s=localStorage.getItem('sqdmc_lang')||'en';if(s==='zh'){d.classList.add('show-zh');document.documentElement.lang='zh-CN'}b.addEventListener('click',()=>{d.classList.toggle('show-zh');const l=d.classList.contains('show-zh')?'zh':'en';localStorage.setItem('sqdmc_lang',l);document.documentElement.lang=l==='zh'?'zh-CN':'en'});if(window.lucide)lucide.createIcons();</script><script src="site.js"></script></body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | SQDMC Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0f5132',secondary:'#2f6f4f',accent:'#e6f0ea'}}}}</script>
+    <style>
+        .lang-zh{display:none}body.show-zh .lang-en{display:none}body.show-zh .lang-zh{display:inline}body.show-zh p.lang-zh{display:block}
+        .about-toc a{display:block;border-radius:.5rem;padding:.5rem .7rem;color:#4b5563;font-size:.875rem;line-height:1.35}
+        .about-toc a:hover{background:#e6f0ea;color:#0f5132}
+        .about-content > section + section{border-top:1px solid #d1d5db;padding-top:2.5rem}
+    </style>
+</head>
+<body class="text-gray-800 font-sans">
+    <nav class="border-b sticky top-0 bg-white z-50">
+        <div class="container mx-auto max-w-5xl px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-bold text-primary">SQDMC Guide</a>
+            <div class="hidden md:flex gap-6 text-sm">
+                <a href="module1.html">Foundations</a><a href="module3.html">Legal &amp; Ethics</a><a href="module2.html">Lifecycle</a><a href="module4.html">Curation</a><a href="tools.html">Toolkit</a>
+                <button id="langToggle" class="border rounded px-3"><span class="lang-en">中文</span><span class="lang-zh">English</span></button>
+            </div>
+            <button class="md:hidden"><i data-lucide="menu"></i></button>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-6xl px-6 py-14">
+        <div class="grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
+            <aside class="lg:sticky lg:top-24 lg:self-start">
+                <nav class="about-toc border-l-2 border-primary/20 pl-3">
+                    <a href="#what-is-this-guide">1. What is this guide and why does it exist?</a>
+                    <a href="#how-it-all-began">2. How It All Began</a>
+                    <a href="#self-learning">3. The Struggles of Self-Learning</a>
+                    <a href="#not-just-my-struggle">3. Not Just My Struggle</a>
+                    <a href="#meet-hazel">5. Meet Hazel, Your Companion in This Journey</a>
+                    <a href="#what-i-want-to-convey">6. What I Want to Convey</a>
+                    <a href="#interactive-features">7. Interactive Features</a>
+                    <a href="#limitations">9. Limitations and Disclaimer</a>
+                </nav>
+            </aside>
+
+            <article class="about-content max-w-3xl space-y-10 text-gray-700">
+                <section id="what-is-this-guide" class="scroll-mt-24">
+                    <h1 class="text-3xl font-bold text-gray-900">1. What is this guide and why does it exist?</h1>
+                    <p class="mt-5">The Sensitive Qualitative Data Management &amp; Curation Guide (SQDMC Guide) is a free, open-access educational resource designed for graduate students, early-career researchers, and anyone who works with sensitive qualitative data. It provides a structured, step-by-step workflow — from planning and collection through processing, storage, sharing, and long-term archiving or destruction.</p>
+                    <p class="mt-4">This guide began as a course project for the MLIM6338 New Literacies and Technology course at the University of Hong Kong (HKU), completed by a student in the MLIM programme. It also originated from the student's own research journey.</p>
+                </section>
+
+                <section id="how-it-all-began" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">2. How It All Began</h2>
+                    <p class="mt-4">When I started writing my thesis, I needed to collect a large volume of textual data related to medical conditions and diseases. The data came from real participants and contained extensive personal and sensitive information. As I worked with this material, two things became increasingly clear.</p>
+                    <p class="mt-4">First, the data had significant research value. If future scholars could reuse it, they could avoid unnecessary duplication of effort. Second, the data also carried serious privacy risks. Direct exposure would harm individuals’ privacy and their trust.</p>
+                    <p class="mt-4">At the same time, I needed to submit an ethics application to the Human Research Ethics Committee (HKU), which required a detailed plan for handling sensitive information. But I had never taken a course on this topic. I knew almost nothing about it.</p>
+                </section>
+
+                <section id="self-learning" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">3. The Struggles of Self-Learning</h2>
+                    <p class="mt-4">So I began to learn — and quickly ran into obstacles.</p>
+                    <p class="mt-4">Every time I opened a government or institutional website, I was met with dense policy documents and complex legal texts. I had to dig through them bit by bit, piece together what was relevant, and try to make sense of it all.</p>
+                    <p class="mt-4">Video tutorials existed, but they were scattered with no coherent learning path for beginners. I felt like someone wandering through a maze, taking many wrong turns to gather useful pieces of knowledge.</p>
+                    <p class="mt-4">And most importantly, I wasn't learning this to pass an exam. I needed to actually use this knowledge to handle real data from real participants in my thesis. I wanted a resource that started from the very basics, covered both theory and practice, explained why each step was necessary, and could be immediately applied to real-world situations. But I couldn't find one.</p>
+                </section>
+
+                <section id="not-just-my-struggle" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">3. Not Just My Struggle</h2>
+                    <p class="mt-4">As I talked with friends who were also writing their theses, I noticed some similar questions: How should I store this data? How do I anonymise quotes? Can I share it in the future? So I think, maybe we need a practical, beginner-friendly guide.</p>
+                    <p class="mt-4">Interestingly, data processing itself is a form of data literacy — the ability to collect, produce, and manage data in a responsible and meaningful way. This connects directly to what I was learning in the MLIM6338 New Literacies and Technology.</p>
+                    <p class="mt-4">So I took this course project as an opportunity — to organise everything I had learned, to distill it into a format that I found intuitive, and to share it as an interactive learning guide.</p>
+                </section>
+
+                <section id="meet-hazel" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">5. Meet Hazel, Your Companion in This Journey</h2>
+                    <p class="mt-4">I wanted this guide to be simple, approachable, and practical. So I created Hazel. She is a master's student in Social Sciences conducting qualitative interviews with forest dwellers. She makes mistakes and asks questions, so that others can learn from her missteps, and see the reasoning behind each decision.</p>
+                    <p class="mt-4">Through Hazel's story, I translate abstract concepts into concrete scenarios. I use Hazel's character to share my own real struggles, confusions, and the lessons I learned while handling sensitive data.</p>
+                </section>
+
+                <section id="what-i-want-to-convey" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">6. What I Want to Convey</h2>
+                    <p class="mt-4">One message runs through this guide: Anonymisation and research reusability are not binary opposites. The goal is not to choose one over the other, but to find a defensible balance.</p>
+                    <p class="mt-4">We must protect participants' privacy. But we need also preserve what makes qualitative data valuable. This guide is built around this conflict, and it provide a framework for making transparent decisions, so that data can be shared responsibly, without sacrificing either privacy or scholarly value.</p>
+                </section>
+
+                <section id="interactive-features" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">7. Interactive Features</h2>
+                    <p class="mt-4">This guide is not a static document. It includes interactive features to support active learning:</p>
+                    <ul class="mt-4 list-disc space-y-2 pl-5">
+                        <li>Self-assessments (in Module 1) help you quickly check your own data's sensitivity level.</li>
+                        <li>Interactive de-identification demos (in Module 4) show how redaction depth changes across sharing scenarios.</li>
+                        <li>Checklists at each lifecycle stage let you track your progress.</li>
+                        <li>Case practice (Module 5) lets you work through ethical dilemmas and compare your responses with documented outcomes.</li>
+                    </ul>
+                </section>
+
+                <section id="limitations" class="scroll-mt-24">
+                    <h2 class="text-2xl font-semibold text-gray-900">9. Limitations and Disclaimer</h2>
+                    <p class="mt-4">This guide is designed for educational reference only. It does not constitute legal, regulatory, or professional advice.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <script>const b=document.getElementById('langToggle'),d=document.body,s=localStorage.getItem('sqdmc_lang')||'en';if(s==='zh'){d.classList.add('show-zh');document.documentElement.lang='zh-CN'}b.addEventListener('click',()=>{d.classList.toggle('show-zh');const l=d.classList.contains('show-zh')?'zh':'en';localStorage.setItem('sqdmc_lang',l);document.documentElement.lang=l==='zh'?'zh-CN':'en'});if(window.lucide)lucide.createIcons();</script>
+    <script src="site.js"></script>
+</body>
+</html>
