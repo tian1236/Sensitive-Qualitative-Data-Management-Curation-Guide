@@ -27,6 +27,7 @@
         .resource{cursor:pointer}.resource-preview{position:relative;height:12.5rem;overflow:hidden;border-bottom:1px solid #d9dfcf;background:linear-gradient(135deg,#dcebdd,#f8f2d8)}
         .resource-preview:after{content:'↗';position:absolute;right:.75rem;top:.6rem;display:flex;width:1.8rem;height:1.8rem;align-items:center;justify-content:center;border-radius:999px;background:rgba(31,67,44,.84);color:#fff;font-weight:800;opacity:0;transform:translateY(4px);transition:.2s}.resource:hover .resource-preview:after{opacity:1;transform:translateY(0)}
         .resource-preview img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .35s ease}.resource:hover .resource-preview img{transform:scale(1.035)}
+        .stats4sd-preview{display:flex;flex-direction:column;justify-content:flex-end;padding:1.15rem;background:linear-gradient(135deg,#123c5c 0%,#287b8d 52%,#d5b453 52%,#efd87e 100%);color:#fff}.stats4sd-preview .preview-kicker{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.stats4sd-preview .preview-title{margin-top:.35rem;max-width:15rem;font-family:Georgia,'Times New Roman',serif;font-size:1.35rem;font-weight:800;line-height:1.12}.stats4sd-preview .preview-subtitle{margin-top:.5rem;font-size:.73rem;opacity:.92}
         .resource-preview.preview-unavailable:before{content:'Website preview unavailable';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#dcebdd,#f8f2d8);color:#315f40;font-family:Georgia,'Times New Roman',serif;font-size:.9rem;font-weight:700;letter-spacing:.02em}
         body.show-zh .resource-preview.preview-unavailable:before{content:'暂时无法加载网页预览'}
         .resource-detail{padding:0 1rem}.resource-open{display:none}
@@ -151,10 +152,17 @@
             card.classList.remove('md:col-span-2');
             const preview = document.createElement('div');
             preview.className = 'resource-preview';
+            const title = card.querySelector('b')?.textContent.trim() || 'Resource';
+            if (title.startsWith('Stats4SD')) {
+                preview.classList.add('stats4sd-preview');
+                preview.innerHTML = '<span class="preview-kicker">Stats4SD learning series</span><span class="preview-title">Qualitative Data Management</span><span class="preview-subtitle">A four-part practical introduction</span>';
+                card.insertBefore(preview, card.firstChild);
+                return;
+            }
             const image = document.createElement('img');
             image.loading = 'lazy';
-            image.alt = `${card.querySelector('b')?.textContent.trim() || 'Resource'} website preview`;
-            image.src = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(card.href)}?w=1200`;
+            image.alt = `${title} website preview`;
+            image.src = title.startsWith('ICPSR') ? 'assets/icpsr-preview.png' : `https://s.wordpress.com/mshots/v1/${encodeURIComponent(card.href)}?w=1200`;
             image.onerror = () => {
                 preview.classList.add('preview-unavailable');
                 image.remove();
