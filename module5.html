@@ -93,6 +93,26 @@ function render() {
  const next=document.getElementById('next-case'); if(next) next.addEventListener('click',()=>{if(index<cases.length-1){index++;selected=null;render();}else renderScore();});
 }
 function renderScore(){app.innerHTML='';scoreArea.innerHTML=`<div class="rounded-xl border ${score===3?'border-green-200 bg-green-50':'border-primary/20 bg-primary/5'} p-6 text-center"><p class="text-sm text-gray-600">${zh()?'定性数据伦理演练终局审计':'ETHICS PRACTICE AUDIT ACCOMPLISHED'}</p><p class="text-4xl font-bold text-primary mt-2">${score} / ${cases.length}</p><h2 class="text-xl font-bold mt-3">${score===3?(zh()?'资深定性数据守护人':'Senior Qualitative Data Steward'):score===2?(zh()?'进阶定性数据守护人':'Advanced Qualitative Data Steward'):(zh()?'入门定性数据学习者':'Novice Qualitative Data Learner')}</h2><p class="text-sm text-gray-700 mt-3 max-w-xl mx-auto">${score===3?(zh()?'不可思议！您在全部三个具有极高复杂度的学术伦理困境中，都做出了完全正确的决策。您已经掌握了如何在受访者保密与学术保留权（ERR原则）之间取得完美的金质平衡。':'Stellar! You made sound, ethical judgments on all three real-world dilemmas. You perfectly master how to balance confidentiality boundaries and epistemically responsible reuse (ERR).'):score===2?(zh()?'非常棒！您做对了大半决策。建议返回阅读对应模块指引，重新审视二元关系识别或搜索引擎字词改写的隐蔽威胁。':'Excellent job! Qualitative trade-offs are complex; your single miss reminds you of hidden dyadic network triggers or digital search footprints.'):(zh()?'定性数据保护极有讲究，判读失分在初学者中十分常见。建议重新阅读模块一的三路径风险自测和模块二的生命周期策展。':'Analyzing qualitative context takes practice. Standard quantitative sanitizing models often fail. We recommend revisiting Module 1 Risk Profiling and Module 2 timeline curators.')}</p><button id="restart-practice" class="mt-5 px-5 py-2.5 border border-primary text-primary rounded-md text-sm font-medium hover:bg-white">${zh()?'重新演练':'Replay Dilemmas'}</button></div>`;document.getElementById('restart-practice').addEventListener('click',()=>{index=0;selected=null;score=0;scoreArea.innerHTML='';render();});}
+const renderScoreBase = renderScore;
+renderScore = function(){
+ renderScoreBase();
+ const replay = document.getElementById('restart-practice');
+ if (!replay) return;
+ const actions = document.createElement('div');
+ actions.className = 'mt-5 flex flex-wrap justify-center gap-3';
+ replay.classList.remove('mt-5');
+ replay.replaceWith(actions);
+ actions.appendChild(replay);
+ const related = document.createElement('a');
+ related.href = 'references.html#module5-case-practice';
+ related.className = 'px-5 py-2.5 bg-primary text-white rounded-md text-sm font-medium hover:bg-secondary';
+ related.textContent = zh() ? '查看相关资料' : 'View Related Materials';
+ const home = document.createElement('a');
+ home.href = 'index.html';
+ home.className = 'px-5 py-2.5 border border-gray-300 text-gray-700 rounded-md text-sm font-medium hover:border-primary hover:text-primary';
+ home.textContent = zh() ? '返回主页' : 'Back to Home';
+ actions.append(related, home);
+};
 const langToggle=document.getElementById('langToggle'), body=document.body; if(localStorage.getItem('sqdmc_lang')==='zh'){body.classList.add('show-zh');document.documentElement.lang='zh-CN';} langToggle.addEventListener('click',()=>{body.classList.toggle('show-zh');localStorage.setItem('sqdmc_lang',zh()?'zh':'en');document.documentElement.lang=zh()?'zh-CN':'en';if(scoreArea.innerHTML)renderScore();else render();}); if(window.lucide)lucide.createIcons(); render();
 </script>
 <script src="site.js"></script>
