@@ -162,7 +162,7 @@
             const image = document.createElement('img');
             image.loading = 'lazy';
             image.alt = `${title} website preview`;
-            image.src = title.startsWith('ICPSR') ? 'assets/icpsr-preview.png' : `https://s.wordpress.com/mshots/v1/${encodeURIComponent(card.href)}?w=1200`;
+            image.src = title.startsWith('ICPSR') && !card.href.includes('youtube.com') ? 'assets/icpsr-preview.png' : `https://s.wordpress.com/mshots/v1/${encodeURIComponent(card.href)}?w=1200`;
             image.onerror = () => {
                 preview.classList.add('preview-unavailable');
                 image.remove();
