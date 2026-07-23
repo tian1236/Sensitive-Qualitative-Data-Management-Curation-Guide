@@ -6,9 +6,11 @@
     const style = document.createElement('style');
     style.textContent = `
         @media (max-width: 767px) {
-            nav .site-mobile-menu { display:flex !important; position:absolute; left:0; right:0; top:100%;
+            nav { isolation:isolate; overflow:visible !important; }
+            nav > .container { position:relative; }
+            nav .site-mobile-menu { display:flex !important; position:absolute; z-index:100; left:0; right:0; top:calc(100% + 1px);
                 flex-direction:column; gap:0; padding:1rem 1.5rem; background:white; border-bottom:1px solid #e5e7eb;
-                box-shadow:0 12px 24px rgba(0,0,0,.08); }
+                box-shadow:0 12px 24px rgba(0,0,0,.08); max-height:calc(100vh - 4.5rem); overflow-y:auto; }
             nav .site-mobile-menu a, nav .site-mobile-menu button { padding:.65rem 0; }
             nav .site-mobile-menu .site-nav-dropdown { width:100%; padding-bottom:0; margin-bottom:0; }
             nav .site-mobile-menu .site-nav-trigger { width:100%; justify-content:space-between; }
@@ -26,6 +28,8 @@
         .site-nav-dropdown.is-open .site-nav-dropdown-menu { display:flex; }
         .site-nav-dropdown-menu a { display:block; padding:.6rem .75rem; border-radius:.45rem; line-height:1.35; }
         .site-nav-dropdown-menu a:hover, .site-nav-dropdown-menu a:focus { background:#e6f0ea; color:#0f5132; outline:none; }
+        .site-github-link { display:inline-flex; align-items:center; justify-content:center; }
+        .site-github-mark { width:1.2rem; height:1.2rem; object-fit:contain; }
         /* Shared woodland-paper visual language. */
         body { background:#fbfaf5; color:#26332b; }
         nav { border-color:rgba(73,104,81,.16) !important; box-shadow:0 2px 14px rgba(31,57,40,.045); }
@@ -173,6 +177,7 @@
                 navLink('glossary.html', 'Glossary', '术语表')
             ].join('')),
             navLink('about.html', 'About', '关于本站'),
+            '<a href="https://github.com/tian1236/Sensitive-Qualitative-Data-Management-Curation-Guide" class="site-github-link hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><img src="assets/GitHub_Clearspace.png" class="site-github-mark" alt="GitHub"></a>',
             '<button id="langToggle" class="px-3 py-1 border border-gray-300 rounded text-xs hover:border-primary hover:text-primary transition-colors"><span class="lang-en">中文</span><span class="lang-zh">English</span></button>'
         ].join('');
         primaryNav.querySelectorAll('.site-nav-trigger').forEach(trigger => {
@@ -204,6 +209,12 @@
             mobileButton.addEventListener('click', () => {
                 const open = menu.classList.toggle('site-mobile-menu');
                 mobileButton.setAttribute('aria-expanded', String(open));
+            });
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    menu.classList.remove('site-mobile-menu');
+                    mobileButton.setAttribute('aria-expanded', 'false');
+                }
             });
             document.addEventListener('keydown', event => {
                 if (event.key === 'Escape') {
@@ -334,6 +345,7 @@
                         <ul class="space-y-2 text-sm">
                             <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
                             <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                            <li><a href="https://github.com/tian1236/Sensitive-Qualitative-Data-Management-Curation-Guide" class="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
                         </ul>
                     </div>
                 </div>
